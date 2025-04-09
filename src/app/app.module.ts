@@ -17,6 +17,8 @@ import { ExperienceFormComponent } from './profile-card/experience-form/experien
 import { SkillFormComponent } from './profile-card/skill-form/skill-form.component';
 import { CertificationFormComponent } from './profile-card/certification-form/certification-form.component';
 import { PostsFeedComponent } from './posts-feed/posts-feed.component';
+import { PostCreateComponent } from './posts-feed/post-create/post-create.component';
+import { PostDisplayComponent } from './posts-feed/post-display/post-display.component';
 
 
 
@@ -35,6 +37,8 @@ import { PostsFeedComponent } from './posts-feed/posts-feed.component';
     SkillFormComponent,
     CertificationFormComponent,
     PostsFeedComponent,
+    PostCreateComponent,
+    PostDisplayComponent,
 
 
   
