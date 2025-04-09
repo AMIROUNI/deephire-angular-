@@ -1,15 +1,14 @@
-<!-- post-display.component.html -->
 <div class="post-container">
     <div class="post-header">
       <div class="user-info">
         <div class="avatar-container">
-          <img [src]="post.author.avatar || 'assets/default-avatar.jpg'" alt="User Avatar" class="user-avatar">
+          <img [src]="post.author.profilePicture || 'assets/default-avatar.jpg'" alt="User Avatar" class="user-avatar">
         </div>
         <div class="user-details">
-          <div class="user-name">{{post.author.name}}</div>
-          <div class="user-title">{{post.author.title}}</div>
+          <div class="user-name">{{ post.author.firstName }} {{ post.author.lastName }}</div>
+          <div class="user-bio">{{ post.author.bio }}</div>
           <div class="post-time">
-            <span>{{formatTimeAgo(post.timestamp)}}</span>
+            <span>{{ formatTimeAgo(post.timestamp) }}</span>
             <span *ngIf="post.edited"> • Edited</span>
           </div>
         </div>
@@ -19,26 +18,26 @@
         <button class="btn-more"><i class="fas fa-ellipsis-h"></i></button>
       </div>
     </div>
-    
+  
     <div class="post-content">
-      <p [class.expanded]="showFullPost">{{post.content}}</p>
+      <p [class.expanded]="showFullPost">{{ post.content }}</p>
       <button *ngIf="post.content.length > 200 && !showFullPost" class="btn-see-more" (click)="toggleFullPost()">
         ...see more
       </button>
     </div>
-    
+  
     <div class="post-translation" *ngIf="post.translation && showTranslation">
       <div class="translation-header">
         <span>Translated to English</span>
         <button class="btn-hide-translation" (click)="toggleTranslation()">Hide</button>
       </div>
-      <p>{{post.translation}}</p>
+      <p>{{ post.translation }}</p>
     </div>
-    
+  
     <div class="post-tags">
-      <span *ngFor="let tag of post.tags" class="post-tag">#{{tag}}</span>
+      <span *ngFor="let tag of post.tags" class="post-tag">#{{ tag }}</span>
     </div>
-    
+  
     <div class="post-footer">
       <button class="btn-like">
         <i class="far fa-thumbs-up"></i> Like
@@ -53,7 +52,7 @@
         <i class="far fa-paper-plane"></i> Send
       </button>
     </div>
-    
+  
     <div class="post-translation-toggle" *ngIf="post.translation && !showTranslation">
       <button (click)="toggleTranslation()">Show translation</button>
     </div>

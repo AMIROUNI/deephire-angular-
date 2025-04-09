@@ -1,3 +1,6 @@
+import { Message } from "../message/message.model";
+import { Profile } from "../profile/profile.model";
+
 // src/app/models/user/user.model.ts
 export interface User {
     id: number;

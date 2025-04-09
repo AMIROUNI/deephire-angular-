@@ -1,27 +1,26 @@
-// post-display.component.ts
 import { Component, Input } from '@angular/core';
-import { Post } from '../models/post.model';
+import { Post } from '../../models/posts/post.model'; // Adjusted path assuming models are in src/app/models/
 
 @Component({
   selector: 'app-post-display',
   templateUrl: './post-display.component.html',
-  styleUrls: ['./post-display.component.scss']
+  styleUrls: ['./post-display.component.css'],
+  standalone: false
 })
 export class PostDisplayComponent {
-  @Input() post: Post;
+  @Input() post!: Post;
   showTranslation: boolean = false;
   showFullPost: boolean = false;
-  
+
   toggleTranslation(): void {
     this.showTranslation = !this.showTranslation;
   }
-  
+
   toggleFullPost(): void {
     this.showFullPost = !this.showFullPost;
   }
-  
+
   formatTimeAgo(date: Date): string {
-    // Implement time ago formatting logic
     const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
     if (seconds < 60) return `${seconds} seconds ago`;
     const minutes = Math.floor(seconds / 60);
