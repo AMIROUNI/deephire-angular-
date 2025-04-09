@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Deephire
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
@@ -57,3 +58,44 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=======
+# DeepHire - A Professional Networking Platform
+
+**DeepHire** is a professional networking platform built using **Angular**. It is inspired by **LinkedIn**, enabling users to create and manage their profiles, connect with professionals, and showcase their skills and experiences.
+
+---
+
+## Features
+
+- **User Profiles**: Create and manage profiles with sections like Education, Experience, Skills, and Certifications.
+- **Networking**: Connect with other professionals and build your network.
+- **Dynamic Forms**: Add, edit, and delete sections on your profile with ease.
+- **Responsive Design**: Optimized for both desktop and mobile viewing.
+- **Interactive UI**: Built using **Angular** and styled with **Bootstrap** for modern, clean, and responsive design.
+
+---
+
+## Tech Stack
+
+- **Frontend**: Angular (Latest Version)
+- **Styling**: Bootstrap (4/5)
+- **State Management**: Angular Reactive Forms for handling dynamic forms and validations.
+- **Routing**: Angular Router for page navigation.
+
+---
+
+## Installation
+
+### Prerequisites
+
+Make sure you have the following installed:
+- **Node.js** (LTS version)
+- **npm** (Node Package Manager)
+
+### Steps to Run Locally
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/deephire.git
+>>>>>>> 02c90e4db6340d8db6b4c31eae9de1eb97d04800
