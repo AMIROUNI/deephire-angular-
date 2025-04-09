@@ -1,0 +1,32 @@
+<div class="form-container card shadow-lg animate__animated animate__fadeInUp">
+    <div class="card-body p-4">
+      <h3 class="fw-bold text-primary text-center mb-4">Ajouter une compétence</h3>
+  
+      <form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="skillName" class="form-label fw-semibold">Nom de la compétence</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-lightbulb"></i></span>
+            <input
+              type="text"
+              id="skillName"
+              class="form-control"
+              formControlName="name"
+              placeholder="Ex: Angular"
+              [class.is-invalid]="isInvalidAndTouchedOrDirty(skillForm.controls.name)"
+            />
+          </div>
+          <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(skillForm.controls.name)">
+            <ng-container *ngIf="skillForm.controls.name.hasError('required')">Compétence requise</ng-container>
+            <ng-container *ngIf="skillForm.controls.name.hasError('minlength')">Minimum 2 caractères</ng-container>
+          </small>
+        </div>
+  
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">Annuler</button>
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

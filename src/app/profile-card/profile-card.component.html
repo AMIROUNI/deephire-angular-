@@ -1,0 +1,77 @@
+<div class="profile-card">
+  <!-- En-tête avec image de fond -->
+  <div class="profile-header" [style.backgroundImage]="'url(' + defaultUser.backgroundImage + ')'">
+    <img [src]="defaultUser.profilePicture" alt="Photo de profil" class="profile-picture">
+  </div>
+
+  <!-- Informations de base -->
+  <div class="profile-info">
+    <h1 class="profile-name">{{ defaultUser.name }}</h1>
+    <p class="profile-title">{{ defaultUser.title }}</p>
+    <p class="profile-location">{{ defaultUser.location }}</p>
+    <p class="profile-connections">{{ defaultUser.connections }}+ connexions</p>
+
+
+
+   <!-- + Add Section Button -->
+<!-- + Add Section Button -->
+<div class="section-add-box text-center my-4">
+  <button class="btn btn-outline-primary" 
+          (click)="toggleSectionsMenu()" 
+          >+ Add Section</button>
+</div>
+
+<!-- Overlay for the ProfileSectionsComponent -->
+<div *ngIf="showSectionsMenu" class="section-menu-overlay">
+  <div class="section-menu-wrapper">
+    <app-profile-sections (close)="hideSectionsMenu()"></app-profile-sections>
+  </div>
+</div>
+
+
+  </div>
+
+  <!-- Boutons d'action -->
+  <div class="profile-actions">
+    <button class="btn btn-primary" (click)="connect()">Se connecter</button>
+    <button class="btn btn-secondary">Message</button>
+  </div>
+
+  <!-- Section À propos -->
+  <div class="profile-section">
+    <h2>À propos</h2>
+    <p>{{ defaultUser.about }}</p>
+  </div>
+
+  <!-- Section Expérience -->
+  <div class="profile-section">
+    <h2>Expérience</h2>
+    <ul class="experience-list">
+      <li *ngFor="let exp of defaultUser.experience" class="experience-item">
+        <h3>{{ exp.role }}</h3>
+        <p class="company">{{ exp.company }}</p>
+        <p class="duration">{{ exp.duration }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Section Éducation -->
+  <div class="profile-section">
+    <h2>Éducation</h2>
+    <ul class="education-list">
+      <li *ngFor="let edu of defaultUser.education" class="education-item">
+        <h3>{{ edu.degree }}</h3>
+        <p class="university">{{ edu.university }}</p>
+        <p class="year">{{ edu.year }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Section Compétences -->
+  <div class="profile-section">
+    <h2>Compétences</h2>
+    <ul class="skills-list">
+      <li *ngFor="let skill of defaultUser.skills" class="skill-item">{{ skill }}</li>
+    </ul>
+  </div>
+</div>

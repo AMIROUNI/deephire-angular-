@@ -1,0 +1,87 @@
+/* Variables CSS */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --text-color: #2b2d42;
+    --text-light: #8d99ae;
+    --background-light: #f8f9fa;
+}
+
+/* Général */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header */
+.navbar {
+    padding: 1rem 0;
+}
+.navbar-brand span {
+    color: var(--primary-color);
+}
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 6rem 0;
+}
+.hero-section h1 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+.hero-section .btn {
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+}
+
+/* Services Section */
+.services-section {
+    padding: 5rem 0;
+}
+.services-section .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.services-section .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.services-section i {
+    color: var(--primary-color);
+}
+
+/* About Section */
+.about-section {
+    padding: 5rem 0;
+}
+.about-section img {
+    max-width: 100%;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 5rem 0;
+}
+.contact-section .btn {
+    padding: 0.75rem 2rem;
+}
+
+/* Footer */
+.footer {
+    background-color: #2b2d42;
+}
+.footer h5 {
+    color: white;
+    margin-bottom: 1rem;
+}
+.footer a:hover {
+    color: var(--primary-color);
+}

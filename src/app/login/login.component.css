@@ -1,0 +1,128 @@
+/* Variables CSS */
+:root {
+  --primary-color: #4A90E2;
+  --secondary-color: #357ABD;
+  --text-color: #2D3748;
+  --text-light: #A0AEC0;
+  --background-light: #F7FAFC;
+  --border-radius: 8px;
+  --input-bg: #EDF2F7;
+  --input-border: #CBD5E0;
+  --input-focus: #4A90E2;
+}
+
+/* Container */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E0 100%);
+  padding: 20px;
+}
+
+/* Card */
+.login-card {
+  max-width: 420px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+/* Logo */
+.login-logo {
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+p.text-muted {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* Input Fields */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  font-size: 16px;
+  color: var(--text-color);
+  outline: none;
+}
+
+.input-group span {
+  color: var(--text-light);
+  margin-right: 10px;
+}
+
+.input-group:focus-within {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+/* Error messages */
+.text-danger {
+  font-size: 12px;
+  margin-top: -10px;
+  display: block;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Links */
+a.text-primary {
+  color: var(--primary-color);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a.text-primary:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+/* Footer Links */
+.text-center.mt-4 p {
+  font-size: 14px;
+  color: var(--text-light);
+}

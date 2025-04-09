@@ -1,0 +1,65 @@
+<div class="form-container card shadow-lg animate__animated animate__fadeInUp">
+  <div class="card-body p-4">
+    <h3 class="fw-bold text-primary text-center mb-4">Ajouter une formation</h3>
+
+    <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+      <!-- École -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Nom de l’école</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-school"></i></span>
+          <input type="text" class="form-control" formControlName="schoolName"
+            placeholder="Université de Tunis"
+            [class.is-invalid]="isInvalidAndTouchedOrDirty(educationForm.controls.schoolName)">
+        </div>
+        <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(educationForm.controls.schoolName)">
+          <ng-container *ngIf="educationForm.controls.schoolName.hasError('required')">Champ requis</ng-container>
+          <ng-container *ngIf="educationForm.controls.schoolName.hasError('minlength')">Min. 2 caractères</ng-container>
+        </small>
+      </div>
+
+      <!-- Diplôme -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Diplôme</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+          <input type="text" class="form-control" formControlName="degree"
+            placeholder="Licence, Mastère..."
+            [class.is-invalid]="isInvalidAndTouchedOrDirty(educationForm.controls.degree)">
+        </div>
+        <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(educationForm.controls.degree)">
+          <ng-container *ngIf="educationForm.controls.degree.hasError('required')">Champ requis</ng-container>
+          <ng-container *ngIf="educationForm.controls.degree.hasError('minlength')">Min. 2 caractères</ng-container>
+        </small>
+      </div>
+
+      <!-- Domaine d’étude -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Domaine d’étude (optionnel)</label>
+        <input type="text" class="form-control" formControlName="fieldOfStudy" placeholder="Ex: Informatique">
+      </div>
+
+      <!-- Dates -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Date de début</label>
+        <input type="date" class="form-control" formControlName="startDate"
+          [class.is-invalid]="isInvalidAndTouchedOrDirty(educationForm.controls.startDate)">
+        <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(educationForm.controls.startDate)">
+          Champ requis
+        </small>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Date de fin (optionnelle)</label>
+        <input type="date" class="form-control" formControlName="endDate">
+      </div>
+
+      <!-- Actions -->
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">Annuler</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+  

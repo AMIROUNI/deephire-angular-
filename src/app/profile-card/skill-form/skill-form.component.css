@@ -1,0 +1,43 @@
+.form-container {
+    max-width: 420px;
+    width: 100%;
+    margin: auto;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #edf2f7;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .input-group input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 16px;
+    color: #2d3748;
+    outline: none;
+  }
+  
+  .input-group span {
+    color: #a0aec0;
+    margin-right: 10px;
+  }
+  
+  .input-group:focus-within {
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+  }
+  
+  .btn {
+    border-radius: 8px;
+  }
+  
