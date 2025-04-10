@@ -6,6 +6,7 @@ import { JobPosting } from '../job/job-posting.model';
 export interface Company {
   id: number;
   name: string;
+  logo?: string; // URL to the logo image
   industry?: string;
   location?: string;
   admin?: AdminCompany; // One-to-one
