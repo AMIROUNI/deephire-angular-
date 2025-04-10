@@ -29,7 +29,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--background-color);
+    background-color: rgba(13, 110, 253, 1);
     box-shadow: var(--shadow);
     z-index: 1000;
     padding: 0.8rem 0;
@@ -276,6 +276,7 @@ body {
     gap: 1rem;
 }
 
+
 .mobile-auth .btn {
     margin-left: 0;
     width: 100%;
@@ -287,8 +288,55 @@ body {
     .main-nav {
         display: none;
     }
-    
+
     .user-actions .btn {
         display: none;
     }
+    /* Avatar image for logged-in user */
+.avatar-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+  margin-right: 0.8rem;
+  transition: var(--transition);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+/* Tweak spacing for logged-in nav */
+.main-nav .nav-list {
+  gap: 1.5rem;
+}
+
+.user-actions .btn-login {
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  font-weight: 500;
+}
+
+.user-actions .btn-login:hover {
+  background-color: rgba(237, 242, 244, 0.5);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+}
+
+header{
+  background-color: rgba(13, 110, 253, 1)
+}
+
 }

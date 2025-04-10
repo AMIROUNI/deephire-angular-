@@ -1,63 +1,44 @@
+<header class="main-header">
+  <div class="header-container">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <a routerLink="/" class="logo-link">
+        <img src="assets/images/deepHireLogo.png" alt="DeepHire Logo" class="logo-img" />
+        <span class="logo-text">DeepHire</span>
+      </a>
+    </div>
 
-    <header class="main-header">
-        <div class="header-container">
-            <!-- Logo Section -->
-            <div class="logo-section">
-                <a href="/" class="logo-link">
-                    <img  src="assets/images/deepHireLogo.png" alt="DeepHire Logo" class="logo-img">
-                    <span class="logo-text">DeepHire</span>
-                </a>
-            </div>
+    <!-- Main Navigation -->
+    <nav class="main-nav" *ngIf="!isLoggedIn">
+      <ul class="nav-list">
+        <li class="nav-item"><a routerLink="/" class="nav-link active">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Resources</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
+      </ul>
+    </nav>
 
-            <!-- Main Navigation -->
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">Features <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Candidate Management</a>
-                            <a href="#" class="dropdown-item">Interview Scheduling</a>
-                            <a href="#" class="dropdown-item">Analytics Dashboard</a>
-                            <a href="#" class="dropdown-item">Team Collaboration</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Resources</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
-                </ul>
-            </nav>
+    <nav class="main-nav" *ngIf="isLoggedIn">
+      <ul class="nav-list">
+        <li class="nav-item"><a routerLink="/feed" class="nav-link">Feed</a></li>
+        <li class="nav-item"><a routerLink="/jobs" class="nav-link">Jobs</a></li>
+        <li class="nav-item"><a routerLink="/network" class="nav-link">Network</a></li>
+        <li class="nav-item"><a routerLink="/messages" class="nav-link">Messages</a></li>
+      </ul>
+    </nav>
 
-            <!-- User Actions -->
-            <div class="user-actions">
-                <a routerLink="/login" class="btn btn-login">Log In</a>
-                <a href="#" class="btn btn-primary">Get Started</a>
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
+    <!-- User Actions -->
+    <div class="user-actions" *ngIf="!isLoggedIn">
+      <a routerLink="/login" class="btn btn-login">Log In</a>
+      <a routerLink="/signup" class="btn btn-primary">Get Started</a>
+    </div>
 
-        <!-- Mobile Navigation (Hidden by default) -->
-        <div class="mobile-nav">
-            <ul class="mobile-nav-list">
-                <li><a href="#" class="mobile-nav-link active">Home</a></li>
-                <li class="mobile-dropdown">
-                    <a href="#" class="mobile-nav-link">Features <i class="fas fa-chevron-down"></i></a>
-                    <div class="mobile-dropdown-menu">
-                        <a href="#" class="mobile-dropdown-item">Candidate Management</a>
-                        <a href="#" class="mobile-dropdown-item">Interview Scheduling</a>
-                        <a href="#" class="mobile-dropdown-item">Analytics Dashboard</a>
-                        <a href="#" class="mobile-dropdown-item">Team Collaboration</a>
-                    </div>
-                </li>
-                <li><a href="#" class="mobile-nav-link">Pricing</a></li>
-                <li><a href="#" class="mobile-nav-link">Resources</a></li>
-                <li><a href="#" class="mobile-nav-link">About Us</a></li>
-                <li class="mobile-auth">
-                    <a  routerLink="/login" class="btn btn-login">Log In</a>
-                    <a href="#" class="btn btn-primary">Get Started</a>
-                </li>
-            </ul>
-        </div>
-    </header>
+    <div class="user-actions" *ngIf="isLoggedIn">
+      <div class="user-profile">
+        <img src="assets/images/user-avatar.png" alt="User Avatar" class="avatar-img" />
+      </div>
+      <a href="#" (click)="logout()" class="btn btn-login">Log Out</a>
+    </div>
+  </div>
+</header>
