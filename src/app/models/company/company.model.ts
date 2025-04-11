@@ -1,6 +1,5 @@
-// src/app/models/company/company.model.ts
-import { AdminCompany } from '../user/admin-company.model';
-import { RHCompany } from '../user/rh-company.model';
+import { AdminCompany, sampleAdminCompanies } from '../user/admin-company.model';
+import { RHCompany, sampleRHCompanies } from '../user/rh-company.model';
 import { JobPosting } from '../job/job-posting.model';
 
 export interface Company {
@@ -8,7 +7,25 @@ export interface Company {
   name: string;
   industry?: string;
   location?: string;
-  admin?: AdminCompany; // One-to-one
-  rhUsers?: RHCompany[]; // One-to-many
-  jobPostings?: JobPosting[]; // One-to-many
+  admin?: AdminCompany;
+  rhUsers?: RHCompany[];
+  jobPostings?: JobPosting[];
 }
+
+export const sampleCompanies: Company[] = [
+  {
+    id: 1,
+    name: "TechCorp",
+    industry: "Technology",
+    location: "Morocco",
+    admin: sampleAdminCompanies[0], // Layla
+    rhUsers: [sampleRHCompanies[0]] // Sara
+  },
+  {
+    id: 2,
+    name: "InnovateX",
+    industry: "Software",
+    location: "Egypt",
+    rhUsers: [sampleRHCompanies[1]] // Khalid
+  }
+];

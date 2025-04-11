@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../models/posts/post.model';
+import { Post, samplePosts } from '../models/posts/post.model';
 import { User } from '../models/user/user.model';
 import { Comment } from '../models/posts/comment.model';
 import { Media } from '../models/posts/media.model';
@@ -8,7 +8,7 @@ import { Media } from '../models/posts/media.model';
   selector: 'app-posts-feed',
   templateUrl: './posts-feed.component.html',
   styleUrls: ['./posts-feed.component.css'],
-  standalone: false
+  standalone:false
 })
 export class PostsFeedComponent implements OnInit {
   posts: Post[] = [];
@@ -58,7 +58,12 @@ export class PostsFeedComponent implements OnInit {
       }
       // Add more sample posts as needed
     ];
+
+
+    this.posts.push(...samplePosts)
   }
+
+  
 
   onPostCreated(newPost: any): void {
     // In a real app, you would send this to your backend
