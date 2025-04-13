@@ -1,0 +1,23 @@
+<div class="notification-card d-flex align-items-start gap-3 p-4 mb-3">
+  <img [src]=" defaultAvatar"
+       alt="{{ notification.sender }}"
+       class="avatar" />
+
+  <div class="flex-grow-1">
+    <div class="text-dark-emphasis">
+      <span class="fw-semibold">{{ notification.sender }}</span>
+      <span class="text-body-secondary"> {{ notification.content }}</span>
+    </div>
+
+    <div class="time-pill mt-2 d-inline-flex align-items-center">
+      <i class="fa-regular fa-clock me-1"></i>
+      <span>{{ notification.date }}</span>
+    </div>
+  </div>
+
+
+   <!-- Delete button -->
+   <button (click)="onDeleteClick()" class="btn-delete">
+    <i class="fas fa-times"></i>
+  </button>
+</div>

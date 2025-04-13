@@ -1,0 +1,46 @@
+.notification-card {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.notification-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #e0e0e0;
+}
+
+.time-pill {
+  font-size: 0.75rem;
+  color: #6c757d;
+  background-color: #f1f3f5;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-weight: 500;
+}
+.btn-delete {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #bbb;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.btn-delete:hover {
+  color: #ff4d4f;
+}

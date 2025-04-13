@@ -25,6 +25,7 @@ import { JobDetailsComponent } from './job/job-details/job-details.component';
 import { AuthContentComponent } from './auth-content/auth-content.component';
 import { NotificationComponent } from './notification/notification.component';
 import { RegisterComponent } from './auth-content/register/register.component';
+import { NotificationCardComponent } from './notification/notification-card/notification-card.component';
 
 
 
@@ -50,7 +51,8 @@ import { RegisterComponent } from './auth-content/register/register.component';
     JobDetailsComponent,
     NotificationComponent,
 RegisterComponent,
-    AuthContentComponent
+    AuthContentComponent,
+    NotificationCardComponent
 
 
 

@@ -6,6 +6,7 @@ import { ProfileCardComponent } from './profile-card/profile-card.component';
 import { PostsFeedComponent } from './posts-feed/posts-feed.component';
 import { JobPageComponent } from './job/job-page/job-page.component';
 import { RegisterComponent } from './auth-content/register/register.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'profile', component:ProfileCardComponent},
   {path:'feed',component:PostsFeedComponent},
   {path:'jobs',component:JobPageComponent},
+  {path:'notification',component:NotificationComponent},
 
 ];
 
