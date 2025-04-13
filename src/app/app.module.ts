@@ -19,6 +19,10 @@ import { CertificationFormComponent } from './profile-card/certification-form/ce
 import { PostsFeedComponent } from './posts-feed/posts-feed.component';
 import { PostCreateComponent } from './posts-feed/post-create/post-create.component';
 import { PostDisplayComponent } from './posts-feed/post-display/post-display.component';
+import { JobPageComponent } from './job/job-page/job-page.component';
+import { JobListComponent } from './job/job-list/job-list.component';
+import { JobDetailsComponent } from './job/job-details/job-details.component';
+import { AuthContentComponent } from './auth-content/auth-content.component';
 
 
 
@@ -39,10 +43,15 @@ import { PostDisplayComponent } from './posts-feed/post-display/post-display.com
     PostsFeedComponent,
     PostCreateComponent,
     PostDisplayComponent,
+    JobPageComponent,
+    JobListComponent,
+    JobDetailsComponent,
+    AuthContentComponent,
 
 
-  
-  
+
+
+
 
   ],
   imports: [
@@ -50,6 +59,7 @@ import { PostDisplayComponent } from './posts-feed/post-display/post-display.com
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    
 
 ],
   providers: [],

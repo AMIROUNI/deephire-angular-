@@ -4,6 +4,7 @@ import { User } from '../models/user/user.model';
 import { Comment } from '../models/posts/comment.model';
 import { Media } from '../models/posts/media.model';
 
+
 @Component({
   selector: 'app-posts-feed',
   templateUrl: './posts-feed.component.html',

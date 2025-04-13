@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AxiosService } from '../axios.service';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
+
+  //data: string[] = [];
+
+   @Output() onSubmitLoginEvent = new EventEmitter();
+   login :string='';
+   password :string='';
+  constructor(private axiosService: AxiosService) { }
 
   formLogin=new FormGroup({
     email:new FormControl('',[Validators.required, Validators.email,Validators.minLength(10)]),
@@ -22,10 +31,22 @@ export class LoginComponent {
   }
 
 
-  onSubmit(){
-    console.log(this.formLogin.value)
+  onSubmitLogin(): void{
+    this.onSubmitLoginEvent.emit({"login": this.login, "password": this.password});
     // Perform login logic here
     // For example, send the form data to your backend API for authentication
   }
+
+/*
+   ngOnInit():void{
+    this.axiosService.request('get','/message').then((response)=>{
+      console.log(response.data)
+      this.data=response.data
+    }).catch((error)=>{
+      console.log(error)
+    })}
+
+*/
+
 
 }
