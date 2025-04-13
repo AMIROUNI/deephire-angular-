@@ -22,6 +22,7 @@ import { PostDisplayComponent } from './posts-feed/post-display/post-display.com
 import { JobPageComponent } from './job/job-page/job-page.component';
 import { JobListComponent } from './job/job-list/job-list.component';
 import { JobDetailsComponent } from './job/job-details/job-details.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 
@@ -45,6 +46,7 @@ import { JobDetailsComponent } from './job/job-details/job-details.component';
     JobPageComponent,
     JobListComponent,
     JobDetailsComponent,
+    NotificationComponent,
 
 
 

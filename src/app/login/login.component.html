@@ -1,59 +1,67 @@
-<div class="login-container d-flex align-items-center justify-content-center min-vh-100">
-  <div class="login-card card shadow-lg animate__animated animate__fadeInUp">
-      <div class="card-body p-5">
-          <!-- Logo -->
-          <div class="text-center mb-4">
-              <img src="assets/images/deepHireLogo.png" alt="DeepHire Logo" class="login-logo mb-3">
-              <h2 class="fw-bold text-primary">DeepHire</h2>
-              <p class="text-muted">Connectez-vous pour commencer</p>
-          </div>
-
-          
-          <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">  
-              <div class="mb-4">
-                  <label for="email" class="form-label fw-semibold">Email</label>
-                  <div class="input-group">
-                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                      <input type="email" formControlName="email" class="form-control" id="email" placeholder="Entrez votre email" required
-                      [class.is-invalid]="isInvalidAndTouchedOrDirty(formLogin.controls.email)">
-                      <br>
-                      <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formLogin.controls.email)">
-                          <ng-container *ngIf="formLogin.controls.email.hasError('required')">Email requis</ng-container>
-                          <ng-container *ngIf="formLogin.controls.email.hasError('email')">Email invalide</ng-container>
-                          <ng-container *ngIf="formLogin.controls.email.hasError('minlength')">the Email must have a minmun of 10 characters</ng-container>
-                      </small>
-                  </div>
-              </div>
-              <div class="mb-4">
-                  <label for="password" class="form-label fw-semibold">Mot de passe</label>
-                  <div class="input-group">
-                      <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                      <input type="password" formControlName="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" required
-                      [class.is-invalid]="isInvalidAndTouchedOrDirty(formLogin.controls.password)">
-                      <br>
-                      <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formLogin.controls.password)">
-                          <ng-container *ngIf="formLogin.controls.password.hasError('required')">Mot de passe requis</ng-container>
-                          <ng-container *ngIf="formLogin.controls.password.hasError('minlength')">the Email must have a minmun of 10 characters</ng-container>
-                      </small>
-                   
-                  </div>
-              </div>
-              <div class="d-flex justify-content-between align-items-center mb-4">
-                  <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="rememberMe">
-                      <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
-                  </div>
-                  <a href="#" class="text-primary text-decoration-none">Mot de passe oublié ?</a>
-              </div>
-
-
-              <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold animate__animated animate__pulse animate__infinite">Se connecter</button>
-          </form> <!-- Correction ici -->
-
-          <!-- Liens supplémentaires -->
-          <div class="text-center mt-4">
-              <p class="text-muted">Pas de compte ? <a href="#" class="text-primary text-decoration-none fw-semibold">Inscrivez-vous</a></p>
-          </div>
+<div class="login-container d-flex align-items-center justify-content-center">
+  <div class="login-card card shadow-lg border-0 animate__animated animate__fadeInUp">
+    <div class="card-body px-5 py-4">
+      <!-- Logo & Heading -->
+      <div class="text-center mb-4">
+        <img src="assets/images/deepHireLogo.png" alt="DeepHire Logo" class="login-logo mb-2">
+        <h2 class="fw-bold text-gradient mb-1">DeepHire</h2>
+        <p class="text-muted">Connectez-vous pour commencer</p>
       </div>
+
+      <!-- Login Form -->
+      <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-semibold">Email</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-envelope text-muted"></i></span>
+            <input type="email" formControlName="email" class="form-control border-start-0" id="email"
+              placeholder="Entrez votre email"
+              [class.is-invalid]="isInvalidAndTouchedOrDirty(formLogin.controls.email)">
+          </div>
+          <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formLogin.controls.email)">
+            <ng-container *ngIf="formLogin.controls.email.hasError('required')">Email requis</ng-container>
+            <ng-container *ngIf="formLogin.controls.email.hasError('email')">Email invalide</ng-container>
+            <ng-container *ngIf="formLogin.controls.email.hasError('minlength')">Min. 10 caractères</ng-container>
+          </small>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Mot de passe</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-lock text-muted"></i></span>
+            <input type="password" formControlName="password" class="form-control border-start-0" id="password"
+              placeholder="Entrez votre mot de passe"
+              [class.is-invalid]="isInvalidAndTouchedOrDirty(formLogin.controls.password)">
+          </div>
+          <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formLogin.controls.password)">
+            <ng-container *ngIf="formLogin.controls.password.hasError('required')">Mot de passe requis</ng-container>
+            <ng-container *ngIf="formLogin.controls.password.hasError('minlength')">Min. 10 caractères</ng-container>
+          </small>
+        </div>
+
+        <!-- Options -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe">
+            <label class="form-check-label text-muted" for="rememberMe">Se souvenir de moi</label>
+          </div>
+          <a href="#" class="text-primary text-decoration-none small">Mot de passe oublié ?</a>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+          class="btn btn-primary w-100 py-2 fw-semibold rounded-pill animate__animated animate__pulse">
+          <i class="fas fa-sign-in-alt me-2"></i>Se connecter
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <div class="text-center mt-4">
+        <p class="text-muted small">Pas de compte ? <a href="#"
+            class="text-primary text-decoration-none fw-semibold">Inscrivez-vous</a></p>
+      </div>
+    </div>
   </div>
 </div>
