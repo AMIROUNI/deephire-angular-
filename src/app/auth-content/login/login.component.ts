@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AxiosService } from '../axios.service';
+import { AxiosService } from '../../axios.service';
 
 @Component({
   selector: 'app-login',

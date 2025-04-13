@@ -1,0 +1,79 @@
+<div class="register-container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="register-card card shadow-lg border-0 animate__animated animate__fadeInUp">
+    <div class="card-body px-5 py-4">
+      <!-- Logo & Heading -->
+      <div class="text-center mb-4">
+        <img src="assets/images/deepHireLogo.png" alt="DeepHire Logo" class="register-logo mb-2">
+        <h2 class="fw-bold text-gradient mb-1">Créer un compte</h2>
+        <p class="text-muted">Rejoignez DeepHire dès maintenant</p>
+      </div>
+
+      <!-- Register Form -->
+      <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+        <!-- First Name -->
+        <div class="mb-3">
+          <label for="firstName" class="form-label fw-semibold">Prénom</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-user text-muted"></i></span>
+            <input type="text" formControlName="firstName" class="form-control border-start-0" id="firstName" placeholder="Entrez votre prénom"
+              [class.is-invalid]="isInvalidAndTouchedOrDirty(formRegister.controls['firstName'])">
+          </div>
+          <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formRegister.controls['firstName'])">
+            Le prénom est requis
+          </small>
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-3">
+          <label for="lastName" class="form-label fw-semibold">Nom</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-user text-muted"></i></span>
+            <input type="text" formControlName="lastName" class="form-control border-start-0" id="lastName" placeholder="Entrez votre nom"
+              [class.is-invalid]="isInvalidAndTouchedOrDirty(formRegister.controls['lastName'])">
+          </div>
+          <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formRegister.controls['lastName'])">
+            Le nom est requis
+          </small>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-semibold">Email</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-envelope text-muted"></i></span>
+            <input type="email" formControlName="email" class="form-control border-start-0" id="email" placeholder="Entrez votre email"
+              [class.is-invalid]="isInvalidAndTouchedOrDirty(formRegister.controls['email'])">
+          </div>
+          <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formRegister.controls['email'])">
+            <ng-container *ngIf="formRegister.controls['email'].hasError('required')">Email requis</ng-container>
+            <ng-container *ngIf="formRegister.controls['email'].hasError('email')">Email invalide</ng-container>
+          </small>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Mot de passe</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-lock text-muted"></i></span>
+            <input type="password" formControlName="password" class="form-control border-start-0" id="password" placeholder="Entrez votre mot de passe"
+              [class.is-invalid]="isInvalidAndTouchedOrDirty(formRegister.controls['password'])">
+          </div>
+          <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formRegister.controls['password'])">
+            <ng-container *ngIf="formRegister.controls['password'].hasError('required')">Mot de passe requis</ng-container>
+            <ng-container *ngIf="formRegister.controls['password'].hasError('minlength')">Min. 8 caractères</ng-container>
+          </small>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold animate__animated animate__pulse animate__infinite rounded-pill">
+          <i class="fas fa-user-plus me-2"></i>Créer un compte
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <div class="text-center mt-4">
+        <p class="text-muted small">Vous avez déjà un compte ? <a href="#" class="text-primary text-decoration-none fw-semibold">Connectez-vous</a></p>
+      </div>
+    </div>
+  </div>
+</div>

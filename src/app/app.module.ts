@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth-content/login/login.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
@@ -22,11 +22,9 @@ import { PostDisplayComponent } from './posts-feed/post-display/post-display.com
 import { JobPageComponent } from './job/job-page/job-page.component';
 import { JobListComponent } from './job/job-list/job-list.component';
 import { JobDetailsComponent } from './job/job-details/job-details.component';
-<<<<<<< HEAD
-import { NotificationComponent } from './notification/notification.component';
-=======
 import { AuthContentComponent } from './auth-content/auth-content.component';
->>>>>>> 46a13e962874db192e4c2d6a9904107330aeb13b
+import { NotificationComponent } from './notification/notification.component';
+import { RegisterComponent } from './auth-content/register/register.component';
 
 
 
@@ -50,11 +48,10 @@ import { AuthContentComponent } from './auth-content/auth-content.component';
     JobPageComponent,
     JobListComponent,
     JobDetailsComponent,
-<<<<<<< HEAD
     NotificationComponent,
-=======
-    AuthContentComponent,
->>>>>>> 46a13e962874db192e4c2d6a9904107330aeb13b
+RegisterComponent,
+    AuthContentComponent
+
 
 
 
@@ -67,7 +64,7 @@ import { AuthContentComponent } from './auth-content/auth-content.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
 
 ],
   providers: [],
