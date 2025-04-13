@@ -1,7 +1,7 @@
 /* posts-feed.component.scss */
 .feed-container {
     max-width: 700px;
-    margin: 0 auto;
+    margin: 10em auto;
     
     .feed-header {
       display: flex;

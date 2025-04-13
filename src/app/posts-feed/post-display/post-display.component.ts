@@ -11,6 +11,8 @@ export class PostDisplayComponent {
   @Input() post!: Post;
   showTranslation: boolean = false;
   showFullPost: boolean = false;
+  showComments: boolean = false; // Toggle comments visibility
+  newCommentContent: string = '';
 
   toggleTranslation(): void {
     this.showTranslation = !this.showTranslation;
@@ -18,6 +20,11 @@ export class PostDisplayComponent {
 
   toggleFullPost(): void {
     this.showFullPost = !this.showFullPost;
+  }
+
+
+  toggleComments(): void {
+    this.showComments = !this.showComments;
   }
 
   formatTimeAgo(date: Date): string {
@@ -30,4 +37,22 @@ export class PostDisplayComponent {
     const days = Math.floor(hours / 24);
     return `${days} days ago`;
   }
+
+/*
+
+  addComment(): void {
+    if (!this.newCommentContent.trim()) return; // Prevent empty comments
+
+    const newComment: Comment = {
+      id: Math.random().toString(36).substring(2),
+      content: this.newCommentContent,
+      author: this.currentUser,
+      timestamp: new Date(),
+      likes: 0,
+      edited: false
+    };
+
+    this.post.comments.push(newComment); // Add the new comment to the post
+    this.newCommentContent = ''; // Clear the input
+  }*/
 }

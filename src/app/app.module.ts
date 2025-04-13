@@ -22,7 +22,11 @@ import { PostDisplayComponent } from './posts-feed/post-display/post-display.com
 import { JobPageComponent } from './job/job-page/job-page.component';
 import { JobListComponent } from './job/job-list/job-list.component';
 import { JobDetailsComponent } from './job/job-details/job-details.component';
+<<<<<<< HEAD
 import { NotificationComponent } from './notification/notification.component';
+=======
+import { AuthContentComponent } from './auth-content/auth-content.component';
+>>>>>>> 46a13e962874db192e4c2d6a9904107330aeb13b
 
 
 
@@ -46,7 +50,11 @@ import { NotificationComponent } from './notification/notification.component';
     JobPageComponent,
     JobListComponent,
     JobDetailsComponent,
+<<<<<<< HEAD
     NotificationComponent,
+=======
+    AuthContentComponent,
+>>>>>>> 46a13e962874db192e4c2d6a9904107330aeb13b
 
 
 
