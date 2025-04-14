@@ -7,6 +7,9 @@ import { PostsFeedComponent } from './posts-feed/posts-feed.component';
 import { JobPageComponent } from './job/job-page/job-page.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationComponent } from './notification/notification.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PostManagementComponent } from './admin/post-management/post-management.component';
 
 
 const routes: Routes = [
@@ -17,6 +20,10 @@ const routes: Routes = [
   {path:'feed',component:PostsFeedComponent},
   {path:'jobs',component:JobPageComponent},
   {path:'notification',component:NotificationComponent},
+  { path: 'admin/dashboard', component:DashboardComponent },
+  { path: 'admin/users', component: UserManagementComponent },
+  { path: 'admin/posts', component: PostManagementComponent }
+
 
 ];
 

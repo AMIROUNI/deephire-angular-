@@ -26,6 +26,9 @@ import { AuthContentComponent } from './auth-content/auth-content.component';
 import { NotificationComponent } from './notification/notification.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationCardComponent } from './notification/notification-card/notification-card.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PostManagementComponent } from './admin/post-management/post-management.component';
 
 
 
@@ -52,7 +55,10 @@ import { NotificationCardComponent } from './notification/notification-card/noti
     NotificationComponent,
 RegisterComponent,
     AuthContentComponent,
-    NotificationCardComponent
+    NotificationCardComponent,
+    DashboardComponent,
+    UserManagementComponent,
+    PostManagementComponent
 
 
 
