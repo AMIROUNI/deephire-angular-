@@ -7,6 +7,7 @@ import { PostsFeedComponent } from './posts-feed/posts-feed.component';
 import { JobPageComponent } from './job/job-page/job-page.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationComponent } from './notification/notification.component';
+import { CompanyProfileComponent } from './company-profile/company-profile.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'feed',component:PostsFeedComponent},
   {path:'jobs',component:JobPageComponent},
   {path:'notification',component:NotificationComponent},
+  {path:'company/:id',component:CompanyProfileComponent}
 
 ];
 

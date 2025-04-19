@@ -13,22 +13,22 @@ export interface Company {
   rhUsers?: RHCompany[];
   jobPostings?: JobPosting[];
 }
-
 export const sampleCompanies: Company[] = [
   {
     id: 1,
     name: "TechCorp",
+    logo: "assets/images/innovatex.png",
     industry: "Technology",
     location: "Morocco",
-    admin: sampleAdminCompanies[0], // Layla
-    rhUsers: [sampleRHCompanies[0]] // Sara
+    admin: sampleAdminCompanies[0],
+    rhUsers: [sampleRHCompanies[0]]
   },
   {
     id: 2,
     name: "InnovateX",
+    logo: "assets/innovatex.png",
     industry: "Software",
     location: "Egypt",
-    rhUsers: [sampleRHCompanies[1]] // Khalid
+    rhUsers: [sampleRHCompanies[1]]
   }
 ];
-

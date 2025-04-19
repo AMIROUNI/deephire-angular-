@@ -11,7 +11,7 @@ export const sampleRHCompanies: RHCompany[] = [
     firstName: "Sara",
     lastName: "Ahmed",
     email: "sara.ahmed@example.com",
-    profilePicture: "assets/sara.jpg",
+    profilePicture: "assets/images/sarah.jfif",
     bio: "HR Specialist at TechCorp",
     location: "Tunisia"
   },

@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './auth-content/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
@@ -26,6 +27,8 @@ import { AuthContentComponent } from './auth-content/auth-content.component';
 import { NotificationComponent } from './notification/notification.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationCardComponent } from './notification/notification-card/notification-card.component';
+import { CompanyProfileComponent } from './company-profile/company-profile.component';
+import { PopupComponent } from './modal/popup/popup.component';
 
 
 
@@ -50,9 +53,11 @@ import { NotificationCardComponent } from './notification/notification-card/noti
     JobListComponent,
     JobDetailsComponent,
     NotificationComponent,
-RegisterComponent,
+    RegisterComponent,
     AuthContentComponent,
-    NotificationCardComponent
+    NotificationCardComponent,
+    CompanyProfileComponent,
+    PopupComponent
 
 
 
@@ -66,6 +71,8 @@ RegisterComponent,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    
 
 
 ],

@@ -36,6 +36,19 @@
           </small>
         </div>
 
+
+             <!-- Last Name -->
+             <div class="mb-3">
+              <label for="username" class="form-label fw-semibold">User Name</label>
+              <div class="input-group shadow-sm">
+                <span class="input-group-text bg-white border-end-0"><i class="fas fa-user text-muted"></i></span>
+                <input type="text" formControlName="username" class="form-control border-start-0" id="username" placeholder="Entrez votre nom"
+                  [class.is-invalid]="isInvalidAndTouchedOrDirty(formRegister.controls['username'])">
+              </div>
+              <small class="text-danger" *ngIf="isInvalidAndTouchedOrDirty(formRegister.controls['username'])">
+                Le nom est requis
+              </small>
+            </div>
         <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label fw-semibold">Email</label>
@@ -64,6 +77,25 @@
           </small>
         </div>
 
+
+        <!-- Role Selection -->
+<div class="mb-3">
+  <label for="role" class="form-label fw-semibold">Rôle</label>
+  <select formControlName="role" class="form-select shadow-sm" id="role">
+    <option value="">-- Sélectionnez un rôle --</option>
+    <option value="ADMIN_COMPANY">Admin Company</option>
+    <option value="USER">User</option>
+    <!-- add more roles as needed -->
+  </select>
+</div>
+
+<!-- File Upload (only for Admin Company) -->
+<div class="mb-3" *ngIf="formRegister.value.role === 'ADMIN_COMPANY'">
+  <label for="file" class="form-label fw-semibold">Téléverser un fichier</label>
+  <input type="file" (change)="onFileSelected($event)" class="form-control">
+</div>
+
+
         <!-- Submit -->
         <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold animate__animated animate__pulse animate__infinite rounded-pill">
           <i class="fas fa-user-plus me-2"></i>Créer un compte
@@ -77,3 +109,12 @@
     </div>
   </div>
 </div>
+<!-- Add this at the bottom of your register.component.html -->
+<app-popup *ngIf="showPopup"
+           [title]="popupTitle"
+           [message]="popupMessage"
+           [isSuccess]="popupIsSuccess"
+           [redirectPath]="popupRedirectPath"
+           [showCancelButton]="showCancelButton"
+           (closed)="closePopup()">
+</app-popup>
