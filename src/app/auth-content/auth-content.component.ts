@@ -10,6 +10,7 @@ import { AxiosService } from '../axios.service';
 })
 export class AuthContentComponent {
    constructor(private axiosService: AxiosService) { }
+   
   onLogin(input: any):void{
     this.axiosService.request(
        "POST",

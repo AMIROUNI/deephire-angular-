@@ -8,6 +8,7 @@ import { JobPageComponent } from './job/job-page/job-page.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationComponent } from './notification/notification.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
+import { ProfileCompletionComponent } from './profile-card/profile-completion/profile-completion.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,10 @@ const routes: Routes = [
   {path:'feed',component:PostsFeedComponent},
   {path:'jobs',component:JobPageComponent},
   {path:'notification',component:NotificationComponent},
-  {path:'company/:id',component:CompanyProfileComponent}
+  {path:'company/:id',component:CompanyProfileComponent
+  },
+  {path:'profile/completion',component:ProfileCompletionComponent }, // Assuming ProfileCardComponent handles profile completion
+  {path:'**', redirectTo:''} // Wildcard route for a 404 page
 
 ];
 

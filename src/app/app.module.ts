@@ -29,6 +29,8 @@ import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationCardComponent } from './notification/notification-card/notification-card.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { PopupComponent } from './modal/popup/popup.component';
+import { ProfileCompletionComponent } from './profile-card/profile-completion/profile-completion.component';
+
 
 
 
@@ -57,7 +59,8 @@ import { PopupComponent } from './modal/popup/popup.component';
     AuthContentComponent,
     NotificationCardComponent,
     CompanyProfileComponent,
-    PopupComponent
+    PopupComponent,
+    ProfileCompletionComponent
 
 
 

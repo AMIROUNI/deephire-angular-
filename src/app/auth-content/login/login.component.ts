@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AxiosService } from '../../axios.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +18,10 @@ export class LoginComponent {
    @Output() onSubmitLoginEvent = new EventEmitter();
    login :string='';
    password :string='';
-  constructor(private axiosService: AxiosService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   formLogin=new FormGroup({
-    email:new FormControl('',[Validators.required, Validators.email,Validators.minLength(10)]),
+    username:new FormControl('',[Validators.required,Validators.minLength(4)]),
     password:new FormControl('',[Validators.required, Validators.minLength(8)]),
   })
 
@@ -29,24 +31,32 @@ export class LoginComponent {
   isInvalidAndTouchedOrDirty(FormControl: FormControl): boolean {
    return FormControl.invalid && (FormControl.touched || FormControl.dirty);
   }
+  errorMessage : string = '';
 
+  onSubmitLogin(): void {
+    AuthService.logout()
+    if (this.formLogin.invalid) return;
+  
+    const credentials = {
+      username: this.formLogin.get('username')?.value || '',
+      password: this.formLogin.get('password')?.value || ''
+    };
 
-  onSubmitLogin(): void{
-    this.onSubmitLoginEvent.emit({"login": this.login, "password": this.password});
-    // Perform login logic here
-    // For example, send the form data to your backend API for authentication
+    console.log("credentials",credentials)
+  
+    this.authService.login(credentials).subscribe({
+      next: (res) => {
+        console.log("token from login :   ",res.token) 
+        this.authService.saveToken(res.token);
+       
+        this.authService.redirectByRole();
+        // redirection selon le rôle
+      },
+      error: (err) => {
+        this.errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
+      }
+    });
   }
-
-/*
-   ngOnInit():void{
-    this.axiosService.request('get','/message').then((response)=>{
-      console.log(response.data)
-      this.data=response.data
-    }).catch((error)=>{
-      console.log(error)
-    })}
-
-*/
 
 
 }
