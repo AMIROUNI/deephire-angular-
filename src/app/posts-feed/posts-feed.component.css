@@ -78,3 +78,30 @@
       gap: 20px;
     }
   }
+
+  /* posts-feed.component.css */
+.blurred {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.profile-completion-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 80%;
+  max-width: 800px;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Make sure the overlay is above other content */
+.feed-container {
+  position: relative;
+  z-index: 1;
+}

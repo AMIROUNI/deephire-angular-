@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AxiosService } from '../../axios.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -34,7 +33,7 @@ export class LoginComponent {
   errorMessage : string = '';
 
   onSubmitLogin(): void {
-    AuthService.logout()
+    
     if (this.formLogin.invalid) return;
   
     const credentials = {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +13,7 @@ export class HeaderComponent {
 
   isLoggedIn = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     // Mock login state based on URL
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -20,8 +22,17 @@ export class HeaderComponent {
     });
   }
 
+
+
+
   logout() {
-    this.isLoggedIn = false;
-    this.router.navigate(['/']);
+    this.authService.logout().subscribe({
+      next: (res) => {
+        console.log("Logout successful", res);
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.error("Logout error", err);}
+    });
   }
 }

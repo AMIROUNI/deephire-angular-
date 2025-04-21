@@ -12,6 +12,7 @@ export interface User {
   bio?: string;
   location?: string;
   profile?: Profile;
+  firstLogin?: boolean;
 
   sentMessages?: Message[];
   receivedMessages?: Message[];

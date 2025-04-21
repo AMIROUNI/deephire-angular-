@@ -3,21 +3,50 @@ import { Post, samplePosts } from '../models/posts/post.model';
 import { User } from '../models/user/user.model';
 import { Comment } from '../models/posts/comment.model';
 import { Media } from '../models/posts/media.model';
+import { AuthService } from '../services/auth/auth.service';
+import { ProfileService } from '../services/profile/profile.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
   selector: 'app-posts-feed',
   templateUrl: './posts-feed.component.html',
-  styleUrls: ['./posts-feed.component.css'],
+  styleUrls: ['./posts-feed.component.css'],                
   standalone:false
 })
 export class PostsFeedComponent implements OnInit {
   posts: Post[] = [];
   sortBy: string = 'top';
+  showProfileCompletion :boolean | undefined= false;
+  currentUser: User | null = null;
+
+  constructor(
+    private profileService: ProfileService,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    // In a real app, you would fetch posts from a service
     this.loadSamplePosts();
+    this.checkProfileCompletion();
+  }
+
+  checkProfileCompletion(): void {
+    this.userService.getCurrentUser().subscribe({
+      next: (user) => {
+        this.currentUser = user;
+        this.showProfileCompletion = user.firstLogin;
+      },
+      error: (err) => {
+        console.error('Error fetching user data', err);
+      }
+    });
+  }
+
+  onProfileCompleted(): void {
+    this.showProfileCompletion = false;
+    // Refresh user data
+    this.checkProfileCompletion();
   }
 
   loadSamplePosts(): void {

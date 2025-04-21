@@ -10,7 +10,6 @@ import {jwtDecode} from 'jwt-decode';
 })
 export class AuthService {
 
- 
   private apiUrl = 'http://localhost:8095/api/auth';
 
   
@@ -24,6 +23,7 @@ export class AuthService {
 
 login(credentials: { username : string, password: string }): Observable<any> {
   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  if(this.isAuthenticated())localStorage.removeItem('token');
   return this.http.post<any>(`${this.apiUrl}/signin`, credentials, { headers });
 }
 saveToken(token: string) {
@@ -93,9 +93,22 @@ redirectByRole(): void {
   }
 }
 
-static logout() {
-  localStorage.removeItem('token');
+
+private getHeaders(): HttpHeaders {
+  const token = this.getToken();
+  return new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
 }
+
+logout(): Observable<any> {
+  const headers = this.getHeaders();
+  console.log("headers",headers);
+  return this.http.post<any>(`${this.apiUrl}/logout`, {}, { headers }); 
+
+}
+
 
 isAuthenticated(): boolean {
   return !!this.getToken();

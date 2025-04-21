@@ -23,7 +23,6 @@ import { PostDisplayComponent } from './posts-feed/post-display/post-display.com
 import { JobPageComponent } from './job/job-page/job-page.component';
 import { JobListComponent } from './job/job-list/job-list.component';
 import { JobDetailsComponent } from './job/job-details/job-details.component';
-import { AuthContentComponent } from './auth-content/auth-content.component';
 import { NotificationComponent } from './notification/notification.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationCardComponent } from './notification/notification-card/notification-card.component';
@@ -56,7 +55,6 @@ import { ProfileCompletionComponent } from './profile-card/profile-completion/pr
     JobDetailsComponent,
     NotificationComponent,
     RegisterComponent,
-    AuthContentComponent,
     NotificationCardComponent,
     CompanyProfileComponent,
     PopupComponent,
