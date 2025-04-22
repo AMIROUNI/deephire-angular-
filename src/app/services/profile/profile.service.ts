@@ -21,6 +21,28 @@ export class ProfileService {
     });
   }
 
+  completeProfileWithImages(profileData: any, profilePicture?: File, backgroundImage?: File): Observable<any> {
+    const formData = new FormData();
+
+    // Add JSON data
+    formData.append('profileData', JSON.stringify(profileData));
+
+    // Add files if they exist
+    if (profilePicture) {
+      formData.append('profilePicture', profilePicture);
+    }
+    if (backgroundImage) {
+      formData.append('backGroundImage', backgroundImage);
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+      // Don't set Content-Type - let browser set it with boundary
+    });
+
+    return this.http.post(`${this.apiUrl}/complete-profile`, formData, { headers });
+  }
+
   completeProfile(profileData: any): Observable<any> {
     console.log('Profile data:', profileData); // Debugging line
     console.log('Headers:', this.getHeaders().get('Authorization')); // Debugging line
@@ -41,12 +63,12 @@ export class ProfileService {
     });
   }
 
-  
+
 
   uploadProfilePicture(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
-    
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
     });
@@ -59,7 +81,7 @@ export class ProfileService {
   uploadBackgroundImage(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
-    
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
     });

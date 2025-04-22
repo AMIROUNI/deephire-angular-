@@ -1,3 +1,12 @@
+<div class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 1100;">
+  <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fas fa-check-circle me-2"></i>
+    Post created successfully!
+    <button type="button" class="btn-close" (click)="dismissAlert()"></button>
+  </div>
+</div>
+
+
 <!-- posts-feed.component.html -->
 <div class="feed-container" [class.blurred]="showProfileCompletion">
   <div class="feed-header">
@@ -11,26 +20,26 @@
       </select>
     </div>
   </div>
-  
+
   <app-post-create (postCreated)="onPostCreated($event)"></app-post-create>
-  
+
   <div class="repost-notice">
     <span>Samiha Kallel reposted this</span>
   </div>
-  
+
   <div class="new-posts-notice">
     <button class="btn-new-posts">
       <i class="fas fa-arrow-up"></i> New posts
     </button>
   </div>
-  
+
   <div class="posts-list">
     <app-post-display *ngFor="let post of posts" [post]="post"></app-post-display>
   </div>
 </div>
 
-<app-profile-completion 
-*ngIf="showProfileCompletion" 
+<app-profile-completion
+*ngIf="showProfileCompletion"
 (profileCompleted)="onProfileCompleted()"
 class="profile-completion-overlay">
 </app-profile-completion>

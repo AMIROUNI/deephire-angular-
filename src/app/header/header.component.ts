@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { HttpHeaders } from '@angular/common/http';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,10 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
+  userImg: string = ''; // Default image path
   isLoggedIn = false;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService,private userService: UserService) {
     // Mock login state based on URL
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -22,6 +23,19 @@ export class HeaderComponent {
     });
   }
 
+
+  ngOnInit(): void {
+    this.userService.getCurrentUser().subscribe({
+      next: (res) => {
+        console.log('User profile:', res.profilePicture);
+
+        this.userImg = res.profilePicture || 'default-profile.png'; // Fallback to a default image if none is provided
+      },
+      error: (err) => {
+        console.error('Error fetching user profile:', err);
+      }
+    });
+  }
 
 
 

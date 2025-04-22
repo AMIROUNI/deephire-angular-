@@ -7,6 +7,7 @@ import { Post } from '../../models/posts/post.model'; // Adjusted path assuming 
   styleUrls: ['./post-display.component.css'],
   standalone: false
 })
+
 export class PostDisplayComponent {
   @Input() post!: Post;
   showTranslation: boolean = false;
