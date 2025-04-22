@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,8 @@ import { NotificationCardComponent } from './notification/notification-card/noti
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PostManagementComponent } from './admin/post-management/post-management.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 
 
 
@@ -58,7 +61,8 @@ RegisterComponent,
     NotificationCardComponent,
     DashboardComponent,
     UserManagementComponent,
-    PostManagementComponent
+    PostManagementComponent,
+    
 
 
 
@@ -68,10 +72,14 @@ RegisterComponent,
 
   ],
   imports: [
-    BrowserModule,
+BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgApexchartsModule,
+    
+
+
 
 
 ],
