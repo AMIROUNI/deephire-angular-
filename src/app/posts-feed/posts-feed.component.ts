@@ -50,6 +50,8 @@ export class PostsFeedComponent implements OnInit {
     this.postService.getAllPosts().subscribe({
       next: (posts) => {
         this.posts = posts;
+
+        console.log('Fetched posts:', this.posts[0].user);
         this.changeSort(this.sortBy); // Apply default sorting
       },
       error: (err) => {

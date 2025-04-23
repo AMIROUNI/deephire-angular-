@@ -1,42 +1,151 @@
-<!-- <div class="post-container">
+<div class="post-container">
+  <!-- Post Header -->
   <div class="post-header">
     <div class="user-info">
-    <div class="avatar-container">
-      <img [src]="post?.author?.profilePicture || 'assets/default-avatar.jpg'" alt="User Avatar" class="user-avatar">
-    </div>
-    <div class="user-details">
-      <div class="user-name">{{ post?.author?.firstName }} {{ post?.author?.lastName }}</div>
-      <div class="user-bio">{{ post?.author?.bio }}</div>
-      <div class="post-time">
-      <span>{{ formatTimeAgo(post.timestamp) }}</span>
+      <div class="avatar-container">
+        <img
+          [src]="'data:image/png;base64,'+post?.user?.profilePicture || 'assets/default-avatar.jpg'"
+          alt="User Avatar"
+          class="user-avatar"
+        />
+      </div>
+      <div class="user-details">
+        <div class="user-name">
+          {{ post?.user?.firstName }} {{ post?.user?.lastName }}
+        </div>
+        <div class="user-bio">{{ post?.user?.bio || 'No bio available' }}</div>
+        <div class="post-time">
+          <span>{{ formatTimeAgo(post.timestamp) }}</span>
+        </div>
       </div>
     </div>
-    </div>
     <div class="post-actions">
-    <button class="btn-follow">Follow</button>
-    <button class="btn-more"><i class="fas fa-ellipsis-h"></i></button>
+      <button class="btn-follow" (click)="followUser()">Follow</button>
+      <button class="btn-more" (click)="showMoreOptions()">
+        <i class="fas fa-ellipsis-h"></i>
+      </button>
     </div>
   </div>
 
+  <!-- Post Content -->
   <div class="post-content">
     <p [class.expanded]="showFullPost">{{ post.content }}</p>
-    <button *ngIf="post.content.length > 200 && !showFullPost" class="btn-see-more" (click)="toggleFullPost()">
-    ...see more
+    <button
+      *ngIf="post.content.length > 200 && !showFullPost"
+      class="btn-see-more"
+      (click)="toggleFullPost()"
+    >
+      ...see more
     </button>
   </div>
 
+  <!-- Media Display (Carousel for multiple files) -->
+  <div class="post-media" *ngIf="post.media && post.media.length > 0">
+    <div class="media-carousel">
+      <div class="media-container">
+        <ng-container *ngFor="let media of post.media; let i = index">
+          <img
+            *ngIf="isImage(media)"
+            [src]="'data:image/png;base64,' + media.files"
+            alt="Post Media"
+            class="media-item"
+            [ngClass]="{ active: currentMediaIndex === i }"
+          />
+          <video
+            *ngIf="isVideo(media)"
+            [src]="getMediaUrl(media)"
+            controls
+            class="media-item"
+            [ngClass]="{ active: currentMediaIndex === i }"
+          ></video>
+        </ng-container>
+      </div>
+      <button
+        class="carousel-control prev"
+        (click)="prevMedia()"
+        *ngIf="post.media.length > 1"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button
+        class="carousel-control next"
+        (click)="nextMedia()"
+        *ngIf="post.media.length > 1"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="carousel-indicators" *ngIf="post.media.length > 1">
+        <span
+          *ngFor="let media of post.media; let i = index"
+          [ngClass]="{ active: currentMediaIndex === i }"
+          (click)="setMediaIndex(i)"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Footer (Actions) -->
   <div class="post-footer">
-    <button class="btn-like">
-    <i class="far fa-thumbs-up"></i> Like
+    <button class="btn-like" >
+      <!-- Like button icon changes based on whether the post is liked or not -->
+      <!-- <i
+        [ngClass]="post.isLiked ? 'fas fa-thumbs-up' : 'far fa-thumbs-up'"
+      ></i>
+      ></i> -->
+      {{ post.likes }} Like{{ post.likes !== 1 ? 's' : '' }}
     </button>
-    <button class="btn-comment">
-    <i class="far fa-comment"></i> Comment
+    <button class="btn-comment" (click)="toggleComments()">
+      <i class="far fa-comment"></i> Comment
     </button>
-    <button class="btn-share">
-    <i class="fas fa-share"></i> Share
+    <button class="btn-share" (click)="sharePost()">
+      <i class="fas fa-share"></i> Share
     </button>
-    <button class="btn-send">
-    <i class="far fa-paper-plane"></i> Send
+    <button class="btn-send" (click)="sendPost()">
+      <i class="far fa-paper-plane"></i> Send
     </button>
   </div>
-  </div> -->
+
+  <!-- Comments Section -->
+  <!-- Comments Section
+  <div class="comments-section" *ngIf="showComments">
+
+    <div class="new-comment">
+      <textarea
+        [(ngModel)]="newCommentContent"
+        placeholder="Write a comment..."
+        rows="2"
+      ></textarea>
+      <button
+        class="btn-post-comment"
+        (click)="addComment()"
+        [disabled]="!newCommentContent.trim()"
+      >
+        Post
+      </button>
+    </div>
+    <div class="comments-list">
+      <div
+        class="comment"
+        *ngFor="let comment of post.comments"
+      >
+        <div class="comment-user">
+          <img
+            [src]="comment.user?.profilePicture || 'assets/default-avatar.jpg'"
+            alt="Commenter Avatar"
+            class="comment-avatar"
+          />
+          <div>
+            <span class="comment-user-name"
+              >{{ comment.user?.firstName }}
+              {{ comment.user?.lastName }}</span
+            >
+            <span class="comment-time">{{
+              formatTimeAgo(comment.timestamp)
+            }}</span>
+          </div>
+        </div>
+        <p class="comment-content">{{ comment.content }}</p>
+      </div>
+    </div>
+  </div>-->
+</div>

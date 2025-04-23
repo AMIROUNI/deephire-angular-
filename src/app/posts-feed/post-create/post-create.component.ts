@@ -31,8 +31,6 @@ export class PostCreateComponent {
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe({
       next: (res) => {
-        console.log('User profile:', res.profilePicture);
-
         this.userImg = res.profilePicture || 'default-profile.png'; // Fallback to a default image if none is provided
       },
       error: (err) => {
