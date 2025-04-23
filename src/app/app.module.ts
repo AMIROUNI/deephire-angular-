@@ -31,6 +31,15 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PostManagementComponent } from './admin/post-management/post-management.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { StatCardsComponent } from './admin/dashboard/components/stat-cards/stat-cards.component';
+import { CourbeutilisateursconnecteComponent } from './admin/dashboard/components/courbeutilisateursconnecte/courbeutilisateursconnecte.component';
+import { LatestusersComponent } from './admin/dashboard/components/latestusers/latestusers.component';
+import { StattotalpostComponent } from './admin/post-management/stattotalpost/stattotalpost.component';
+import { ActivepostComponent } from './admin/post-management/activepost/activepost.component';
+import { CreatedpostcourbeComponent } from './admin/post-management/createdpostcourbe/createdpostcourbe.component';
+import { EtatpostcourbeComponent } from './admin/post-management/etatpostcourbe/etatpostcourbe.component';
+import { PublicationlistComponent } from './admin/post-management/publicationlist/publicationlist.component';
+import { UsertableComponent } from './admin/user-management/usertable/usertable.component';
 
 
 
@@ -62,6 +71,15 @@ RegisterComponent,
     DashboardComponent,
     UserManagementComponent,
     PostManagementComponent,
+    StatCardsComponent,
+    CourbeutilisateursconnecteComponent,
+    LatestusersComponent,
+    StattotalpostComponent,
+    ActivepostComponent,
+    CreatedpostcourbeComponent,
+    EtatpostcourbeComponent,
+    PublicationlistComponent,
+    UsertableComponent
     
 
 

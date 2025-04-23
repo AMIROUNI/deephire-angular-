@@ -1,0 +1,54 @@
+
+<!-- Users Table -->
+<div class="card shadow-sm border-0 rounded-4">
+    <div class="card-body p-4">
+      <table class="table table-borderless align-middle">
+        <thead>
+          <tr class="text-muted fw-bold border-bottom">
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Statut</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users" class="border-bottom">
+            <td class="fw-semibold">{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <span class="badge bg-light text-dark border">{{ user.role }}</span>
+            </td>
+            <td>
+              <span [ngClass]="{
+                'badge bg-success-subtle text-success': user.status === 'Actif',
+                'badge bg-danger-subtle text-danger': user.status === 'Banni'
+              }">
+                {{ user.status }}
+              </span>
+            </td>
+            <td class="text-end">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-outline-secondary" title="Voir">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-primary" title="Modifier">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                  <i class="bi bi-trash"></i>
+                </button>
+                <button
+                  class="btn btn-sm"
+                  [ngClass]="user.status === 'Actif' ? 'btn-outline-warning' : 'btn-outline-success'"
+                  (click)="toggleStatus(user)"
+                  title="Changer le statut">
+                  <i class="bi" [ngClass]="user.status === 'Actif' ? 'bi-person-x' : 'bi-person-check'"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

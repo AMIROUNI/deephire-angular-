@@ -58,94 +58,34 @@
           <i class="bi bi-arrow-left-circle me-2"></i> Retour au tableau de bord
         </a>
       </div>
+            <!-- Statistiques -->
 
-      <!-- Statistiques -->
-      <div class="row mb-4">
-        <div class="col-md-4 mb-3">
-          <div class="card shadow-sm border-0">
-            <div class="card-body">
-              <h6 class="card-title text-muted">Total des posts</h6>
-              <h3 class="fw-bold">{{ totalPosts }}</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="card shadow-sm border-0">
-            <div class="card-body">
-              <h6 class="card-title text-muted">Posts actifs</h6>
-              <h3 class="fw-bold">{{ activePosts }}</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="card shadow-sm border-0">
-            <div class="card-body">
-              <h6 class="card-title text-muted">Posts signalés</h6>
-              <h3 class="fw-bold text-danger">{{ reportedPosts }}</h3>
-            </div>
-          </div>
-        </div>
+<div class="row mb-4">
+  <div class="col-md-4 mb-3">
+    <div class="card shadow-sm border-0">
+      <div class="card-body"> 
+      
+      <app-stattotalpost></app-stattotalpost>
+    </div>
+  </div>
+</div>
+<div class="col-md-4 mb-3">
+  <div class="card shadow-sm border-0">
+    <div class="card-body"> 
+      <app-activepost></app-activepost>
       </div>
+    </div>
+  </div>
+</div>
+<app-createdpostcourbe></app-createdpostcourbe>
+<app-publicationlist></app-publicationlist>
 
-      <apx-chart
-  [series]="postLineChart.series"
-  [chart]="postLineChart.chart"
-  [xaxis]="postLineChart.xaxis"
-  [title]="postLineChart.title">
-</apx-chart>
 
-<apx-chart
-  [series]="postStatusDonutChart.series"
-  [chart]="postStatusDonutChart.chart"
-  [labels]="postStatusDonutChart.labels"
-  [responsive]="postStatusDonutChart.responsive">
-</apx-chart>
+      
 
-      <!-- Liste des publications -->
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h5 class="card-title mb-4">Liste des publications</h5>
-          <div class="table-responsive">
-            <table class="table table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>ID</th>
-                  <th>Auteur</th>
-                  <th>Contenu</th>
-                  <th>Date</th>
-                  <th>État</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let post of filteredPosts()">
-                  <td>{{ post.id }}</td>
-                  <td>{{ post.author }}</td>
-                  <td>{{ post.content | slice:0:40 }}...</td>
-                  <td>{{ post.date }}</td>
-                  <td>
-                    <span class="badge" [ngClass]="{
-                      'bg-success': post.active,
-                      'bg-secondary': !post.active && !post.reported,
-                      'bg-warning': post.reported
-                    }">
-                      {{ post.active ? 'Actif' : post.reported ? 'Signalé' : 'Désactivé' }}
-                    </span>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-warning me-2" (click)="togglePost(post)">
-                      {{ post.active ? 'Désactiver' : 'Activer' }}
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger" (click)="deletePost(post)">
-                      Supprimer
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+     
+
+     
       
     </main>
   </div>

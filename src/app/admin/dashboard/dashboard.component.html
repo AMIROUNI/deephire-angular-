@@ -54,65 +54,14 @@
     <main class="col-md-10 offset-md-2 py-4 px-5" style="background-color: #f8f9fa; min-height: 100vh;">
       <h2 class="fw-semibold mb-4 text-dark">Bienvenue sur le tableau de bord</h2>
 
-      <!-- Stat Cards -->
-      <div class="row g-4 mb-4">
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <div>
-                  <h6 class="text-muted">Utilisateurs</h6>
-                  <h3 class="fw-bold">120</h3>
-                  <small class="text-success"><i class="bi bi-arrow-up-right"></i> +15%</small>
-                </div>
-                <i class="bi bi-people-fill fs-2 text-primary"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <div>
-                  <h6 class="text-muted">Rendez-vous aujourd'hui</h6>
-                  <h3 class="fw-bold">38</h3>
-                  <small class="text-warning"><i class="bi bi-clock"></i> En attente</small>
-                </div>
-                <i class="bi bi-calendar-check-fill fs-2 text-warning"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <div>
-                  <h6 class="text-muted">Taux de présence</h6>
-                  <h3 class="fw-bold">92%</h3>
-                  <small class="text-info"><i class="bi bi-graph-up"></i> Bon suivi</small>
-                </div>
-                <i class="bi bi-activity fs-2 text-info"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Statistiques -->
 
+      <app-stat-cards></app-stat-cards>
       <!-- Courbe des utilisateurs inscrits -->
-<div class="card mb-4 shadow-sm border-0">
-  <div class="card-header bg-white fw-bold">Évolution des utilisateurs inscrits</div>
-  <div class="card-body">
-    <apx-chart 
-      [series]="chartSeries"
-      [chart]="chartDetails"
-      [xaxis]="chartXAxis"
-      [stroke]="chartStroke"
-      [title]="chartTitle">
-    </apx-chart>
-  </div>
-</div>
+
+      <app-courbeutilisateursconnecte></app-courbeutilisateursconnecte>
+
+      <app-latestusers></app-latestusers>
 
 <!-- Courbe des utilisateurs connectés par période -->
 <div class="card mb-4 shadow-sm border-0">
@@ -126,49 +75,6 @@
     </apx-chart>
   </div>
 </div>
-
-
-
-      <!-- Derniers utilisateurs -->
-      <div class="card mb-4 shadow-sm border-0">
-        <div class="card-header bg-white fw-bold">Derniers utilisateurs inscrits</div>
-        <div class="card-body p-0">
-          <table class="table mb-0">
-            <thead class="table-light">
-              <tr>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Date d'inscription</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Fatima B.</td>
-                <td>fatima&#64;gmail.com</td>
-                <td>2025-04-13</td>
-                <td>
-                  <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                  <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></button>
-                  <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>Yassine T.</td>
-                <td>yassine.t&#64;medapp.com</td>
-                <td>2025-04-12</td>
-                <td>
-                  <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
-                  <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></button>
-                  <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
       <!-- Sub-view outlet -->
       <router-outlet></router-outlet>
     </main>
