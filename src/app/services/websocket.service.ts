@@ -45,25 +45,21 @@ export class WebsocketService {
 }
 
 sendMessage(content: string, receiverUsername: string): void {
-    const senderUsername = this.getUsernameFromToken();
-    const message = {
-        content,
-        senderUsername,
-        receiverUsername,
-        timestamp: new Date(),
-    };
+  const senderUsername = this.getUsernameFromToken();
+  const message = {
+      content,
+      senderUsername,
+      receiverUsername,
+      timestamp: new Date(),
+  };
 
-    console.log('[WebSocket] Sending message:', message);
-
-    if (this.client) {
-        this.client.publish({
-            destination: '/app/chat.send',
-            body: JSON.stringify(message),
-        });
-        console.log('[WebSocket] Message sent to /app/chat.send');
-    } else {
-        console.error('[WebSocket] Client not connected');
-    }
+  if (this.client) {
+      this.client.publish({
+          destination: '/app/chat.send',
+          body: JSON.stringify(message),
+          headers: { token: localStorage.getItem('token') || '' }
+      });
+  }
 }
 
    getUsernameFromToken(): string {
