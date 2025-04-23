@@ -73,7 +73,7 @@ import { ProfileCompletionComponent } from './profile-card/profile-completion/pr
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+
 
 
 ],

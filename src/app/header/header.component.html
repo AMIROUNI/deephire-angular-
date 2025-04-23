@@ -36,7 +36,7 @@
 
     <div class="user-actions" *ngIf="isLoggedIn">
       <div class="user-profile">
-        <img src="assets/images/user-avatar.png" alt="User Avatar" class="avatar-img" />
+        <img [src]="'data:image/png;base64,' + userImg" alt="User Avatar" class="avatar-img" style="height: 50px;width: 50px;" />
       </div>
       <a  (click)="logout()" class="btn btn-login">Log Out</a>
     </div>

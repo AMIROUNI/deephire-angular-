@@ -40,22 +40,22 @@ export interface Certification {
 })
 export class ProfileCompletionComponent implements OnInit {
   @Output() profileCompleted = new EventEmitter<any>();
-  
+
   profileForm!: FormGroup;
   currentStep = 1;
   totalSteps = 4;
-  
+
   // Image preview properties
   profilePicturePreview: string | ArrayBuffer | null = null;
   backgroundImagePreview: string | ArrayBuffer | null = null;
-  
+
   // Dynamic data collections
   newSkill = '';
   skills: Skill[] = [];
   experiences: Experience[] = [];
   educations: Education[] = [];
   certifications: Certification[] = [];
-  
+
   // UI state
   isLoading = false;
   errorMessage = '';
@@ -98,7 +98,7 @@ export class ProfileCompletionComponent implements OnInit {
 
   populateForm(profile: any): void {
     if (!profile) return;
-    
+
     this.profileForm.patchValue({
       bio: profile.bio || '',
       location: profile.location || '',
@@ -121,7 +121,7 @@ export class ProfileCompletionComponent implements OnInit {
         this.profileForm.get('headline')?.markAsTouched();
         return;
       }
-      
+
       this.currentStep++;
     }
   }
@@ -136,8 +136,20 @@ export class ProfileCompletionComponent implements OnInit {
   onProfilePictureChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
+      // Validate file type
+      if (!file.type.match('image.*')) {
+        this.errorMessage = 'Only image files are allowed';
+        return;
+      }
+
+      // Validate file size (e.g., 5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        this.errorMessage = 'File size should not exceed 5MB';
+        return;
+      }
+
       this.profileForm.patchValue({ profilePicture: file });
-      
+
       const reader = new FileReader();
       reader.onload = () => {
         this.profilePicturePreview = reader.result;
@@ -150,7 +162,7 @@ export class ProfileCompletionComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.profileForm.patchValue({ backgroundImage: file });
-      
+
       const reader = new FileReader();
       reader.onload = () => {
         this.backgroundImagePreview = reader.result;
@@ -162,9 +174,9 @@ export class ProfileCompletionComponent implements OnInit {
   // Skills management
   addSkill(): void {
     if (this.newSkill.trim()) {
-      const exists = this.skills.some(s => 
+      const exists = this.skills.some(s =>
         s.name.toLowerCase() === this.newSkill.toLowerCase());
-      
+
       if (!exists) {
         this.skills.push({ name: this.newSkill.trim() });
         this.newSkill = '';
@@ -238,7 +250,19 @@ export class ProfileCompletionComponent implements OnInit {
       certifications: this.certifications
     };
 
-    this.profileService.completeProfile(profileData).subscribe({
+    // Get the files from the form
+    const profilePicture = this.profileForm.get('profilePicture')?.value;
+    const backgroundImage = this.profileForm.get('backgroundImage')?.value;
+
+    // Remove the files from the profileData object as we'll send them separately
+    delete profileData.profilePicture;
+    delete profileData.backgroundImage;
+
+    this.profileService.completeProfileWithImages(
+      profileData,
+      profilePicture,
+      backgroundImage
+    ).subscribe({
       next: (response) => {
         this.isLoading = false;
         this.profileCompleted.emit(response);
