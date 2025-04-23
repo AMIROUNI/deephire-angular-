@@ -9,6 +9,7 @@ import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationComponent } from './notification/notification.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { ProfileCompletionComponent } from './profile-card/profile-completion/profile-completion.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
@@ -19,9 +20,12 @@ const routes: Routes = [
   {path:'feed',component:PostsFeedComponent},
   {path:'jobs',component:JobPageComponent},
   {path:'notification',component:NotificationComponent},
-  {path:'company/:id',component:CompanyProfileComponent
-  },
-  {path:'profile/completion',component:ProfileCompletionComponent }, // Assuming ProfileCardComponent handles profile completion
+  {path:'company/:id',component:CompanyProfileComponent},
+  {path:'profile/completion',component:ProfileCompletionComponent },
+  {path:"chat",component:ChatComponent},
+
+
+  // Assuming ProfileCardComponent handles profile completion
   {path:'**', redirectTo:''} // Wildcard route for a 404 page
 
 ];

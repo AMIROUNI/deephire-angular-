@@ -29,6 +29,7 @@ import { NotificationCardComponent } from './notification/notification-card/noti
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { PopupComponent } from './modal/popup/popup.component';
 import { ProfileCompletionComponent } from './profile-card/profile-completion/profile-completion.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -58,7 +59,8 @@ import { ProfileCompletionComponent } from './profile-card/profile-completion/pr
     NotificationCardComponent,
     CompanyProfileComponent,
     PopupComponent,
-    ProfileCompletionComponent
+    ProfileCompletionComponent,
+    ChatComponent
 
 
 
