@@ -1,214 +1,269 @@
-<div class="profile-completion-container animate__animated animate__fadeIn">
-  <div class="auth-header">
-    <h2>Complete Your Professional Profile</h2>
-    <p>Add details to make your profile stand out and connect with professionals</p>
-    <div class="progress-bar">
-      <div class="progress" [style.width.%]="(currentStep / totalSteps) * 100"></div>
+<div class="profile-completion-overlay" [class.active]="profileForm">
+  <div class="profile-completion-container animate__animated animate__fadeInUp">
+
+    <div class="auth-header">
+      <h2>Complete Your Professional Profile</h2>
+      <p>Add details to make your profile stand out and connect with professionals</p>
+
+      <!-- Enhanced progress tracking -->
+      <div class="progress-container">
+        <div class="progress-steps">
+          <span class="progress-step" [class.active]="currentStep >= 1">Basic Info</span>
+          <span class="progress-step" [class.active]="currentStep >= 2">Images</span>
+          <span class="progress-step" [class.active]="currentStep >= 3">Details</span>
+          <span class="progress-step" [class.active]="currentStep >= 4">Experience</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" [style.width.%]="(currentStep / totalSteps) * 100"></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="auth-body">
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-      <!-- Step 1: Basic Info -->
-      <div class="step" *ngIf="currentStep === 1">
-        <div class="floating-label">
-          <input type="text" id="headline" formControlName="headline" placeholder=" " required>
-          <label for="headline">Professional Headline</label>
-          <small *ngIf="profileForm.get('headline')?.hasError('required') && profileForm.get('headline')?.touched" class="error-message">
-            Headline is required
-          </small>
-        </div>
-
-        <div class="floating-label">
-          <textarea id="bio" formControlName="bio" rows="3" placeholder=" "></textarea>
-          <label for="bio">Bio</label>
-          <small class="char-count">{{ profileForm.get('bio')?.value?.length || 0 }}/500</small>
-        </div>
-
-        <div class="floating-label">
-          <input type="text" id="location" formControlName="location" placeholder=" ">
-          <label for="location">Location</label>
-        </div>
-      </div>
-
-      <!-- Step 2: Profile Images -->
-      <div class="step" *ngIf="currentStep === 2">
-        <div class="image-upload-group">
-          <div class="image-upload">
-            <label>Profile Picture</label>
-            <div class="upload-container">
-              <div class="preview" *ngIf="profilePicturePreview">
-                <img [src]="profilePicturePreview" alt="Profile Preview">
-              </div>
-              <div class="upload-btn">
-                <input type="file" id="profilePicture" (change)="onProfilePictureChange($event)" accept="image/*">
-                <label for="profilePicture">Choose File</label>
-                <small>Recommended: 400x400px, JPG/PNG</small>
-              </div>
-            </div>
+    <div class="auth-body">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <!-- Step 1: Basic Info -->
+        <div class="step" [class.active]="currentStep === 1" *ngIf="currentStep === 1">
+          <div class="floating-label">
+            <input type="text" id="headline" formControlName="headline" placeholder=" " required>
+            <label for="headline">Professional Headline</label>
+            <small *ngIf="profileForm.get('headline')?.hasError('required') && profileForm.get('headline')?.touched" class="error-message">
+              <i class="fas fa-exclamation-circle"></i> Headline is required
+            </small>
           </div>
 
-          <div class="image-upload">
-            <label>Background Image</label>
-            <div class="upload-container">
-              <div class="preview background-preview" *ngIf="backgroundImagePreview">
-                <img [src]="backgroundImagePreview" alt="Background Preview">
-              </div>
-              <div class="upload-btn">
-                <input type="file" id="backgroundImage" (change)="onBackgroundImageChange($event)" accept="image/*">
-                <label for="backgroundImage">Choose File</label>
-                <small>Recommended: 1500x500px, JPG/PNG</small>
-              </div>
-            </div>
+          <div class="floating-label">
+            <textarea id="bio" formControlName="bio" rows="3" placeholder=" "></textarea>
+            <label for="bio">Bio</label>
+            <small class="char-count">{{ profileForm.get('bio')?.value?.length || 0 }}/500</small>
           </div>
-        </div>
-      </div>
 
-      <!-- Step 3: Professional Details -->
-      <div class="step" *ngIf="currentStep === 3">
-        <div class="floating-label">
-          <textarea id="summary" formControlName="summary" rows="5" placeholder=" "></textarea>
-          <label for="summary">Professional Summary</label>
-          <small class="char-count">{{ profileForm.get('summary')?.value?.length || 0 }}/2000</small>
-        </div>
-
-        <div class="skills-section">
-          <label>Skills</label>
-          <div class="skills-input">
-            <input type="text" [(ngModel)]="newSkill" [ngModelOptions]="{standalone: true}" name="newSkill" placeholder="Add a skill (e.g., Angular)">
-            <button type="button" (click)="addSkill()">Add</button>
-          </div>
-          <div class="skills-list">
-            <span class="skill-tag" *ngFor="let skill of skills; let i = index; ">
-              {{ skill.name }}
-              <span class="remove-skill" (click)="removeSkill(skill)">×</span>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 4: Experience & Education -->
-      <div class="step" *ngIf="currentStep === 4">
-        <div class="section">
-          <h4>Experience</h4>
-          <button type="button" class="add-btn" (click)="addExperience()">+ Add Experience</button>
-          
-          <div class="experience-item" *ngFor="let exp of experiences; let i = index; ">
-            <div class="form-row">
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="exp.title" [ngModelOptions]="{standalone: true}" name="title{{i}}" placeholder=" ">
-                <label>Job Title</label>
-              </div>
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="exp.companyName" [ngModelOptions]="{standalone: true}" name="company{{i}}" placeholder=" ">
-                <label>Company</label>
-              </div>
-            </div>
-            
-            <div class="form-row">
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="exp.startDate" [ngModelOptions]="{standalone: true}" name="startDate{{i}}" placeholder=" ">
-                <label>Start Date (MM/YYYY)</label>
-              </div>
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="exp.endDate" [ngModelOptions]="{standalone: true}" name="endDate{{i}}" placeholder=" ">
-                <label>End Date (MM/YYYY or Present)</label>
-              </div>
-            </div>
-            
-            <div class="floating-label">
-              <textarea [(ngModel)]="exp.description" [ngModelOptions]="{standalone: true}" name="description{{i}}" rows="3" placeholder=" "></textarea>
-              <label>Description</label>
-            </div>
-            
-            <button type="button" class="remove-btn" (click)="removeExperience(i)">Remove</button>
+          <div class="floating-label">
+            <input type="text" id="location" formControlName="location" placeholder=" ">
+            <label for="location">Location</label>
           </div>
         </div>
 
-        <div class="section">
-          <h4>Education</h4>
-          <button type="button" class="add-btn" (click)="addEducation()">+ Add Education</button>
-          
-          <div class="education-item" *ngFor="let edu of educations; let i = index; ">
-            <div class="form-row">
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="edu.schoolName" [ngModelOptions]="{standalone: true}" name="school{{i}}" placeholder=" ">
-                <label>School</label>
-              </div>
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="edu.degree" [ngModelOptions]="{standalone: true}" name="degree{{i}}" placeholder=" ">
-                <label>Degree</label>
-              </div>
-            </div>
-            
-            <div class="form-row">
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="edu.fieldOfStudy" [ngModelOptions]="{standalone: true}" name="field{{i}}" placeholder=" ">
-                <label>Field of Study</label>
-              </div>
-              <div class="floating-label dates">
-                <input type="text" [(ngModel)]="edu.startDate" [ngModelOptions]="{standalone: true}" name="eduStart{{i}}" placeholder=" ">
-                <label>Start Year</label>
-                <span>to</span>
-                <input type="text" [(ngModel)]="edu.endDate" [ngModelOptions]="{standalone: true}" name="eduEnd{{i}}" placeholder=" ">
-                <label>End Year</label>
+        <!-- Step 2: Profile Images -->
+        <div class="step" [class.active]="currentStep === 2" *ngIf="currentStep === 2">
+          <div class="image-upload-group">
+            <div class="image-upload">
+              <label>Profile Picture</label>
+              <div class="upload-container">
+                <div class="preview" *ngIf="profilePicturePreview; else emptyProfile">
+                  <img [src]="profilePicturePreview" alt="Profile Preview">
+                </div>
+                <ng-template #emptyProfile>
+                  <div class="preview empty">
+                    <i class="fas fa-user"></i>
+                  </div>
+                </ng-template>
+                <div class="upload-btn">
+                  <input type="file" id="profilePicture" (change)="onProfilePictureChange($event)" accept="image/*">
+                  <label for="profilePicture">
+                    <i class="fas fa-cloud-upload-alt"></i> Choose File
+                  </label>
+                  <small>Recommended: 400x400px, JPG/PNG</small>
+                </div>
               </div>
             </div>
-            
-            <button type="button" class="remove-btn" (click)="removeEducation(i)">Remove</button>
+
+            <div class="image-upload">
+              <label>Background Image</label>
+              <div class="upload-container">
+                <div class="preview background-preview" *ngIf="backgroundImagePreview; else emptyBackground">
+                  <img [src]="backgroundImagePreview" alt="Background Preview">
+                </div>
+                <ng-template #emptyBackground>
+                  <div class="preview background-preview empty">
+                    <i class="fas fa-image"></i>
+                  </div>
+                </ng-template>
+                <div class="upload-btn">
+                  <input type="file" id="backgroundImage" (change)="onBackgroundImageChange($event)" accept="image/*">
+                  <label for="backgroundImage">
+                    <i class="fas fa-cloud-upload-alt"></i> Choose File
+                  </label>
+                  <small>Recommended: 1500x500px, JPG/PNG</small>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="section">
-          <h4>Certifications</h4>
-          <button type="button" class="add-btn" (click)="addCertification()">+ Add Certification</button>
-          
-          <div class="certification-item" *ngFor="let cert of certifications; let i = index; ">
-            <div class="form-row">
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="cert.name" [ngModelOptions]="{standalone: true}" name="certName{{i}}" placeholder=" ">
-                <label>Certification Name</label>
-              </div>
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="cert.issuer" [ngModelOptions]="{standalone: true}" name="certIssuer{{i}}" placeholder=" ">
-                <label>Issuing Organization</label>
-              </div>
+        <!-- Step 3: Professional Details -->
+        <div class="step" [class.active]="currentStep === 3" *ngIf="currentStep === 3">
+          <div class="floating-label">
+            <textarea id="summary" formControlName="summary" rows="5" placeholder=" "></textarea>
+            <label for="summary">Professional Summary</label>
+            <small class="char-count">{{ profileForm.get('summary')?.value?.length || 0 }}/2000</small>
+          </div>
+
+          <div class="skills-section">
+            <label>Skills</label>
+            <div class="skills-input">
+              <input type="text" [(ngModel)]="newSkill" [ngModelOptions]="{standalone: true}" name="newSkill" placeholder="Add a skill (e.g., Angular)">
+              <button type="button" (click)="addSkill()" class="btn-add-skill">
+                <i class="fas fa-plus"></i> Add
+              </button>
             </div>
-            
-            <div class="form-row">
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="cert.issueDate" [ngModelOptions]="{standalone: true}" name="certIssue{{i}}" placeholder=" ">
-                <label>Issue Date (MM/YYYY)</label>
-              </div>
-              <div class="floating-label">
-                <input type="text" [(ngModel)]="cert.expirationDate" [ngModelOptions]="{standalone: true}" name="certExpiration{{i}}" placeholder=" ">
-                <label>Expiration Date (MM/YYYY)</label>
-              </div>
+            <div class="skills-list">
+              <span class="skill-tag" *ngFor="let skill of skills; let i = index">
+                {{ skill.name }}
+                <span class="remove-skill" (click)="removeSkill(skill)">
+                  <i class="fas fa-times"></i>
+                </span>
+              </span>
             </div>
-            
-            <button type="button" class="remove-btn" (click)="removeCertification(i)">Remove</button>
           </div>
         </div>
-      </div>
 
-      <!-- Loading indicator -->
-      <div class="loading-indicator" *ngIf="isLoading">
-        <div class="spinner"></div>
-        <p>Saving your profile...</p>
-      </div>
+        <!-- Step 4: Experience & Education -->
+        <div class="step" [class.active]="currentStep === 4" *ngIf="currentStep === 4">
+          <div class="section">
+            <h4><i class="fas fa-briefcase"></i> Experience</h4>
+            <button type="button" class="add-btn" (click)="addExperience()">
+              <i class="fas fa-plus"></i> Add Experience
+            </button>
 
-      <!-- Error message -->
-      <div class="error-container" *ngIf="errorMessage">
-        <p class="error-text">{{ errorMessage }}</p>
-      </div>
+            <div class="experience-item" *ngFor="let exp of experiences; let i = index">
+              <div class="form-row">
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="exp.title" [ngModelOptions]="{standalone: true}" name="title{{i}}" placeholder=" ">
+                  <label>Job Title</label>
+                </div>
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="exp.companyName" [ngModelOptions]="{standalone: true}" name="company{{i}}" placeholder=" ">
+                  <label>Company</label>
+                </div>
+              </div>
 
-      <!-- Navigation buttons -->
-      <div class="navigation-buttons">
-        <button type="button" class="btn btn-secondary btn-prev" *ngIf="currentStep > 1" (click)="prevStep()">Back</button>
-        <button type="button" class="btn btn-primary btn-next" *ngIf="currentStep < totalSteps" (click)="nextStep()">Next</button>
-        <button type="submit" class="btn btn-primary btn-submit" *ngIf="currentStep === totalSteps" [disabled]="isLoading">Complete Profile</button>
-        <button type="button" class="btn btn-skip" (click)="skipProfile()" [disabled]="isLoading">Skip for Now</button>
-      </div>
-    </form>
+              <div class="form-row">
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="exp.startDate" [ngModelOptions]="{standalone: true}" name="startDate{{i}}" placeholder=" ">
+                  <label>Start Date (MM/YYYY)</label>
+                </div>
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="exp.endDate" [ngModelOptions]="{standalone: true}" name="endDate{{i}}" placeholder=" ">
+                  <label>End Date (MM/YYYY or Present)</label>
+                </div>
+              </div>
+
+              <div class="floating-label">
+                <textarea [(ngModel)]="exp.description" [ngModelOptions]="{standalone: true}" name="description{{i}}" rows="3" placeholder=" "></textarea>
+                <label>Description</label>
+              </div>
+
+              <button type="button" class="remove-btn" (click)="removeExperience(i)">
+                <i class="fas fa-trash"></i> Remove
+              </button>
+            </div>
+          </div>
+
+          <div class="section">
+            <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+            <button type="button" class="add-btn" (click)="addEducation()">
+              <i class="fas fa-plus"></i> Add Education
+            </button>
+
+            <div class="education-item" *ngFor="let edu of educations; let i = index">
+              <div class="form-row">
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="edu.schoolName" [ngModelOptions]="{standalone: true}" name="school{{i}}" placeholder=" ">
+                  <label>School</label>
+                </div>
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="edu.degree" [ngModelOptions]="{standalone: true}" name="degree{{i}}" placeholder=" ">
+                  <label>Degree</label>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="edu.fieldOfStudy" [ngModelOptions]="{standalone: true}" name="field{{i}}" placeholder=" ">
+                  <label>Field of Study</label>
+                </div>
+                <div class="floating-label dates">
+                  <input type="text" [(ngModel)]="edu.startDate" [ngModelOptions]="{standalone: true}" name="eduStart{{i}}" placeholder=" ">
+                  <label>Start Year</label>
+                  <span>to</span>
+                  <input type="text" [(ngModel)]="edu.endDate" [ngModelOptions]="{standalone: true}" name="eduEnd{{i}}" placeholder=" ">
+                  <label>End Year</label>
+                </div>
+              </div>
+
+              <button type="button" class="remove-btn" (click)="removeEducation(i)">
+                <i class="fas fa-trash"></i> Remove
+              </button>
+            </div>
+          </div>
+
+          <div class="section">
+            <h4><i class="fas fa-certificate"></i> Certifications</h4>
+            <button type="button" class="add-btn" (click)="addCertification()">
+              <i class="fas fa-plus"></i> Add Certification
+            </button>
+
+            <div class="certification-item" *ngFor="let cert of certifications; let i = index">
+              <div class="form-row">
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="cert.name" [ngModelOptions]="{standalone: true}" name="certName{{i}}" placeholder=" ">
+                  <label>Certification Name</label>
+                </div>
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="cert.issuer" [ngModelOptions]="{standalone: true}" name="certIssuer{{i}}" placeholder=" ">
+                  <label>Issuing Organization</label>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="cert.issueDate" [ngModelOptions]="{standalone: true}" name="certIssue{{i}}" placeholder=" ">
+                  <label>Issue Date (MM/YYYY)</label>
+                </div>
+                <div class="floating-label">
+                  <input type="text" [(ngModel)]="cert.expirationDate" [ngModelOptions]="{standalone: true}" name="certExpiration{{i}}" placeholder=" ">
+                  <label>Expiration Date (MM/YYYY)</label>
+                </div>
+              </div>
+
+              <button type="button" class="remove-btn" (click)="removeCertification(i)">
+                <i class="fas fa-trash"></i> Remove
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div class="loading-indicator" *ngIf="isLoading">
+          <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+          </div>
+          <p>Saving your profile...</p>
+        </div>
+
+        <!-- Error message -->
+        <div class="error-container" *ngIf="errorMessage">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p class="error-text">{{ errorMessage }}</p>
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="navigation-buttons">
+          <button type="button" class="btn btn-secondary btn-prev" *ngIf="currentStep > 1" (click)="prevStep()">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+          <button type="button" class="btn btn-primary btn-next" *ngIf="currentStep < totalSteps" (click)="nextStep()">
+            Next <i class="fas fa-arrow-right"></i>
+          </button>
+          <button type="submit" class="btn btn-primary btn-submit" *ngIf="currentStep === totalSteps" [disabled]="isLoading">
+            <i class="fas fa-check"></i> Complete Profile
+          </button>
+          <button type="button" class="btn btn-skip" (click)="skipProfile()" [disabled]="isLoading">
+            Skip for Now
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

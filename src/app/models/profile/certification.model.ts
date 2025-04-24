@@ -1,7 +1,7 @@
 import { Profile } from './profile.model';
 
 export interface Certification {
-  id: number;
+  id?: number;
   name: string;
   issuer: string;
   issueDate: Date;

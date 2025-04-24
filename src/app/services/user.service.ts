@@ -22,7 +22,6 @@ export class UserService {
 
   // profile.service.ts
 getCurrentUser(): Observable<User> {
-  
   return this.httpClient.get<User>(`${this.apiUrl}/me`, { headers: this.getHeaders() });
 }
 

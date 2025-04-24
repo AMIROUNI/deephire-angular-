@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Certification } from '../../models/profile/certification.model';
 
 @Component({
   selector: 'app-certification-form',
@@ -9,6 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CertificationFormComponent {
   @Output() cancel = new EventEmitter<void>();
+  @Output() submitCertification = new EventEmitter<Certification>();
 
   certificationForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -23,8 +25,17 @@ export class CertificationFormComponent {
 
   onSubmit() {
     if (this.certificationForm.valid) {
-      console.log('Certification Data:', this.certificationForm.value);
-      // Tu peux envoyer les données au backend ici
+      const formValue = this.certificationForm.value;
+
+      const certification: Certification = {
+        name: formValue.name!,
+        issuer: formValue.issuer!,
+        issueDate: new Date(formValue.issueDate!),
+        expirationDate: formValue.expirationDate ? new Date(formValue.expirationDate) : undefined,
+      };
+
+      this.submitCertification.emit(certification);
+      console.log('Certification object sent:', certification);
     }
   }
 

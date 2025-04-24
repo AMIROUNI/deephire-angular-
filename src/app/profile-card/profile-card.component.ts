@@ -1,12 +1,38 @@
 import { Component } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { User } from '../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-card',
   standalone: false,
   templateUrl: './profile-card.component.html',
-  styleUrls: ['./profile-card.component.css']
+  styleUrls: ['./profile-card.component.css'],
 })
 export class ProfileCardComponent {
+  connectedUser: User | undefined;
+
+
+
+  constructor(private router: Router,private UserService: UserService) {
+
+   }
+
+
+   ngOnInit(): void {
+
+    console.log('Fetching user data...'); // Debugging line
+    this.UserService.getCurrentUser().subscribe({
+      next: (res) => {
+        this.connectedUser = res;
+        console.log('User data:', this.connectedUser); // Debugging line
+      },
+      error: (err) => {
+        console.error('Error fetching user profile:', err);
+      }
+    });
+   }
+
   defaultUser = {
     name: 'Alex Johnson',
     title: 'Senior Software Engineer at TechCorp',
@@ -38,11 +64,11 @@ export class ProfileCardComponent {
 
 toggleSectionsMenu() {
   this.showSectionsMenu = !this.showSectionsMenu;
-  
+
 }
 
 hideSectionsMenu() {
   this.showSectionsMenu = false;
 }
-  
+
 }
