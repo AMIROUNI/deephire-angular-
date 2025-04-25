@@ -1,0 +1,45 @@
+<div class="recruiter-list">
+    <h2>RH Companies List</h2>
+  
+    <button (click)="onAddNew()" class="add-button">Add New Company</button>
+  
+    <div *ngIf="error" class="error">
+      {{ error }}
+    </div>
+  
+    <div *ngIf="isLoading">
+      <p>Loading companies...</p>
+    </div>
+  
+    <div *ngIf="!isLoading && rhCompanies.length > 0; else noData">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let company of rhCompanies">
+            <td>{{ company.id }}</td>
+            <td>{{ company.firstName }}</td>
+            <td>{{ company.lastName }}</td>
+            <td>{{ company.email }}</td>
+            <td>{{ company.username }}</td>
+            <td class="actions">
+              <button (click)="onEdit(company.id)" class="edit-button" >Edit</button>
+              <button (click)="onDelete(company.id)" class="delete-button">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <ng-template #noData>
+      <p *ngIf="!isLoading">No RH companies found.</p>
+    </ng-template>
+  </div>

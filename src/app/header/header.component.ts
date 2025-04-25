@@ -11,42 +11,55 @@ import { UserService } from '../services/user.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  userImg: string = ''; // Default image path
+  userImg: string = '';
   isLoggedIn = false;
+  userRole: string | null = null;
 
-  constructor(private router: Router, private authService: AuthService,private userService: UserService) {
-    // Mock login state based on URL
+  constructor(private router: Router, private authService: AuthService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isLoggedIn = event.url.includes('/feed'); // Fake login logic
+        this.isLoggedIn = this.authService.isAuthenticated();
       }
     });
   }
-
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe({
-      next: (res) => {
-       
+    this.userRole = this.authService.getRole();
+    this.isLoggedIn = this.authService.isAuthenticated();
 
-        this.userImg = res.profilePicture || 'default-profile.png'; // Fallback to a default image if none is provided
-      },
-      error: (err) => {
-        console.error('Error fetching user profile:', err);
-      }
-    });
+    // Si tu veux aussi récupérer l'image depuis le token (s'il est dedans)
+    // sinon tu peux commenter ça.
+    const token = this.authService.getToken();
+    if (token) {
+      const decoded: any = JSON.parse(atob(token.split('.')[1]));
+      this.userImg = decoded.picture || 'assets/images/default-avatar.png';
+    }
   }
-
-
 
   logout() {
     this.authService.logout().subscribe({
-      next: (res) => {
-        console.log("Logout successful", res);
+      next: () => {
+        localStorage.removeItem('token');
         this.router.navigate(['/']);
       },
-      error: (err) => {
-        console.error("Logout error", err);}
+      error: (err) => console.error("Logout error", err)
     });
+  }
+
+  // Helpers
+  isAdminCompanyOrRecruiter(): boolean {
+    return this.userRole === 'ROLE_RECRUITER' || this.userRole === 'ROLE_ADMINCOMPANY';
+  }
+
+  isUser(): boolean {
+    return this.userRole === 'ROLE_USER';
+  }
+
+  isAdmin(): boolean {
+    return this.userRole === 'ROLE_ADMIN';
+  }
+
+  isAdminCompany(): boolean {
+    return this.userRole === 'ROLE_ADMINCOMPANY';
   }
 }

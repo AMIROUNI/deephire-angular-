@@ -1,5 +1,5 @@
-import { sampleUsers, User } from '../user/user.model';
-import { Comment, sampleComments } from './comment.model';
+import { User } from '../user/user.model';
+import { Comment } from './comment.model';
 import { Media } from './media.model';
 
 export interface Post {

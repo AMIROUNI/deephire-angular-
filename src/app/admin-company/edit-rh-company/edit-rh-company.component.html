@@ -1,0 +1,53 @@
+<div class="edit-container">
+    <h2>Edit RH Company</h2>
+  
+    <div *ngIf="error" class="error">
+      {{ error }}
+    </div>
+  
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+      <!-- User Information Section -->
+      <fieldset>
+        <legend>Personal Information</legend>
+        
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" formControlName="firstName" class="form-control">
+          <div *ngIf="companyForm.get('firstName')?.invalid && companyForm.get('firstName')?.touched" class="error-message">
+            First name is required
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" formControlName="lastName" class="form-control">
+          <div *ngIf="companyForm.get('lastName')?.invalid && companyForm.get('lastName')?.touched" class="error-message">
+            Last name is required
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" class="form-control">
+          <div *ngIf="companyForm.get('email')?.invalid && companyForm.get('email')?.touched" class="error-message">
+            Valid email is required
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" formControlName="location" class="form-control">
+        </div>
+      </fieldset>
+  
+      <!-- Company Information Section -->
+ 
+  
+      <div class="button-group">
+        <button type="submit" class="save-button">
+          Save
+        </button>
+        <button type="button" (click)="onCancel()" class="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </div>

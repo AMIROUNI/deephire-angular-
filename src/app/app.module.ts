@@ -29,6 +29,9 @@ import { NotificationCardComponent } from './notification/notification-card/noti
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { PopupComponent } from './modal/popup/popup.component';
 import { ProfileCompletionComponent } from './profile-card/profile-completion/profile-completion.component';
+import { AddRecruiterComponent } from './admin-company/add-recruiter/add-recruiter.component';
+import { DisplayRecruiterComponent } from './admin-company/display-recruiter/display-recruiter.component';
+import { EditRhCompanyComponent } from './admin-company/edit-rh-company/edit-rh-company.component';
 
 
 
@@ -58,7 +61,10 @@ import { ProfileCompletionComponent } from './profile-card/profile-completion/pr
     NotificationCardComponent,
     CompanyProfileComponent,
     PopupComponent,
-    ProfileCompletionComponent
+    ProfileCompletionComponent,
+    AddRecruiterComponent,
+    DisplayRecruiterComponent,
+    EditRhCompanyComponent
 
 
 

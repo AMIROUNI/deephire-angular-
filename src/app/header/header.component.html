@@ -8,7 +8,7 @@
       </a>
     </div>
 
-    <!-- Main Navigation -->
+    <!-- Public Navigation -->
     <nav class="main-nav" *ngIf="!isLoggedIn">
       <ul class="nav-list">
         <li class="nav-item"><a routerLink="/" class="nav-link active">Home</a></li>
@@ -19,12 +19,32 @@
       </ul>
     </nav>
 
+    <!-- Authenticated Navigation -->
     <nav class="main-nav" *ngIf="isLoggedIn">
       <ul class="nav-list">
-        <li class="nav-item"><a routerLink="/feed" class="nav-link">Feed</a></li>
-        <li class="nav-item"><a routerLink="/jobs" class="nav-link">Jobs</a></li>
-        <li class="nav-item"><a routerLink="/network" class="nav-link">Network</a></li>
-        <li class="nav-item"><a routerLink="/messages" class="nav-link">Messages</a></li>
+        <!-- Role: ROLE_USER -->
+        <ng-container *ngIf="isUser()">
+          <li class="nav-item"><a routerLink="/feed" class="nav-link">Feed</a></li>
+          <li class="nav-item"><a routerLink="/jobs" class="nav-link">Jobs</a></li>
+          <li class="nav-item"><a routerLink="/network" class="nav-link">Network</a></li>
+          <li class="nav-item"><a routerLink="/messages" class="nav-link">Messages</a></li>
+        </ng-container>
+
+        <!-- Role: ROLE_ADMINCOMPANY or ROLE_RECRUITER -->
+        <ng-container *ngIf="isAdminCompanyOrRecruiter()">
+          <li class="nav-item"><a routerLink="/dashboard" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a routerLink="/manage-jobs" class="nav-link">Job Postings</a></li>
+          <li class="nav-item" *ngIf="isAdminCompany()">
+            <a routerLink="/manage-recruiters" class="nav-link">Manage Recruiters</a>
+          </li>
+        </ng-container>
+
+        <!-- Role: ROLE_ADMIN -->
+        <ng-container *ngIf="isAdmin()">
+          <li class="nav-item"><a routerLink="/admin-dashboard" class="nav-link">Admin Panel</a></li>
+          <li class="nav-item"><a routerLink="/user-management" class="nav-link">Users</a></li>
+          <li class="nav-item"><a routerLink="/company-management" class="nav-link">Companies</a></li>
+        </ng-container>
       </ul>
     </nav>
 
@@ -38,7 +58,7 @@
       <div class="user-profile">
         <img [src]="'data:image/png;base64,' + userImg" alt="User Avatar" class="avatar-img" style="height: 50px;width: 50px;" />
       </div>
-      <a  (click)="logout()" class="btn btn-login">Log Out</a>
+      <a (click)="logout()" class="btn btn-login">Log Out</a>
     </div>
   </div>
 </header>
