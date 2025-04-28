@@ -41,9 +41,17 @@ export class AdminCompanyService {
     return this.http.get<AdminCompany>(`${this.apiUrl}/findById/${id}`);
   }
 
-
-  completeProfileCompany(recruiter: any): Observable<any> {
-   
-    return this.http.post(`${this.apiUrl}/complete-profile-company`, recruiter, {headers: this.getHeaders()});
+  completeProfileCompany(formData: FormData): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+      // Do NOT set 'Content-Type' manually here
+    });
+  
+    return this.http.post(
+      `${this.apiUrl}/complete-profile-company`, 
+      formData, 
+      { headers: headers }
+    );
   }
 }
