@@ -1,0 +1,74 @@
+<div class="company-profile-container">
+    <div class="company-profile-card">
+      <div class="card-body">
+        <div class="text-center mb-4">
+          <h2>Create Your Company Profile</h2>
+          <p>Complete your company information</p>
+        </div>
+  
+        <form [formGroup]="formCompany" (ngSubmit)="onSubmitCompany()">
+          <!-- Name -->
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" formControlName="name" 
+                   [class.is-invalid]="isInvalidAndTouchedOrDirty('name')">
+            <div *ngIf="isInvalidAndTouchedOrDirty('name')" class="invalid-feedback">
+              <span *ngIf="formCompany.get('name')?.hasError('required')">Name is required</span>
+              <span *ngIf="formCompany.get('name')?.hasError('minlength')">Minimum 2 characters</span>
+            </div>
+          </div>
+  
+          <!-- Industry -->
+          <div class="form-group">
+            <label>Industry</label>
+            <input type="text" formControlName="industry"
+                   [class.is-invalid]="isInvalidAndTouchedOrDirty('industry')">
+            <div *ngIf="isInvalidAndTouchedOrDirty('industry')" class="invalid-feedback">
+              Industry is required
+            </div>
+          </div>
+  
+          <!-- Location -->
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" formControlName="location"
+                   [class.is-invalid]="isInvalidAndTouchedOrDirty('location')">
+            <div *ngIf="isInvalidAndTouchedOrDirty('location')" class="invalid-feedback">
+              Location is required
+            </div>
+          </div>
+  
+          <!-- Description -->
+          <div class="form-group">
+            <label>Description</label>
+            <textarea formControlName="description" rows="3"
+                     [class.is-invalid]="isInvalidAndTouchedOrDirty('description')"></textarea>
+            <div *ngIf="isInvalidAndTouchedOrDirty('description')" class="invalid-feedback">
+              <span *ngIf="formCompany.get('description')?.hasError('required')">Description is required</span>
+              <span *ngIf="formCompany.get('description')?.hasError('minlength')">Minimum 10 characters</span>
+            </div>
+          </div>
+  
+          <!-- Logo -->
+          <div class="form-group">
+            <label>Company Logo</label>
+            <input type="file" (change)="onFileSelected($event, 'logo')">
+          </div>
+  
+          <!-- Background Image -->
+          <div class="form-group">
+            <label>Background Image</label>
+            <input type="file" (change)="onFileSelected($event, 'background')">
+          </div>
+  
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary">Submit</button>
+  
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

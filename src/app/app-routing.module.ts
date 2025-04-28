@@ -7,7 +7,6 @@ import { PostsFeedComponent } from './posts-feed/posts-feed.component';
 import { JobPageComponent } from './job/job-page/job-page.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationComponent } from './notification/notification.component';
-import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { ProfileCompletionComponent } from './profile-card/profile-completion/profile-completion.component';
 
 import { RecruiterManagementComponent } from './admin-company/recruiter-management/recruiter-management.component';
@@ -17,6 +16,7 @@ import { EditRhCompanyComponent } from './admin-company/edit-rh-company/edit-rh-
 
 import { ChatComponent } from './chat/chat.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CompanyProfileComponent } from './admin-company/company-profile/company-profile.component';
 
 
 
@@ -29,8 +29,7 @@ const routes: Routes = [
   {path:'jobs',component:JobPageComponent},
   {path:'notification',component:NotificationComponent},
 
-  {path:'company/:id',component:CompanyProfileComponent
-  },
+
   {path:'recruiter-management',component: RecruiterManagementComponent},
   {path:'add-recruiter-management',component: AddRecruiterComponent}, 
 // Assuming RecruiterManagementComponent is defined elsewhere
@@ -38,8 +37,7 @@ const routes: Routes = [
   {path:'recruiter-dispaly',component: DisplayRecruiterComponent},
   {path:'edit-rh-company/:id',component:EditRhCompanyComponent
   }, // Assuming RecruiterManagementComponent is defined elsewhere
-
-  {path:'company/:id',component:CompanyProfileComponent},
+ {path:'complete-profile-company',component:CompanyProfileComponent},
   {path:'profile/completion',component:ProfileCompletionComponent },
   {path:"chat",component:ChatComponent},
 

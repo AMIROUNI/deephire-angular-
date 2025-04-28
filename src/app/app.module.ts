@@ -26,7 +26,6 @@ import { JobDetailsComponent } from './job/job-details/job-details.component';
 import { NotificationComponent } from './notification/notification.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationCardComponent } from './notification/notification-card/notification-card.component';
-import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { PopupComponent } from './modal/popup/popup.component';
 import { ProfileCompletionComponent } from './profile-card/profile-completion/profile-completion.component';
 import { AddRecruiterComponent } from './admin-company/add-recruiter/add-recruiter.component';
@@ -36,6 +35,7 @@ import { EditRhCompanyComponent } from './admin-company/edit-rh-company/edit-rh-
 import { ChatComponent } from './chat/chat.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RecruiterManagementComponent } from './admin-company/recruiter-management/recruiter-management.component';
+import { CompanyProfileComponent } from './admin-company/company-profile/company-profile.component';
 
 
 
@@ -64,13 +64,13 @@ import { RecruiterManagementComponent } from './admin-company/recruiter-manageme
     NotificationComponent,
     RegisterComponent,
     NotificationCardComponent,
-    CompanyProfileComponent,
     PopupComponent,
     ProfileCompletionComponent,
     AddRecruiterComponent,
     DisplayRecruiterComponent,
     EditRhCompanyComponent,
     RecruiterManagementComponent,
+    CompanyProfileComponent,
 
     ChatComponent,
       NotFoundComponent
