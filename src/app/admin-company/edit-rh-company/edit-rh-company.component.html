@@ -1,53 +1,104 @@
-<div class="edit-container">
-    <h2>Edit RH Company</h2>
-  
-    <div *ngIf="error" class="error">
-      {{ error }}
-    </div>
-  
-    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
-      <!-- User Information Section -->
-      <fieldset>
-        <legend>Personal Information</legend>
-        
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" formControlName="firstName" class="form-control">
-          <div *ngIf="companyForm.get('firstName')?.invalid && companyForm.get('firstName')?.touched" class="error-message">
-            First name is required
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" formControlName="lastName" class="form-control">
-          <div *ngIf="companyForm.get('lastName')?.invalid && companyForm.get('lastName')?.touched" class="error-message">
-            Last name is required
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" formControlName="email" class="form-control">
-          <div *ngIf="companyForm.get('email')?.invalid && companyForm.get('email')?.touched" class="error-message">
-            Valid email is required
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="location">Location</label>
-          <input type="text" id="location" formControlName="location" class="form-control">
-        </div>
-      </fieldset>
-  
-      <!-- Company Information Section -->
- 
-  
-      <div class="button-group">
-        <button type="submit" class="save-button">
-          Save
-        </button>
-        <button type="button" (click)="onCancel()" class="cancel-button">Cancel</button>
+<div class="login-container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="login-card card shadow-lg border-0 animate__animated animate__fadeInUp">
+    <div class="card-body px-5 py-4">
+      <!-- Logo & Heading -->
+      <div class="text-center mb-4">
+        <img src="assets/images/deepHireLogo.png" alt="DeepHire Logo" class="register-logo mb-2">
+        <h2 class="fw-bold text-gradient mb-1">Modifier le Compte Entreprise</h2>
+        <p class="text-muted">Mettre à jour les informations du compte</p>
       </div>
-    </form>
+
+      <!-- Edit Company Form -->
+      <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+        <!-- First Name -->
+        <div class="mb-3">
+          <label for="firstName" class="form-label fw-semibold">Prénom*</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-user text-muted"></i></span>
+            <input type="text" formControlName="firstName" class="form-control border-start-0" id="firstName" placeholder="Entrez le prénom"
+              [class.is-invalid]="companyForm.get('firstName')?.invalid && companyForm.get('firstName')?.touched">
+          </div>
+          <small class="text-danger" *ngIf="companyForm.get('firstName')?.invalid && companyForm.get('firstName')?.touched">
+            Le prénom est requis
+          </small>
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-3">
+          <label for="lastName" class="form-label fw-semibold">Nom*</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-user text-muted"></i></span>
+            <input type="text" formControlName="lastName" class="form-control border-start-0" id="lastName" placeholder="Entrez le nom"
+              [class.is-invalid]="companyForm.get('lastName')?.invalid && companyForm.get('lastName')?.touched">
+          </div>
+          <small class="text-danger" *ngIf="companyForm.get('lastName')?.invalid && companyForm.get('lastName')?.touched">
+            Le nom est requis
+          </small>
+        </div>
+
+        <!-- Username -->
+        <div class="mb-3">
+          <label for="username" class="form-label fw-semibold">Nom d'utilisateur*</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-at text-muted"></i></span>
+            <input type="text" formControlName="username" class="form-control border-start-0" id="username" placeholder="Entrez le nom d'utilisateur"
+              [class.is-invalid]="companyForm.get('username')?.invalid && companyForm.get('username')?.touched">
+          </div>
+          <small class="text-danger" *ngIf="companyForm.get('username')?.invalid && companyForm.get('username')?.touched">
+            <ng-container *ngIf="companyForm.get('username')?.errors?.['required']">Le nom d'utilisateur est requis</ng-container>
+            <ng-container *ngIf="companyForm.get('username')?.errors?.['minlength']">Min. 4 caractères</ng-container>
+          </small>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-semibold">Email*</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-envelope text-muted"></i></span>
+            <input type="email" formControlName="email" class="form-control border-start-0" id="email" placeholder="Entrez l'email"
+              [class.is-invalid]="companyForm.get('email')?.invalid && companyForm.get('email')?.touched">
+          </div>
+          <small class="text-danger" *ngIf="companyForm.get('email')?.invalid && companyForm.get('email')?.touched">
+            <ng-container *ngIf="companyForm.get('email')?.errors?.['required']">Email requis</ng-container>
+            <ng-container *ngIf="companyForm.get('email')?.errors?.['email']">Email invalide</ng-container>
+          </small>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Mot de passe*</label>
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white"><i class="fas fa-lock text-muted"></i></span>
+            <input type="password" formControlName="password" class="form-control border-start-0" id="password" placeholder="Entrez le nouveau mot de passe"
+            [class.is-invalid]="companyForm.get('password')?.invalid && companyForm.get('password')?.touched">
+          </div>
+          <small class="text-danger" *ngIf="companyForm.get('password')?.invalid && companyForm.get('password')?.touched">
+            <ng-container *ngIf="companyForm.get('password')?.errors?.['required']">Mot de passe requis</ng-container>
+            <ng-container *ngIf="companyForm.get('password')?.errors?.['minlength']">Min. 6 caractères</ng-container>
+          </small>
+        </div>
+
+        <!-- Status -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">Statut</label>
+          <div class="form-check">
+            <input type="checkbox" formControlName="isValid" class="form-check-input rounded text-primary" id="isValid">
+            <label class="form-check-label" for="isValid">Compte actif</label>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-grid gap-3">
+          <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-pill" [disabled]="isLoading || companyForm.invalid">
+            <span *ngIf="!isLoading"><i class="fas fa-save me-2"></i>Mettre à jour</span>
+            <span *ngIf="isLoading">Enregistrement...</span>
+          </button>
+          
+          <button type="button" (click)="onCancel()" class="btn btn-outline-secondary w-100 py-2 fw-semibold rounded-pill">
+            <i class="fas fa-times me-2"></i>Annuler
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
+</div>

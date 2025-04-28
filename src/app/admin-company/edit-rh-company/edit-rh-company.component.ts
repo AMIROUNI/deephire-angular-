@@ -22,22 +22,13 @@ export class EditRhCompanyComponent implements OnInit {
     private router: Router,
     private rhCompanyService: RhCompanyService
   ) {
+    // ✅ NOUVEAU FORMULAIRE : seulement les champs nécessaires
     this.companyForm = this.fb.group({
-      // User fields
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      profilePicture: [''],
-      backgroundImage: [''],
-      bio: [''],
-      location: [''],
-      
-      // RHCompany specific fields
-      company: this.fb.group({
-        name: ['', Validators.required],
-        address: ['', Validators.required],
-        phone: ['', Validators.required]
-      })
+      password: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required]
     });
   }
 
@@ -51,15 +42,16 @@ export class EditRhCompanyComponent implements OnInit {
     this.rhCompanyService.getRhCompanyById(this.companyId).subscribe({
       next: (company) => {
         this.companyForm.patchValue({
-          firstName: company.firstName,
-          lastName: company.lastName,
+          username: company.username,
           email: company.email,
-          location: company.location || '',
+          password: '', // 🔥 Optionnel : demander à l'utilisateur de ressaisir un mot de passe
+          firstName: company.firstName,
+          lastName: company.lastName
         });
         this.isLoading = false;
       },
       error: (err) => {
-        this.error = 'Error loading company data';
+        this.error = 'Error loading RH company data';
         this.isLoading = false;
         console.error(err);
       }
@@ -67,30 +59,33 @@ export class EditRhCompanyComponent implements OnInit {
   }
 
   onSubmit(): void {
-     
-      this.isLoading = true;
-      const updatedCompany: RHCompany = {
-        id: this.companyId,
-        ...this.companyForm.value
-      };
-      console.log("updatedCompany", updatedCompany);
-      this.rhCompanyService.updateRhCompany(this.companyId, updatedCompany).subscribe({
-        next: () => {
-          alert('Company updated successfully');
-       
-          // Optionally navigate to another page or refresh the list
-        //  this.router.navigate(['/display-recruiter']);
-        },
-        error: (err) => {
-          this.error = 'Error updating company';
-          this.isLoading = false;
-          console.error(err);
-        }
-      });
-    
+    if (this.companyForm.invalid) {
+      return;
+    }
+
+    this.isLoading = true;
+
+    const updatedRHCompany: RHCompany = {
+      id: this.companyId,
+      ...this.companyForm.value
+    };
+
+    console.log("updatedRHCompany", updatedRHCompany);
+
+    this.rhCompanyService.updateRhCompany(this.companyId, updatedRHCompany).subscribe({
+      next: () => {
+        alert('RH Company updated successfully');
+        this.router.navigate(['/recruiter-management']);
+      },
+      error: (err) => {
+        this.error = 'Error updating RH company';
+        this.isLoading = false;
+        console.error(err);
+      }
+    });
   }
 
   onCancel(): void {
-    this.router.navigate(['/display-recruiter']);
+    this.router.navigate(['/recruiter-management']);
   }
 }

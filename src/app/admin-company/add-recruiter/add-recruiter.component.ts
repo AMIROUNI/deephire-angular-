@@ -43,7 +43,7 @@ export class AddRecruiterComponent implements OnInit {
         alert('Recruiter created successfully');
         this.loading = false;
         setTimeout(() => {
-          this.router.navigate(['/admin/recruiters']);
+          this.router.navigate(['/recruiter-management']);
         }, 1500);
       },
       error: (err) => {

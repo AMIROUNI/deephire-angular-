@@ -1,0 +1,36 @@
+<div class="not-found-container">
+    <div class="network-background">
+      <div class="node node-1"></div>
+      <div class="node node-2"></div>
+      <div class="node node-3"></div>
+      <div class="node node-4"></div>
+      <div class="node node-5"></div>
+      <div class="connection connection-1"></div>
+      <div class="connection connection-2"></div>
+      <div class="connection connection-3"></div>
+      <div class="connection connection-4"></div>
+    </div>
+    
+    <div class="error-content">
+      <div class="error-code">
+        <span class="digit digit-1">4</span>
+        <span class="digit digit-2">0</span>
+        <span class="digit digit-3">4</span>
+      </div>
+      
+      <h1 class="error-title">Page Not Found</h1>
+      
+      <p class="error-message">
+        The page you're looking for doesn't exist or has been moved.
+        <br>
+        Let's get you back to connected territory.
+      </p>
+      
+      <button class="home-button" (click)="navigateHome()">
+        Return to Home Network
+        <svg class="arrow-icon" viewBox="0 0 24 24">
+          <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>

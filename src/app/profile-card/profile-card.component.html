@@ -1,23 +1,22 @@
 <div class="profile-card">
   <!-- En-tête avec image de fond -->
-  <div class="profile-header" [style.backgroundImage]="'url(' + defaultUser.backgroundImage + ')'">
-    <img [src]="defaultUser.profilePicture" alt="Photo de profil" class="profile-picture">
+  <div class="profile-header" [style.backgroundImage]="'url(' + 'data:image/png;base64,' +connectedUser?.backgroundImage + ')'">
+    <img [src]="'data:image/png;base64,' +connectedUser?.profilePicture" alt="Photo de profil" class="profile-picture">
   </div>
 
   <!-- Informations de base -->
   <div class="profile-info">
-    <h1 class="profile-name">{{ defaultUser.name }}</h1>
-    <p class="profile-title">{{ defaultUser.title }}</p>
-    <p class="profile-location">{{ defaultUser.location }}</p>
-    <p class="profile-connections">{{ defaultUser.connections }}+ connexions</p>
+    <h1 class="profile-name"> {{ connectedUser?.firstName  | titlecase}}  {{connectedUser?.lastName  | titlecase}}   </h1>
+    <p class="profile-title">{{ connectedUser?.bio }}</p>
+    <p class="profile-location">{{ connectedUser?.location }}</p>
 
 
 
    <!-- + Add Section Button -->
 <!-- + Add Section Button -->
 <div class="section-add-box text-center my-4">
-  <button class="btn btn-outline-primary" 
-          (click)="toggleSectionsMenu()" 
+  <button class="btn btn-outline-primary"
+          (click)="toggleSectionsMenu()"
           >+ Add Section</button>
 </div>
 
@@ -40,17 +39,17 @@
   <!-- Section À propos -->
   <div class="profile-section">
     <h2>À propos</h2>
-    <p>{{ defaultUser.about }}</p>
+    <p>{{ connectedUser?.profile?.summary }}</p>
   </div>
 
   <!-- Section Expérience -->
   <div class="profile-section">
     <h2>Expérience</h2>
     <ul class="experience-list">
-      <li *ngFor="let exp of defaultUser.experience" class="experience-item">
-        <h3>{{ exp.role }}</h3>
-        <p class="company">{{ exp.company }}</p>
-        <p class="duration">{{ exp.duration }}</p>
+      <li *ngFor="let exp of connectedUser?.profile?.experiences" class="experience-item">
+        <h3>{{ exp.description }}</h3>
+        <p class="company">{{ exp.companyName }}</p>
+        <p class="duration">{{ exp.startDate  }} - {{exp.startDate }}</p>
       </li>
     </ul>
   </div>
@@ -59,10 +58,11 @@
   <div class="profile-section">
     <h2>Éducation</h2>
     <ul class="education-list">
-      <li *ngFor="let edu of defaultUser.education" class="education-item">
+      <li *ngFor="let edu of connectedUser?.profile?.education" class="education-item">
         <h3>{{ edu.degree }}</h3>
-        <p class="university">{{ edu.university }}</p>
-        <p class="year">{{ edu.year }}</p>
+        <p class="university">{{ edu.schoolName }}</p>
+        <p class="field-of-study">{{edu.fieldOfStudy}}</p>
+        <p class="year">{{ edu.startDate }} - {{edu.endDate}}</p>
       </li>
     </ul>
   </div>
@@ -71,7 +71,7 @@
   <div class="profile-section">
     <h2>Compétences</h2>
     <ul class="skills-list">
-      <li *ngFor="let skill of defaultUser.skills" class="skill-item">{{ skill }}</li>
+      <li *ngFor="let skill of connectedUser?.profile?.skills" class="skill-item">{{ skill }}</li>
     </ul>
   </div>
 </div>

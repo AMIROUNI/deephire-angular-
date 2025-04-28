@@ -58,6 +58,6 @@ export class DisplayRecruiterComponent implements OnInit {
   }
 
   onAddNew(): void {
-    this.router.navigate(['/add-rh-company']);
+    this.router.navigate(['/add-recruiter-management']);
   }
 }

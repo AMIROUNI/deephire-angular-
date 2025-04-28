@@ -33,6 +33,11 @@ import { AddRecruiterComponent } from './admin-company/add-recruiter/add-recruit
 import { DisplayRecruiterComponent } from './admin-company/display-recruiter/display-recruiter.component';
 import { EditRhCompanyComponent } from './admin-company/edit-rh-company/edit-rh-company.component';
 
+import { ChatComponent } from './chat/chat.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RecruiterManagementComponent } from './admin-company/recruiter-management/recruiter-management.component';
+
+
 
 
 
@@ -64,7 +69,12 @@ import { EditRhCompanyComponent } from './admin-company/edit-rh-company/edit-rh-
     ProfileCompletionComponent,
     AddRecruiterComponent,
     DisplayRecruiterComponent,
-    EditRhCompanyComponent
+    EditRhCompanyComponent,
+    RecruiterManagementComponent,
+
+    ChatComponent,
+      NotFoundComponent
+
 
 
 

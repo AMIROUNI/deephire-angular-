@@ -2,11 +2,11 @@
 import { Profile} from './profile.model';
 
 export interface Experience {
-  id: number;
+  id?: number;
   companyName: string;
   title: string;
-  startDate: string; // Could also use Date type if you'll parse it
-  endDate?: string; // Optional
+  startDate: Date; // Could also use Date type if you'll parse it
+  endDate?: Date; // Optional
   description?: string;
   profile?: Profile; // Many-to-one
 }

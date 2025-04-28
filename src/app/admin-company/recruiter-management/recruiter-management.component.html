@@ -1,68 +1,18 @@
-<div class="container mx-auto px-4 py-8">
-  <div class="flex justify-between items-center mb-8">
-    <h1 class="text-3xl font-bold text-gray-800">Recruiter Management</h1>
-    <button 
-      (click)="addRecruiter()"
-      class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-      </svg>
-      Add Recruiter
-    </button>
+<div class="recruiter-management-container">
+  <div class="network-background">
+    <div class="node node-1"></div>
+    <div class="node node-2"></div>
+    <div class="node node-3"></div>
+    <div class="connection connection-1"></div>
+    <div class="connection connection-2"></div>
   </div>
 
-  <div *ngIf="loading" class="flex justify-center items-center h-64">
-    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-  </div>
-
-  <div *ngIf="error" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
-    <p>{{ error }}</p>
-  </div>
-
-  <div *ngIf="!loading && recruiters.length === 0" class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4">
-    <p>No recruiters found.</p>
-  </div>
-
-  <div *ngIf="!loading && recruiters.length > 0" class="bg-white shadow-md rounded-lg overflow-hidden">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
-        <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <tr *ngFor="let recruiter of recruiters" class="hover:bg-gray-50">
-          <td class="px-6 py-4 whitespace-nowrap">
-            <div class="flex items-center">
-              <div class="flex-shrink-0 h-10 w-10">
-                <img *ngIf="recruiter.profilePicture" 
-                     [src]="'data:image/png;base64,' + recruiter.profilePicture" 
-                     alt="Profile" class="h-10 w-10 rounded-full">
-                <div *ngIf="!recruiter.profilePicture" class="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
-                  <span class="text-gray-600">{{ recruiter.firstName?.charAt(0) }}{{ recruiter.lastName?.charAt(0) }}</span>
-                </div>
-              </div>
-              <div class="ml-4">
-                <div class="text-sm font-medium text-gray-900">{{ recruiter.firstName }} {{ recruiter.lastName }}</div>
-               
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ recruiter.email }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">
-            <span  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
-              {{ recruiter.isValid ? 'Active' : 'Inactive' }}
-            </span>
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-            <button (click)="editRecruiter(recruiter.id)" class="text-indigo-600 hover:text-indigo-900 mr-4">Edit</button>
-            <button (click)="deleteRecruiter(recruiter.id)" class="text-red-600 hover:text-red-900">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="content-grid">
+    <div class="form-section">
+      <app-add-recruiter></app-add-recruiter>
+    </div>
+    <div class="table-section">
+      <app-display-recruiter></app-display-recruiter>
+    </div>
   </div>
 </div>

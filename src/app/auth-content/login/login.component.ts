@@ -55,7 +55,7 @@ export class LoginComponent {
         this.errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
       }
     });
-  }
+  } 
 
 
 }
