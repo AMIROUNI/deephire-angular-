@@ -1,8 +1,8 @@
 import { User } from '../user/user.model';
 import { Experience} from './experience.model';
-import { Education, sampleEducations } from './education.model';
+import { Education } from './education.model';
 import { Skill } from './skill.model';
-import { Certification, sampleCertifications } from './certification.model';
+import { Certification } from './certification.model';
 
 export interface Profile {
   id: number;

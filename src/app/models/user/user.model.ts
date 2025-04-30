@@ -9,7 +9,7 @@ export interface User {
   email: string;
   password?: string;
   profilePicture?: string;
-  backgroundImage?: string;
+  backGroundImage?: string;
   bio?: string;
   location?: string;
   profile?: Profile;
