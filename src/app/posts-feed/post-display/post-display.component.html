@@ -4,16 +4,16 @@
     <div class="user-info">
       <div class="avatar-container">
         <img
-          [src]="'data:image/png;base64,'+post?.user?.profilePicture || 'assets/default-avatar.jpg'"
+          [src]="'data:image/png;base64,'+post.user.profilePicture || 'assets/default-avatar.jpg'"
           alt="User Avatar"
           class="user-avatar"
         />
       </div>
       <div class="user-details">
         <div class="user-name">
-          {{ post.user?.firstName }} {{ post?.user?.lastName }}
+          {{ post.user.firstName }} {{ post.user.lastName }}
         </div>
-        <div class="user-bio">{{ post?.user?.bio || 'No bio available' }}</div>
+        <div class="user-bio">{{ post.user.bio || 'No bio available' }}</div>
         <div class="post-time">
           <span>{{ formatTimeAgo(post.timestamp) }}</span>
         </div>

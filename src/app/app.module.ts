@@ -36,6 +36,16 @@ import { EditRhCompanyComponent } from './admin-company/edit-rh-company/edit-rh-
 import { ChatComponent } from './chat/chat.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RecruiterManagementComponent } from './admin-company/recruiter-management/recruiter-management.component';
+import { WelcomeCardComponent } from './admin/components/welcome-card/welcome-card.component';
+import { KpiCardsComponent } from './admin/components/kpi-cards/kpi-cards.component';
+import { UserGrowthChartComponent } from './admin/components/user-growth-chart/user-growth-chart.component';
+import { JobPostingChartComponent } from './admin/components/job-posting-chart/job-posting-chart.component';
+import { TopCompaniesComponent } from './admin/components/top-companies/top-companies.component';
+import { ApplicationStatusComponent } from './admin/components/application-status/application-status.component';
+import { RecentActivityComponent } from './admin/components/recent-activity/recent-activity.component';
+import { SettingsDropdownComponent } from './admin/components/settings-dropdown/settings-dropdown.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ApexChartsModule } from '../apex-charts.module';
 
 
 
@@ -73,7 +83,16 @@ import { RecruiterManagementComponent } from './admin-company/recruiter-manageme
     RecruiterManagementComponent,
 
     ChatComponent,
-      NotFoundComponent
+      NotFoundComponent,
+      WelcomeCardComponent,
+      KpiCardsComponent,
+      UserGrowthChartComponent,
+      JobPostingChartComponent,
+      TopCompaniesComponent,
+      ApplicationStatusComponent,
+      RecentActivityComponent,
+      SettingsDropdownComponent,
+      DashboardComponent
 
 
 
@@ -89,6 +108,9 @@ import { RecruiterManagementComponent } from './admin-company/recruiter-manageme
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ApexChartsModule,
+
+
 
 
 

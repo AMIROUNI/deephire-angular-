@@ -1,0 +1,30 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  background: #121220;
+  min-height: 100vh;
+  color: white;
+}
+
+/* Top section: Welcome + Settings */
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Bottom Grid: Companies + Activity */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}

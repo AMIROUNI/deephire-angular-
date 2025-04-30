@@ -12,12 +12,15 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:8095/api/auth';
 
-  
+
 
   constructor(private http: HttpClient,private router: Router) {}
+
+
+  //register user
+
   registerUser(signupData: SignupRequest): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
     return this.http.post<any>(this.apiUrl+"/signup", signupData, { headers });
 }
 
@@ -45,7 +48,7 @@ getRole(): string | null {
   console.log("decodedPayload",decodedPayload)
   const parsedPayload = JSON.parse(decodedPayload);
   console.log("parsedPayload",parsedPayload)
-  
+
   // Assume: roles are in parsedPayload.roles or parsedPayload.role
   const roles = parsedPayload.roles || parsedPayload.role;
   console.log("roles",roles)
@@ -105,7 +108,7 @@ private getHeaders(): HttpHeaders {
 logout(): Observable<any> {
   const headers = this.getHeaders();
   console.log("headers",headers);
-  return this.http.post<any>(`${this.apiUrl}/logout`, {}, { headers }); 
+  return this.http.post<any>(`${this.apiUrl}/logout`, {}, { headers });
 
 }
 

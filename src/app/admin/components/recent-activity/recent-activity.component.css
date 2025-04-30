@@ -1,0 +1,15 @@
+.recent-activity {
+  background: #1e1e2f;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}

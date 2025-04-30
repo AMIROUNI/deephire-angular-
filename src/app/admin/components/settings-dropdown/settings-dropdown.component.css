@@ -1,0 +1,39 @@
+.settings-dropdown {
+  position: relative;
+  display: inline-block;
+
+  .settings-button {
+    background: #3f37c9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background: #1e1e2f;
+    min-width: 120px;
+    right: 0;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+
+    a {
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+
+      &:hover {
+        background: #3f37c9;
+      }
+    }
+  }
+
+  &:hover .dropdown-content {
+    display: block;
+  }
+}

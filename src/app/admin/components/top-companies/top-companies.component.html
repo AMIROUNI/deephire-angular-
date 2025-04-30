@@ -1,0 +1,10 @@
+<div class="top-companies">
+  <h3>Top Companies</h3>
+  <div class="company" *ngFor="let company of companies">
+    <img [src]="company.logo" alt="{{ company.name }}">
+    <div class="info">
+      <h4>{{ company.name }}</h4>
+      <p>{{ company.jobsPosted }} Jobs</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.welcome-card {
+  background: linear-gradient(135deg, #4361ee, #3f37c9);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+
+    div {
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    span {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+  }
+}

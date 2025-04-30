@@ -17,6 +17,7 @@ import { EditRhCompanyComponent } from './admin-company/edit-rh-company/edit-rh-
 
 import { ChatComponent } from './chat/chat.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 
 
@@ -32,7 +33,7 @@ const routes: Routes = [
   {path:'company/:id',component:CompanyProfileComponent
   },
   {path:'recruiter-management',component: RecruiterManagementComponent},
-  {path:'add-recruiter-management',component: AddRecruiterComponent}, 
+  {path:'add-recruiter-management',component: AddRecruiterComponent},
 // Assuming RecruiterManagementComponent is defined elsewhere
   {path:'profile/completion',component:ProfileCompletionComponent },
   {path:'recruiter-dispaly',component: DisplayRecruiterComponent},
@@ -42,6 +43,7 @@ const routes: Routes = [
   {path:'company/:id',component:CompanyProfileComponent},
   {path:'profile/completion',component:ProfileCompletionComponent },
   {path:"chat",component:ChatComponent},
+  {path:'dashboard',component:DashboardComponent},
 
 
   // Assuming ProfileCardComponent handles profile completion
