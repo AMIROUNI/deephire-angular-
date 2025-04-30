@@ -5,8 +5,8 @@ export interface Experience {
   id?: number;
   companyName: string;
   title: string;
-  startDate: Date; // Could also use Date type if you'll parse it
-  endDate?: Date; // Optional
+  startDate: string; 
+  endDate?: string; 
   description?: string;
-  profile?: Profile; // Many-to-one
+  profile?: Profile; 
 }
