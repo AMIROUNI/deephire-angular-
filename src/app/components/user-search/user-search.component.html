@@ -1,4 +1,4 @@
-<div class="networking-search-container">
+<div class="networking-search-container" style="margin-top: 5em; margin-bottom: 5em;">
   <div class="search-header">
     <h2 class="search-title">Connect with Professionals</h2>
     <p class="search-subtitle">Find and network with people in your industry</p>
@@ -27,9 +27,9 @@
 
   <div class="search-suggestions">
     <span class="suggestion-tag">Try:</span>
-    <button class="suggestion-btn">Designers</button>
-    <button class="suggestion-btn">Developers</button>
-    <button class="suggestion-btn">Marketers</button>
+    <button class="suggestion-btn" (click)="useSuggestion('Designer')">Designers</button>
+<button class="suggestion-btn" (click)="useSuggestion('Developer')">Developers</button>
+<button class="suggestion-btn" (click)="useSuggestion('Marketing')">Marketers</button>
   </div>
 
   <ul class="search-results" *ngIf="searchResults.length > 0">

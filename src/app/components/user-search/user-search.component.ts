@@ -30,4 +30,8 @@ constructor(private userService: UserService, private router: Router) {}
     this.router.navigate(['/profile', username]);
   }
 
+  useSuggestion(suggestion: string): void {
+    this.query = suggestion;
+    this.onSearchChange();
+  }
 }
