@@ -30,7 +30,7 @@ export class HeaderComponent {
     const token = this.authService.getToken();
     if (token) {
       const decoded: any = JSON.parse(atob(token.split('.')[1]));
-      this.userImg = decoded.picture || 'assets/images/default-avatar.png';
+      this.userImg = decoded.picture ;
     }
   }
 

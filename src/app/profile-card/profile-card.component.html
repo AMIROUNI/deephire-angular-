@@ -2,11 +2,13 @@
   <!-- Header with background image -->
   <div class="profile-header">
     <div class="background-image-container">
-      <img [src]="'data:image/png;base64,' + user?.backGroundImage" alt="Background" class="background-image">
+      <img *ngIf="user?.backGroundImage" [src]="'data:image/png;base64,' + user?.backGroundImage " alt="Background" class="background-image">
+      <img *ngIf="!user?.backGroundImage" src="assets/images/default-background.png" alt="Background" class="background-image">
       <div class="background-overlay"></div>
     </div>
     <div class="profile-picture-container">
-      <img [src]="'data:image/png;base64,' + user?.profilePicture" alt="Profile" class="profile-picture">
+      <img *ngIf="user?.profilePicture"   [src]="'data:image/png;base64,' + user?.profilePicture" alt="Profile" class="profile-picture">
+      <img *ngIf="!user?.profilePicture" src="assets/images/default-profile.png" alt="Profile" class="profile-picture">
     </div>
   </div>
 
