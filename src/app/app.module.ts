@@ -49,6 +49,8 @@ import { CompanyProfileComponent } from './admin-company/company-profile/company
 import { ProfileUpdateComponent } from './profile-card/profile-update/profile-update.component';
 import { ChatMailboxComponent } from './chat/chat-mailbox/chat-mailbox.component';
 import { ChatWindowComponent } from './chat/chat-window/chat-window.component';
+import { NewMessageComponent } from './chat/new-message/new-message.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
 
 
 
@@ -98,7 +100,9 @@ import { ChatWindowComponent } from './chat/chat-window/chat-window.component';
       DashboardComponent,
       ProfileUpdateComponent,
       ChatMailboxComponent,
-      ChatWindowComponent
+      ChatWindowComponent,
+      NewMessageComponent,
+      UserSearchComponent
 
 
 

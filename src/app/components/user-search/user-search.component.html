@@ -1,0 +1,55 @@
+<div class="networking-search-container">
+  <div class="search-header">
+    <h2 class="search-title">Connect with Professionals</h2>
+    <p class="search-subtitle">Find and network with people in your industry</p>
+  </div>
+
+  <div class="search-input-wrapper">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <input
+      type="text"
+      class="networking-search-input"
+      [(ngModel)]="query"
+      (input)="onSearchChange()"
+      placeholder="Search by name, skills, or company..."
+      aria-label="Search users"
+    />
+    <button class="search-clear-btn" aria-label="Clear search">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="search-suggestions">
+    <span class="suggestion-tag">Try:</span>
+    <button class="suggestion-btn">Designers</button>
+    <button class="suggestion-btn">Developers</button>
+    <button class="suggestion-btn">Marketers</button>
+  </div>
+
+  <ul class="search-results" *ngIf="searchResults.length > 0">
+    <li *ngFor="let user of searchResults" (click)="goToProfile(user.username)" class="user-result">
+      <div class="user-avatar">
+        <img src="https://ui-avatars.com/api/?name={{user.firstName}}+{{user.lastName}}&background=random" alt="{{user.firstName}} {{user.lastName}}"/>
+      </div>
+      <div class="user-info">
+        <h3 class="user-name">{{ user.firstName }} {{ user.lastName }}</h3>
+        <p class="user-title">Senior UX Designer at TechCorp</p>
+        <div class="user-meta">
+          <span class="user-connections">500+ connections</span>
+          <span class="user-location">San Francisco, CA</span>
+        </div>
+      </div>
+      <button class="connect-btn">Connect</button>
+    </li>
+  </ul>
+
+  <div class="search-footer">
+    <p class="search-tip">Tip: Use keywords like "graphic designer in New York" for better results</p>
+  </div>
+</div>

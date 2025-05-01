@@ -1,11 +1,12 @@
-<div class="row">
-  <div class="col-md-4 border-end">
-    <app-chat-mailbox
-      [contacts]="contacts"
-      (contactSelected)="onContactSelected($event)">
-    </app-chat-mailbox>
-  </div>
-  <div class="col-md-8">
-    <app-chat-window [contact]="selectedContact"></app-chat-window>
+<div class="chat-container">
+  <div class="row">
+    <!-- Mailbox Column -->
+    <div class="col-md-4 border-end">
+      <app-chat-mailbox [contacts]="contacts" (contactSelected)="onContactSelected($event)"></app-chat-mailbox>
+    </div>
+    <!-- Chat Window Column -->
+    <div class="col-md-8">
+      <app-chat-window [contact]="selectedContact"></app-chat-window>
+    </div>
   </div>
 </div>

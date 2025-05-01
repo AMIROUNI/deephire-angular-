@@ -1,29 +1,27 @@
-<div *ngIf="contact">
+<div class="chat-window" *ngIf="contact">
+  <!-- Header -->
   <h5>Chat with {{ contactUser?.firstName }} {{ contactUser?.lastName }}</h5>
-  <div *ngFor="let msg of messages" class="mb-3 d-flex" [ngClass]="{
-    'justify-content-end': msg.firstName === currentUser?.firstName,
-    'justify-content-start': msg.firstName !== currentUser?.firstName
-  }">
-    <div
-      class="p-3 rounded shadow-sm"
-      [ngClass]="{
+
+  <!-- Messages Area -->
+  <div class="chat-messages">
+    <div *ngFor="let msg of messages" class="mb-3 d-flex" [ngClass]="{
+      'justify-content-end': msg.firstName === currentUser?.firstName,
+      'justify-content-start': msg.firstName !== currentUser?.firstName
+    }">
+      <div class="p-3 rounded shadow-sm message-bubble" [ngClass]="{
         'bg-primary text-white': msg.firstName === currentUser?.firstName,
         'bg-light text-dark': msg.firstName !== currentUser?.firstName
-      }"
-      style="max-width: 75%;"
-    >
-      <div class="fw-semibold mb-1">
-        {{ msg.firstName }} {{ msg.lastName }}
+      }" style="max-width: 75%;">
+        <div class="fw-semibold mb-1">{{ msg.firstName }} {{ msg.lastName }}</div>
+        {{ msg.content }}
+        <div class="text-muted small text-end mt-1">{{ msg.timestamp | date: 'shortTime' }}</div>
       </div>
-      {{ msg.content }}
-      <div class="text-muted small text-end mt-1">{{ msg.timestamp | date: 'shortTime' }}</div>
     </div>
   </div>
 
-
-  <!-- Message input and send button -->
-  <div class="mt-3">
-    <textarea [(ngModel)]="messageContent" rows="3" placeholder="Type a message..."></textarea>
-    <button (click)="sendMessage()" [disabled]="!messageContent.trim()">Send</button>
+  <!-- Input Area -->
+  <div class="chat-input-area mt-3">
+    <textarea [(ngModel)]="messageContent" rows="3" placeholder="Type a message..." class="form-control"></textarea>
+    <button (click)="sendMessage()" [disabled]="!messageContent.trim()" class="btn">Send</button>
   </div>
 </div>

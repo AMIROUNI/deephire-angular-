@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth/auth.service';
+import { UserSearchDTO } from '../models/user/user-search-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,11 @@ getCurrentUser(): Observable<User> {
 getUserByUsername(username: string): Observable<User> {
   return this.httpClient.get<User>(`${this.apiUrl}/${username}`, { headers: this.getHeaders() });
 }
+
+searchUsers(query: string): Observable<UserSearchDTO[]> {
+  return this.httpClient.get<UserSearchDTO[]>(`${this.apiUrl}/search?q=${query}`,{ headers: this.getHeaders() });
+}
+
 
 
 }

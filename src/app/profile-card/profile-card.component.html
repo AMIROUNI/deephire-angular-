@@ -18,6 +18,9 @@
       <p class="profile-location">
         <i class="fas fa-map-marker-alt"></i> {{ user?.location }}
       </p>
+      <div *ngIf="!isCurrentUserProfile">
+        <button class="btn btn-primary message--btn" (click)="messageUser()">message</button>
+      </div>
 
       <!-- Edit profile button (only visible to profile owner) -->
       <div *ngIf="isCurrentUserProfile" class="profile-actions">

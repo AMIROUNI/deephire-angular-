@@ -1,0 +1,21 @@
+<div class="message-form-container">
+  <form (ngSubmit)="sendMessage()" class="message-form">
+    <div class="form-group">
+      <label for="messageContent">Message to {{username}}</label>
+      <textarea
+        id="messageContent"
+        class="form-control"
+        [(ngModel)]="messageContent"
+        name="messageContent"
+        rows="4"
+        placeholder="Type your message here..."
+        required></textarea>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary send-button"
+      [disabled]="!messageContent.trim()">
+      Send Message
+    </button>
+  </form>
+</div>

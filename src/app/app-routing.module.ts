@@ -19,6 +19,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CompanyProfileComponent } from './admin-company/company-profile/company-profile.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProfileUpdateComponent } from './profile-card/profile-update/profile-update.component';
+import { NewMessageComponent } from './chat/new-message/new-message.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
 
 
 
@@ -47,6 +49,14 @@ const routes: Routes = [
   {
     path: 'profile/:username',
     component: ProfileCardComponent
+  },
+  {
+    path: 'newMessage/:username',
+    component: NewMessageComponent
+  },
+  {
+    path: 'search',
+    component: UserSearchComponent
   },
 
 

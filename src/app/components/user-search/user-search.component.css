@@ -1,0 +1,327 @@
+/* Networking Search Component - Professional UI/UX */
+.networking-search-container {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.networking-search-container:hover {
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+}
+
+.search-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.search-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #4f46e5, #10b981);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.search-subtitle {
+  font-size: 1rem;
+  color: #718096;
+  margin: 0;
+}
+
+.search-input-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #a0aec0;
+  transition: color 0.2s ease;
+}
+
+.networking-search-input {
+  width: 100%;
+  padding: 1.25rem 1.25rem 1.25rem 3.5rem;
+  font-size: 1.1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  color: #2d3748;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.networking-search-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.networking-search-input::placeholder {
+  color: #a0aec0;
+  opacity: 1;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+  transition: all 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.search-clear-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.search-suggestions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.suggestion-tag {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.suggestion-btn {
+  padding: 0.5rem 1rem;
+  background-color: #f1f5f9;
+  border: none;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: #4f46e5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.suggestion-btn:hover {
+  background-color: #e0e7ff;
+  transform: translateY(-1px);
+}
+
+.search-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.user-result {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  border-bottom: 1px solid #edf2f7;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+}
+
+.user-result:last-child {
+  border-bottom: none;
+}
+
+.user-result:hover {
+  background-color: #f8fafc;
+  transform: translateX(4px);
+}
+
+.user-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1.25rem;
+  flex-shrink: 0;
+  border: 2px solid #e2e8f0;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-title {
+  font-size: 0.875rem;
+  color: #4a5568;
+  margin: 0 0 0.5rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.user-connections::before {
+  content: "🔗";
+  margin-right: 0.25rem;
+}
+
+.user-location::before {
+  content: "📍";
+  margin-right: 0.25rem;
+}
+
+.connect-btn {
+  padding: 0.5rem 1.25rem;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.connect-btn:hover {
+  background-color: #4338ca;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.search-tip {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: #f8fafc;
+  border-radius: 6px;
+}
+
+/* Animation for search results */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.search-results {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .networking-search-container {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .user-result {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .user-avatar {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .connect-btn {
+    margin-left: 0;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .user-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+/* Micro-interactions */
+.networking-search-input:focus + .search-icon {
+  color: #4f46e5;
+}
+
+.suggestion-btn:active, .connect-btn:active {
+  transform: translateY(0);
+}
+
+/* Accessibility focus styles */
+.networking-search-input:focus-visible,
+.suggestion-btn:focus-visible,
+.connect-btn:focus-visible,
+.search-clear-btn:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+/* Loading state (can be toggled with *ngIf) */
+.search-loading .networking-search-input {
+  background-image: linear-gradient(
+    90deg,
+    #f8fafc 0%,
+    #f1f5f9 50%,
+    #f8fafc 100%
+  );
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.5s infinite;
+}
+
+@keyframes loadingShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

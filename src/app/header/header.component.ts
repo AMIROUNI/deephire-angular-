@@ -27,8 +27,6 @@ export class HeaderComponent {
     this.userRole = this.authService.getRole();
     this.isLoggedIn = this.authService.isAuthenticated();
 
-    // Si tu veux aussi récupérer l'image depuis le token (s'il est dedans)
-    // sinon tu peux commenter ça.
     const token = this.authService.getToken();
     if (token) {
       const decoded: any = JSON.parse(atob(token.split('.')[1]));
@@ -37,13 +35,13 @@ export class HeaderComponent {
   }
 
   logout() {
-    localStorage.removeItem('token');
     this.authService.logout().subscribe({
       next: () => {
         this.router.navigate(['/']);
       },
       error: (err) => console.error("Logout error", err)
     });
+    localStorage.removeItem('token');
   }
 
   // Helpers

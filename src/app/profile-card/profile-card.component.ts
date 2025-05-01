@@ -172,6 +172,12 @@ export class ProfileCardComponent {
     }
   }
 
+
+
+  messageUser(){
+    this.router.navigate(['/newMessage', this.user?.username]);
+  }
+
   showSuccessPopup(message: string) {
     this.popupTitle = 'Success!';
     this.popupMessage = message;
