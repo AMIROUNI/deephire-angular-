@@ -43,7 +43,6 @@ export class WebsocketService {
 
     this.client.activate();
 }
-
 sendMessage(content: string, receiverUsername: string): void {
   const senderUsername = this.getUsernameFromToken();
   const message = {
@@ -61,6 +60,9 @@ sendMessage(content: string, receiverUsername: string): void {
       });
   }
 }
+
+
+
 
    getUsernameFromToken(): string {
     const token = localStorage.getItem('token');

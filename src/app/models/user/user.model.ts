@@ -2,11 +2,11 @@ import { Message } from "../message/message.model";
 import { Profile } from "../profile/profile.model";
 
 export interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
+  id?: number;
+  firstName?: string;
+  lastName?: string;
   username?:string;
-  email: string;
+  email?: string;
   password?: string;
   profilePicture?: string;
   backGroundImage?: string;

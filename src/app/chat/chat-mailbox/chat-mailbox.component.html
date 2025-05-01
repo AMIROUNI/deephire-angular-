@@ -1,1 +1,7 @@
-<p>chat-mailbox works!</p>
+<ul class="list-group">
+  <li *ngFor="let contact of contacts"
+      class="list-group-item list-group-item-action"
+      (click)="selectContact(contact)">
+    {{ contact.username }}
+  </li>
+</ul>

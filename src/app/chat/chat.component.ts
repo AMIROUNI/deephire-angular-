@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from '../services/websocket.service';
+import { Message, User } from '../models';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-chat',
@@ -8,34 +10,18 @@ import { WebsocketService } from '../services/websocket.service';
   styleUrl: './chat.component.css'
 })
 export class ChatComponent implements OnInit {
-  message = '';
-  messages: any[] = [];
-  receiver = '';
+  contacts: User[] = [];
+  selectedContact: User | null = null;
 
-  constructor(private wsService: WebsocketService) {}
+  constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    console.log('[Chat] Initializing with token:', token);
-
-    if (token) {
-        this.wsService.connect(token);
-    }
-
-    this.wsService.messages$.subscribe((msg) => {
-        console.log('[Chat] New message received:', msg);
-        this.messages.push(msg);
+    this.messageService.getContacts().subscribe(users => {
+      this.contacts = users;
     });
-}
+  }
 
-send(): void {
-    if (this.message.trim() && this.receiver.trim()) {
-        console.log('[Chat] Sending message:', {
-            content: this.message,
-            receiver: this.receiver
-        });
-        this.wsService.sendMessage(this.message, this.receiver);
-        this.message = '';
-    }
-}
+  onContactSelected(contact: User) {
+    this.selectedContact = contact;
+  }
 }
