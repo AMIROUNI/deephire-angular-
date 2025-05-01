@@ -11,6 +11,8 @@ export class ChatMailboxComponent {
   @Input() contacts: User[] = [];
   @Output() contactSelected = new EventEmitter<User>();
 
+  
+
   selectContact(user: User) {
     this.contactSelected.emit(user);
   }

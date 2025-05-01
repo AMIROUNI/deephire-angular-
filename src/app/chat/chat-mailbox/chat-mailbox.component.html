@@ -2,6 +2,6 @@
   <li *ngFor="let contact of contacts"
       class="list-group-item list-group-item-action"
       (click)="selectContact(contact)">
-    {{ contact.username }}
+    {{ contact.firstName }} {{ contact.lastName }}
   </li>
 </ul>

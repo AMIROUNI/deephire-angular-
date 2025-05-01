@@ -7,5 +7,7 @@ export interface Message {
   sender?: User;
   receiver?: User;
   isRead?: boolean;
-  senderUsername?: string;
+  //senderUsername?: string;
+  firstName?: string;
+  lastName?: string;
 }

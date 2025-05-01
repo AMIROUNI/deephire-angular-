@@ -1,16 +1,16 @@
 <div class="recruiter-list">
     <h2>RH Companies List</h2>
-  
-  
-  
+
+
+
     <div *ngIf="error" class="error">
       {{ error }}
     </div>
-  
+
     <div *ngIf="isLoading">
       <p>Loading companies...</p>
     </div>
-  
+
     <div *ngIf="!isLoading && rhCompanies.length > 0; else noData">
       <table class="table">
         <thead>
@@ -31,14 +31,14 @@
             <td>{{ company.email }}</td>
             <td>{{ company.username }}</td>
             <td class="actions">
-              <button (click)="onEdit(company.id)" class="edit-button" >Edit</button>
-              <button (click)="onDelete(company.id)" class="delete-button">Delete</button>
+              <button (click)="onDelete(company.id || 0)" class="delete-button">Delete</button>
+              <button (click)="onEdit(company.id || 0)" class="edit-button" >Edit</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  
+
     <ng-template #noData>
       <p *ngIf="!isLoading">No RH companies found.</p>
     </ng-template>

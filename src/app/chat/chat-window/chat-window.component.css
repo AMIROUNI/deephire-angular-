@@ -1,0 +1,224 @@
+h5 {
+  padding: 1.5rem;
+  margin: 0;
+  background-color: #ffffff;
+  color: #1a202c;
+  font-weight: 600;
+  font-size: 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+h5:before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #48bb78;
+  margin-right: 10px;
+}
+
+/* Message container */
+.mb-3 {
+  margin-bottom: 1.5rem !important;
+  padding: 0 1.5rem;
+}
+
+/* Message bubbles */
+.p-3 {
+  position: relative;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-break: break-word;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Sent message (current user) */
+.bg-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  color: white !important;
+  border-top-right-radius: 4px !important;
+}
+
+/* Received message */
+.bg-light {
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  border-top-left-radius: 4px !important;
+}
+
+/* Message sender name */
+.fw-semibold {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Message timestamp */
+.text-muted {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* Message input area */
+.mt-3 {
+  margin-top: auto;
+  padding: 1.5rem;
+  background-color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  resize: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background-color: #f8f9fa;
+  margin-bottom: 1rem;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  background-color: white;
+}
+
+button {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+  float: right;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: #e2e8f0;
+  color: #a0aec0;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none !important;
+}
+
+/* Animation for messages */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 70, 229, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 70, 229, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-4, .col-md-8 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: 50vh;
+  }
+
+  .col-md-4 {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Status indicator for contacts */
+.list-group-item.online:after {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #48bb78;
+}
+
+.list-group-item.offline:after {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #e2e8f0;
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: flex;
+  padding: 0.5rem 1rem;
+  margin-left: 1.5rem;
+  background-color: white;
+  border-radius: 18px;
+  width: fit-content;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.typing-indicator span {
+  height: 8px;
+  width: 8px;
+  background-color: #a0aec0;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 2px;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}

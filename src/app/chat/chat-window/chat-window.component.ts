@@ -2,7 +2,6 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Message, User } from '../../models';
 import { MessageService } from '../../services/message.service';
 import { WebsocketService } from '../../services/websocket.service';
-import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -17,12 +16,19 @@ export class ChatWindowComponent implements OnChanges {
   messageContent = '';
   currentUser: User | null = null;
 
+  contactUser: User | null = null;
+
   constructor(private messageService: MessageService, private websocketService: WebsocketService, private UserService: UserService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['contact'] && this.contact) {
+
       this.loadMessages();
-      console.log('[Chat] Contact changed:', this.contact);
+
+      this.UserService.getUserByUsername(this.contact.username || '').subscribe(user => {
+        this.contactUser = user;
+      });
+
       const token = localStorage.getItem('token');
       if (token) {
         this.websocketService.connect(token);
@@ -42,7 +48,6 @@ export class ChatWindowComponent implements OnChanges {
   loadMessages() {
     this.messageService.getConversation(this.contact!.username || '').subscribe(msgs => {
       this.messages = msgs;
-      console.log("messages", this.messages);
     });
   }
 

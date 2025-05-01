@@ -39,7 +39,7 @@ export class DisplayRecruiterComponent implements OnInit {
     });
   }
 
-  onDelete(id: number): void {
+  onDelete(id: number ): void {
     if (confirm('Are you sure you want to delete this company?')) {
       this.rhCompanyService.deleteRhCompany(id).subscribe({
         next: () => {

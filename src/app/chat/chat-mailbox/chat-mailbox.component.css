@@ -1,0 +1,15 @@
+textarea.form-control {
+  resize: none;
+}
+
+.list-group-item-action:hover {
+  background-color: #e7f0ff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(67, 97, 238, 0.4);
+  border-radius: 4px;
+}
