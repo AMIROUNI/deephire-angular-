@@ -46,6 +46,9 @@ import { SettingsDropdownComponent } from './admin/components/settings-dropdown/
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ApexChartsModule } from '../apex-charts.module';
 import { CompanyProfileComponent } from './admin-company/company-profile/company-profile.component';
+import { ProfileUpdateComponent } from './profile-card/profile-update/profile-update.component';
+import { ChatMailboxComponent } from './chat/chat-mailbox/chat-mailbox.component';
+import { ChatWindowComponent } from './chat/chat-window/chat-window.component';
 
 
 
@@ -92,7 +95,10 @@ import { CompanyProfileComponent } from './admin-company/company-profile/company
       ApplicationStatusComponent,
       RecentActivityComponent,
       SettingsDropdownComponent,
-      DashboardComponent
+      DashboardComponent,
+      ProfileUpdateComponent,
+      ChatMailboxComponent,
+      ChatWindowComponent
 
 
 

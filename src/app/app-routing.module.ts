@@ -18,6 +18,7 @@ import { ChatComponent } from './chat/chat.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CompanyProfileComponent } from './admin-company/company-profile/company-profile.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ProfileUpdateComponent } from './profile-card/profile-update/profile-update.component';
 
 
 
@@ -42,11 +43,14 @@ const routes: Routes = [
   {path:'profile/completion',component:ProfileCompletionComponent },
   {path:"chat",component:ChatComponent},
   {path:'dashboard',component:DashboardComponent},
+  {path:'profile/update',component:ProfileUpdateComponent},
+  {
+    path: 'profile/:username',
+    component: ProfileCardComponent
+  },
 
 
-  // Assuming ProfileCardComponent handles profile completion
-
-  {path:'**', component:NotFoundComponent} // Wildcard route for a 404 page
+  {path:'**', component:NotFoundComponent}
 
 ];
 

@@ -25,8 +25,8 @@
       return this.http.post(`${this.apiUrl}/add-certification`, certification, { headers: this.getHeaders() });
     }
 
-    
+
     deleteCertification(certificationDto: Partial<Certification>): Observable<any> {
-      return this.http.post(`${this.apiUrl}/delete-certification`, certificationDto , {headers: this.getHeaders()});
+      return this.http.post(`${this.apiUrl}/delete-certification`, certificationDto , {headers: this.getHeaders(),observe: 'response'});
     }
   }

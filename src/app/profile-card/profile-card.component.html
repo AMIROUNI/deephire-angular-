@@ -2,23 +2,30 @@
   <!-- Header with background image -->
   <div class="profile-header">
     <div class="background-image-container">
-      <img [src]="'data:image/png;base64,' + connectedUser?.backGroundImage" alt="Background" class="background-image">
+      <img [src]="'data:image/png;base64,' + user?.backGroundImage" alt="Background" class="background-image">
       <div class="background-overlay"></div>
     </div>
     <div class="profile-picture-container">
-      <img [src]="'data:image/png;base64,' + connectedUser?.profilePicture" alt="Profile" class="profile-picture">
+      <img [src]="'data:image/png;base64,' + user?.profilePicture" alt="Profile" class="profile-picture">
     </div>
   </div>
 
   <!-- Profile info section -->
   <div class="profile-content">
     <div class="profile-info">
-      <h1 class="profile-name">{{ connectedUser?.firstName | titlecase }} {{ connectedUser?.lastName | titlecase }}</h1>
-      <p class="profile-title">{{ connectedUser?.bio }}</p>
+      <h1 class="profile-name">{{ user?.firstName | titlecase }} {{ user?.lastName | titlecase }}</h1>
+      <p class="profile-title">{{ user?.bio }}</p>
       <p class="profile-location">
-        <i class="fas fa-map-marker-alt"></i> {{ connectedUser?.location }}
+        <i class="fas fa-map-marker-alt"></i> {{ user?.location }}
       </p>
-      
+
+      <!-- Edit profile button (only visible to profile owner) -->
+      <div *ngIf="isCurrentUserProfile" class="profile-actions">
+        <button class="btn btn-primary edit-profile-btn" (click)="navigateToUpdateProfile()">
+          <i class="fas fa-edit"></i> Edit Profile
+        </button>
+      </div>
+
       <!-- Connections/Network info -->
       <div class="network-stats">
         <div class="stat-item">
@@ -30,9 +37,9 @@
           <span class="stat-label">Following</span>
         </div>
       </div>
-      
-      <!-- Add section button -->
-      <div class="section-add-box">
+
+      <!-- Add section button (only visible to profile owner) -->
+      <div *ngIf="isCurrentUserProfile" class="section-add-box">
         <button class="btn btn-primary add-section-btn" (click)="toggleSectionsMenu()">
           <i class="fas fa-plus"></i> Add Section
         </button>
@@ -50,9 +57,10 @@
     <div class="profile-section about-section">
       <div class="section-header">
         <h2><i class="fas fa-user"></i> About</h2>
+
       </div>
       <div class="section-content">
-        <p>{{ connectedUser?.profile?.summary || "Add a summary to highlight your professional background" }}</p>
+        <p>{{ user?.profile?.summary || "Add a summary to highlight your professional background" }}</p>
       </div>
     </div>
 
@@ -60,10 +68,11 @@
     <div class="profile-section experience-section">
       <div class="section-header">
         <h2><i class="fas fa-briefcase"></i> Experience</h2>
+
       </div>
       <div class="section-content">
         <ul class="experience-list">
-          <li *ngFor="let exp of connectedUser?.profile?.experiences" class="experience-item">
+          <li *ngFor="let exp of user?.profile?.experiences" class="experience-item">
             <div class="experience-icon">
               <i class="fas fa-building"></i>
             </div>
@@ -71,15 +80,15 @@
               <h3>{{ exp.description }}</h3>
               <p class="company">{{ exp.companyName }}</p>
               <p class="duration">
-                <i class="far fa-calendar-alt"></i> 
+                <i class="far fa-calendar-alt"></i>
                 {{ exp.startDate }} - {{ exp.endDate }}
               </p>
             </div>
-            <button class="delete-btn" (click)="onDelete('experiences', exp)">
+            <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteExperience('experiences', exp)">
               <i class="fas fa-times"></i>
             </button>
           </li>
-          <li *ngIf="!connectedUser?.profile?.experiences?.length" class="empty-section">
+          <li *ngIf="!user?.profile?.experiences?.length" class="empty-section">
             No experience added yet
           </li>
         </ul>
@@ -93,7 +102,7 @@
       </div>
       <div class="section-content">
         <ul class="education-list">
-          <li *ngFor="let edu of connectedUser?.profile?.education" class="education-item">
+          <li *ngFor="let edu of user?.profile?.education" class="education-item">
             <div class="education-icon">
               <i class="fas fa-university"></i>
             </div>
@@ -102,15 +111,15 @@
               <p class="university">{{ edu.schoolName }}</p>
               <p class="field-of-study">{{ edu.fieldOfStudy }}</p>
               <p class="year">
-                <i class="far fa-calendar-alt"></i> 
+                <i class="far fa-calendar-alt"></i>
                 {{ edu.startDate | date:'MMM yyyy' }} - {{ edu.endDate | date:'MMM yyyy' }}
               </p>
             </div>
-            <button class="delete-btn" (click)="onDelete('education', edu)">
+            <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteEducation('education', edu)">
               <i class="fas fa-times"></i>
             </button>
           </li>
-          <li *ngIf="!connectedUser?.profile?.education?.length" class="empty-section">
+          <li *ngIf="!user?.profile?.education?.length" class="empty-section">
             No education added yet
           </li>
         </ul>
@@ -124,27 +133,28 @@
       </div>
       <div class="section-content">
         <ul class="skills-list">
-          <li *ngFor="let skill of connectedUser?.profile?.skills" class="skill-item">
+          <li *ngFor="let skill of user?.profile?.skills" class="skill-item">
             {{ skill.name }}
-            <button class="delete-btn" (click)="onDeleteSkills('skills', skill)">
+            <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteSkills('skills', skill)">
               <i class="fas fa-times"></i>
             </button>
           </li>
-          <li *ngIf="!connectedUser?.profile?.skills?.length" class="empty-section">
+          <li *ngIf="!user?.profile?.skills?.length" class="empty-section">
             No skills added yet
           </li>
         </ul>
       </div>
     </div>
-    
+
     <!-- Certifications section -->
     <div class="profile-section certifications-section">
       <div class="section-header">
         <h2><i class="fas fa-certificate"></i> Certifications</h2>
+
       </div>
       <div class="section-content">
         <ul class="certifications-list">
-          <li *ngFor="let cert of connectedUser?.profile?.certifications" class="certification-item">
+          <li *ngFor="let cert of user?.profile?.certifications" class="certification-item">
             <div class="certification-icon">
               <i class="fas fa-certificate"></i>
             </div>
@@ -152,15 +162,15 @@
               <h3>{{ cert.name }}</h3>
               <p class="issuer">{{ cert.issuer }}</p>
               <p class="issue-date">
-                <i class="far fa-calendar-alt"></i> 
-                {{ cert.issueDate | date:'MMM yyyy' }}  
+                <i class="far fa-calendar-alt"></i>
+                {{ cert.issueDate | date:'MMM yyyy' }}
               </p>
             </div>
-            <button class="delete-btn" (click)="onDelete('certifications', cert)">
+            <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteCertification('certifications', cert)">
               <i class="fas fa-times"></i>
             </button>
           </li>
-          <li *ngIf="!connectedUser?.profile?.certifications?.length" class="empty-section">
+          <li *ngIf="!user?.profile?.certifications?.length" class="empty-section">
             No certifications added yet
           </li>
         </ul>

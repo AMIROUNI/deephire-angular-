@@ -29,6 +29,6 @@ export class EducationService {
 
 
   deleteEducation(educationDto: Partial<Education>): Observable<any> {
-    return this.http.post(`${this.apiUrl}/delete-education`, educationDto, {headers:this.getHeaders()});
+    return this.http.post(`${this.apiUrl}/delete-education`, educationDto, {headers:this.getHeaders(),observe: 'response'});
   }
 }

@@ -26,6 +26,9 @@ export class ExperienceService {
   }
 
   deleteExperience(experienceDto: Partial<Experience>): Observable<any> {
-    return this.http.post(`${this.apiUrl}/delete-experience`, experienceDto,{headers:this.getHeaders()});
+    return this.http.post(`${this.apiUrl}/delete-experience`, experienceDto, {
+      headers: this.getHeaders(),
+      observe: 'response'
+    });
   }
 }

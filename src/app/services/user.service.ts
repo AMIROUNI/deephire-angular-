@@ -25,5 +25,9 @@ getCurrentUser(): Observable<User> {
   return this.httpClient.get<User>(`${this.apiUrl}/me`, { headers: this.getHeaders() });
 }
 
+getUserByUsername(username: string): Observable<User> {
+  return this.httpClient.get<User>(`${this.apiUrl}/${username}`, { headers: this.getHeaders() });
+}
+
 
 }

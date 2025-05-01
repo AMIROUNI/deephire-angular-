@@ -1,447 +1,907 @@
-/* Networking Theme Variables */
-:root {
-  --primary-color: #0a66c2;
-  --primary-hover: #004182;
-  --secondary-color: #ffffff;
-  --text-color: #000000e6;
-  --text-secondary: #00000099;
-  --border-color: #e0e0e0;
-  --section-bg: #ffffff;
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --transition-speed: 0.3s;
-}
-
-/* Base Styles */
+/* ========== BASE STYLES ========== */
 .profile-card.networking-theme {
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  max-width: 850px;
-  margin: 0 auto;
-  background-color: var(--section-bg);
-  border-radius: 10px;
+  --primary-color: #0a66c2;
+  --secondary-color: #378fe9;
+  --accent-color: #5db4ff;
+  --dark-color: #1d2226;
+  --medium-color: #687782;
+  --light-color: #eef3f8;
+  --background-color: #ffffff;
+  --border-color: #dbe0e4;
+  --success-color: #2e7d32;
+  --error-color: #d32f2f;
+  --warning-color: #ed6c02;
+  --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --section-spacing: 24px;
+  --element-spacing: 16px;
+  --small-spacing: 8px;
+  --profile-picture-size: 120px;
+  --profile-picture-border: 4px;
+  --header-height: 200px;
+  --icon-size: 18px;
+  --max-content-width: 900px;
+
+  font-family: var(--font-main);
+  color: var(--dark-color);
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
   overflow: hidden;
-  box-shadow: var(--card-shadow);
-  color: var(--text-color);
   position: relative;
+  margin: 0 auto;
+  max-width: var(--max-content-width);
+  transition: all var(--transition-speed) ease;
 }
 
-/* Profile Header */
-.profile-header {
+/* ========== PROFILE HEADER ========== */
+.profile-card.networking-theme .profile-header {
   position: relative;
-  height: 200px;
+  height: var(--header-height);
+  margin-bottom: calc(var(--profile-picture-size) / 2 + var(--element-spacing));
 }
 
-.background-image-container {
+.profile-card.networking-theme .background-image-container {
   position: relative;
   height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
-.background-image {
+.profile-card.networking-theme .background-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  filter: brightness(0.8);
+  transition: transform 0.5s ease;
 }
 
-.background-overlay {
+.profile-card.networking-theme .background-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+  background: linear-gradient(135deg, rgba(10, 102, 194, 0.6) 0%, rgba(55, 143, 233, 0.4) 100%);
 }
 
-.profile-picture-container {
+.profile-card.networking-theme .profile-picture-container {
   position: absolute;
-  bottom: -50px;
-  left: 30px;
-  width: 150px;
-  height: 150px;
+  bottom: calc(-1 * var(--profile-picture-size) / 2);
+  left: var(--element-spacing);
+  z-index: 2;
+}
+
+.profile-card.networking-theme .profile-picture {
+  width: var(--profile-picture-size);
+  height: var(--profile-picture-size);
   border-radius: 50%;
-  border: 4px solid var(--secondary-color);
-  background-color: var(--secondary-color);
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.profile-picture {
-  width: 100%;
-  height: 100%;
+  border: var(--profile-picture-border) solid var(--background-color);
   object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all var(--transition-speed) ease;
 }
 
-/* Profile Content */
-.profile-content {
-  padding: 30px;
-  padding-top: 70px;
+.profile-card.networking-theme .profile-picture:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-.profile-info {
-  text-align: left;
-  margin-bottom: 30px;
+/* ========== PROFILE CONTENT ========== */
+.profile-card.networking-theme .profile-content {
+  padding: var(--element-spacing);
+  padding-top: 0;
+}
+
+.profile-card.networking-theme .profile-info {
+  margin-bottom: var(--section-spacing);
   position: relative;
 }
 
-.profile-name {
+.profile-card.networking-theme .profile-name {
+  font-family: var(--font-heading);
   font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  color: var(--text-color);
+  font-weight: 700;
+  color: var(--dark-color);
+  margin: 0 0 var(--small-spacing) 0;
+  line-height: 1.2;
 }
 
-.profile-title {
+.profile-card.networking-theme .profile-title {
   font-size: 18px;
-  color: var(--text-color);
-  margin-bottom: 8px;
-  font-weight: 500;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0 0 var(--small-spacing) 0;
 }
 
-.profile-location {
-  font-size: 16px;
-  color: var(--text-secondary);
-  margin-bottom: 20px;
+.profile-card.networking-theme .profile-location {
   display: flex;
   align-items: center;
+  font-size: 14px;
+  color: var(--medium-color);
+  margin: 0 0 var(--element-spacing) 0;
 }
 
-.profile-location i {
-  margin-right: 8px;
+.profile-card.networking-theme .profile-location i {
+  margin-right: var(--small-spacing);
+  font-size: var(--icon-size);
 }
 
-/* Network Stats */
-.network-stats {
+/* ========== PROFILE ACTIONS ========== */
+.profile-card.networking-theme .profile-actions {
+  margin-bottom: var(--element-spacing);
+}
+
+.profile-card.networking-theme .edit-profile-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card.networking-theme .edit-profile-btn i {
+  margin-right: var(--small-spacing);
+}
+
+.profile-card.networking-theme .edit-profile-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== NETWORK STATS ========== */
+.profile-card.networking-theme .network-stats {
   display: flex;
-  gap: 20px;
-  margin: 20px 0;
+  gap: var(--element-spacing);
+  margin-bottom: var(--element-spacing);
+  padding-bottom: var(--element-spacing);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.stat-item {
+.profile-card.networking-theme .stat-item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.stat-number {
+.profile-card.networking-theme .stat-number {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary-color);
 }
 
-.stat-label {
+.profile-card.networking-theme .stat-label {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: var(--medium-color);
 }
 
-/* Add Section Button */
-.section-add-box {
-  margin: 25px 0;
+/* ========== SECTION ADD BOX ========== */
+.profile-card.networking-theme .section-add-box {
+  margin-bottom: var(--section-spacing);
 }
 
-.add-section-btn {
+.profile-card.networking-theme .add-section-btn {
   background-color: transparent;
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: var(--border-radius);
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-speed);
-  display: flex;
+  transition: all var(--transition-speed) ease;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  width: 100%;
 }
 
-.add-section-btn:hover {
+.profile-card.networking-theme .add-section-btn i {
+  margin-right: var(--small-spacing);
+}
+
+.profile-card.networking-theme .add-section-btn:hover {
   background-color: rgba(10, 102, 194, 0.1);
-  border-width: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.add-section-btn i {
-  font-size: 14px;
-}
-
-/* Sections Common Styles */
-.profile-section {
-  margin-bottom: 30px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.section-header {
-  padding: 15px 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.section-header h2 {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-header i {
-  color: var(--primary-color);
-}
-
-.section-content {
-  padding: 20px;
-}
-
-/* Experience Section */
-.experience-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.experience-item {
-  display: flex;
-  gap: 15px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.experience-item:last-child {
-  border-bottom: none;
-}
-
-.experience-icon {
-  color: var(--primary-color);
-  font-size: 20px;
-  margin-top: 3px;
-}
-
-.experience-details h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 5px 0;
-}
-
-.company {
-  font-size: 16px;
-  color: var(--text-color);
-  margin: 0 0 5px 0;
-  font-weight: 500;
-}
-
-.duration {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* Education Section */
-.education-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.education-item {
-  display: flex;
-  gap: 15px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.education-item:last-child {
-  border-bottom: none;
-}
-
-.education-icon {
-  color: var(--primary-color);
-  font-size: 20px;
-  margin-top: 3px;
-}
-
-.education-details h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 5px 0;
-}
-
-.university {
-  font-size: 16px;
-  color: var(--text-color);
-  margin: 0 0 5px 0;
-  font-weight: 500;
-}
-
-.field-of-study {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin: 0 0 5px 0;
-}
-
-.year {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* Skills Section */
-.skills-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skill-item {
-  background-color: #eef3f8;
-  color: var(--primary-color);
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.endorsements {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-left: 5px;
-}
-
-/* Empty Section State */
-.empty-section {
-  color: var(--text-secondary);
-  font-style: italic;
-  padding: 10px 0;
-}
-
-/* Sections Menu Overlay */
-.section-menu-overlay {
+/* ========== SECTION MENU OVERLAY ========== */
+.profile-card.networking-theme .section-menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.section-menu-wrapper {
-  background-color: white;
-  border-radius: 8px;
+.profile-card.networking-theme .section-menu-wrapper {
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
   width: 90%;
-  max-width: 500px;
+  max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: var(--element-spacing);
+  animation: fadeInUp 0.3s ease;
 }
 
-/* Responsive Design */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== PROFILE SECTIONS ========== */
+.profile-card.networking-theme .profile-section {
+  margin-bottom: var(--section-spacing);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: all var(--transition-speed) ease;
+}
+
+.profile-card.networking-theme .profile-section:hover {
+  box-shadow: var(--box-shadow);
+  transform: translateY(-2px);
+}
+
+.profile-card.networking-theme .section-header {
+  padding: var(--element-spacing);
+  background-color: var(--light-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-card.networking-theme .section-header h2 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.profile-card.networking-theme .section-header h2 i {
+  margin-right: var(--small-spacing);
+  color: var(--primary-color);
+  font-size: var(--icon-size);
+}
+
+.profile-card.networking-theme .section-content {
+  padding: var(--element-spacing);
+  background-color: var(--background-color);
+}
+
+/* ========== ABOUT SECTION ========== */
+.profile-card.networking-theme .about-section .section-content p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--dark-color);
+}
+
+/* ========== EXPERIENCE SECTION ========== */
+.profile-card.networking-theme .experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-card.networking-theme .experience-item {
+  display: flex;
+  padding: var(--element-spacing) 0;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.profile-card.networking-theme .experience-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.profile-card.networking-theme .experience-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--light-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--element-spacing);
+  flex-shrink: 0;
+  color: var(--primary-color);
+}
+
+.profile-card.networking-theme .experience-details {
+  flex-grow: 1;
+}
+
+.profile-card.networking-theme .experience-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 var(--small-spacing) 0;
+  color: var(--dark-color);
+}
+
+.profile-card.networking-theme .company {
+  font-size: 16px;
+  color: var(--medium-color);
+  margin: 0 0 var(--small-spacing) 0;
+}
+
+.profile-card.networking-theme .duration {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--medium-color);
+  margin: 0;
+}
+
+.profile-card.networking-theme .duration i {
+  margin-right: var(--small-spacing);
+}
+
+/* ========== EDUCATION SECTION ========== */
+.profile-card.networking-theme .education-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-card.networking-theme .education-item {
+  display: flex;
+  padding: var(--element-spacing) 0;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.profile-card.networking-theme .education-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.profile-card.networking-theme .education-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--light-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--element-spacing);
+  flex-shrink: 0;
+  color: var(--primary-color);
+}
+
+.profile-card.networking-theme .education-details {
+  flex-grow: 1;
+}
+
+.profile-card.networking-theme .education-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 var(--small-spacing) 0;
+  color: var(--dark-color);
+}
+
+.profile-card.networking-theme .university {
+  font-size: 16px;
+  color: var(--medium-color);
+  margin: 0 0 var(--small-spacing) 0;
+}
+
+.profile-card.networking-theme .field-of-study {
+  font-size: 14px;
+  color: var(--dark-color);
+  margin: 0 0 var(--small-spacing) 0;
+}
+
+.profile-card.networking-theme .year {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--medium-color);
+  margin: 0;
+}
+
+.profile-card.networking-theme .year i {
+  margin-right: var(--small-spacing);
+}
+
+/* ========== SKILLS SECTION ========== */
+.profile-card.networking-theme .skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--small-spacing);
+}
+
+.profile-card.networking-theme .skill-item {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: all var(--transition-speed) ease;
+}
+
+.profile-card.networking-theme .skill-item:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* ========== CERTIFICATIONS SECTION ========== */
+.profile-card.networking-theme .certifications-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-card.networking-theme .certification-item {
+  display: flex;
+  padding: var(--element-spacing) 0;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.profile-card.networking-theme .certification-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.profile-card.networking-theme .certification-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--light-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--element-spacing);
+  flex-shrink: 0;
+  color: var(--primary-color);
+}
+
+.profile-card.networking-theme .certification-details {
+  flex-grow: 1;
+}
+
+.profile-card.networking-theme .certification-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 var(--small-spacing) 0;
+  color: var(--dark-color);
+}
+
+.profile-card.networking-theme .issuer {
+  font-size: 16px;
+  color: var(--medium-color);
+  margin: 0 0 var(--small-spacing) 0;
+}
+
+.profile-card.networking-theme .issue-date {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--medium-color);
+  margin: 0;
+}
+
+.profile-card.networking-theme .issue-date i {
+  margin-right: var(--small-spacing);
+}
+
+/* ========== DELETE BUTTONS ========== */
+.profile-card.networking-theme .delete-btn {
+  position: absolute;
+  top: var(--element-spacing);
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--medium-color);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-speed) ease;
+}
+
+.profile-card.networking-theme .delete-btn:hover {
+  background-color: rgba(211, 47, 47, 0.1);
+  color: var(--error-color);
+}
+
+.profile-card.networking-theme .delete-btn i {
+  font-size: 14px;
+}
+
+/* ========== EMPTY SECTIONS ========== */
+.profile-card.networking-theme .empty-section {
+  color: var(--medium-color);
+  font-style: italic;
+  padding: var(--element-spacing) 0;
+  text-align: center;
+}
+
+/* ========== POPUP STYLES ========== */
+.profile-card.networking-theme .popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card.networking-theme .popup-container {
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 90%;
+  max-width: 500px;
+  padding: var(--element-spacing);
+  animation: fadeInUp 0.3s ease;
+}
+
+.profile-card.networking-theme .popup-header {
+  margin-bottom: var(--element-spacing);
+}
+
+.profile-card.networking-theme .popup-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin: 0;
+}
+
+.profile-card.networking-theme .popup-message {
+  margin-bottom: var(--element-spacing);
+  line-height: 1.6;
+}
+
+.profile-card.networking-theme .popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--small-spacing);
+}
+
+.profile-card.networking-theme .popup-btn {
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.profile-card.networking-theme .popup-btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.profile-card.networking-theme .popup-btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.profile-card.networking-theme .popup-btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.profile-card.networking-theme .popup-btn-secondary:hover {
+  background-color: rgba(10, 102, 194, 0.1);
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
 @media (max-width: 768px) {
-  .profile-header {
-    height: 150px;
+  .profile-card.networking-theme {
+    --profile-picture-size: 100px;
+    --header-height: 180px;
+    --element-spacing: 12px;
+    --section-spacing: 20px;
   }
-  
-  .profile-picture-container {
-    width: 120px;
-    height: 120px;
-    bottom: -40px;
-    left: 20px;
-  }
-  
-  .profile-content {
-    padding: 25px;
-    padding-top: 60px;
-  }
-  
-  .profile-name {
+
+  .profile-card.networking-theme .profile-name {
     font-size: 24px;
   }
-  
-  .profile-title {
+
+  .profile-card.networking-theme .profile-title {
     font-size: 16px;
   }
-  
-  .section-header h2 {
+
+  .profile-card.networking-theme .section-header h2 {
     font-size: 18px;
   }
 }
 
 @media (max-width: 480px) {
-  .profile-header {
-    height: 120px;
+  .profile-card.networking-theme {
+    --profile-picture-size: 80px;
+    --header-height: 160px;
+    --element-spacing: 10px;
+    --section-spacing: 16px;
+    border-radius: 0;
   }
-  
-  .profile-picture-container {
-    width: 100px;
-    height: 100px;
-    bottom: -30px;
+
+  .profile-card.networking-theme .profile-name {
+    font-size: 20px;
   }
-  
-  .network-stats {
-    flex-direction: column;
-    gap: 10px;
+
+  .profile-card.networking-theme .profile-picture-container {
+    left: 50%;
+    transform: translateX(-50%);
   }
-  
-  .experience-item, .education-item {
-    flex-direction: column;
-    gap: 8px;
+
+  .profile-card.networking-theme .network-stats {
+    justify-content: center;
   }
-  
-  .experience-icon, .education-icon {
-    align-self: flex-start;
+
+  .profile-card.networking-theme .stat-item {
+    align-items: center;
   }
 }
 
-.delete-btn {
-  background: none;
-  border: none;
-  color: #666;
-  cursor: pointer;
-  padding: 5px;
-  margin-left: 10px;
-  transition: color 0.3s;
-  font-size: 14px;
+/* ========== ANIMATIONS ========== */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-.delete-btn:hover {
-  color: #ff0000;
+.profile-card.networking-theme .pulse-animation {
+  animation: pulse 2s infinite;
 }
 
-.skill-item {
+/* ========== UTILITY CLASSES ========== */
+.profile-card.networking-theme .text-primary {
+  color: var(--primary-color);
+}
+
+.profile-card.networking-theme .text-secondary {
+  color: var(--secondary-color);
+}
+
+.profile-card.networking-theme .text-accent {
+  color: var(--accent-color);
+}
+
+.profile-card.networking-theme .text-dark {
+  color: var(--dark-color);
+}
+
+.profile-card.networking-theme .text-medium {
+  color: var(--medium-color);
+}
+
+.profile-card.networking-theme .text-light {
+  color: var(--light-color);
+}
+
+.profile-card.networking-theme .bg-primary {
+  background-color: var(--primary-color);
+}
+
+.profile-card.networking-theme .bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+.profile-card.networking-theme .bg-accent {
+  background-color: var(--accent-color);
+}
+
+.profile-card.networking-theme .bg-dark {
+  background-color: var(--dark-color);
+}
+
+.profile-card.networking-theme .bg-light {
+  background-color: var(--light-color);
+}
+
+.profile-card.networking-theme .mt-1 {
+  margin-top: var(--small-spacing);
+}
+
+.profile-card.networking-theme .mt-2 {
+  margin-top: var(--element-spacing);
+}
+
+.profile-card.networking-theme .mt-3 {
+  margin-top: var(--section-spacing);
+}
+
+.profile-card.networking-theme .mb-1 {
+  margin-bottom: var(--small-spacing);
+}
+
+.profile-card.networking-theme .mb-2 {
+  margin-bottom: var(--element-spacing);
+}
+
+.profile-card.networking-theme .mb-3 {
+  margin-bottom: var(--section-spacing);
+}
+
+.profile-card.networking-theme .text-center {
+  text-align: center;
+}
+
+.profile-card.networking-theme .text-right {
+  text-align: right;
+}
+
+.profile-card.networking-theme .flex {
+  display: flex;
+}
+
+.profile-card.networking-theme .flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card.networking-theme .flex-between {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.education-item,
-.experience-item,
-.certification-item {
+/* ========== HOVER EFFECTS ========== */
+.profile-card.networking-theme .hover-scale {
+  transition: transform var(--transition-speed) ease;
+}
+
+.profile-card.networking-theme .hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.profile-card.networking-theme .hover-shadow {
+  transition: box-shadow var(--transition-speed) ease;
+}
+
+.profile-card.networking-theme .hover-shadow:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== NETWORKING THEME SPECIFIC ========== */
+.profile-card.networking-theme .connection-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: var(--light-color);
+  color: var(--primary-color);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: var(--small-spacing);
+}
+
+.profile-card.networking-theme .network-pulse {
   position: relative;
-  padding-right: 30px;
 }
 
-.education-item .delete-btn,
-.experience-item .delete-btn,
-.certification-item .delete-btn {
+.profile-card.networking-theme .network-pulse::after {
+  content: '';
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
 }
 
-.empty-section {
-  color: #666;
-  font-style: italic;
+.profile-card.networking-theme .connection-status {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--medium-color);
+  margin-top: var(--small-spacing);
+}
+
+.profile-card.networking-theme .connection-status i {
+  margin-right: var(--small-spacing);
+  color: var(--success-color);
+}
+
+.profile-card.networking-theme .online-status {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--success-color);
+  border-radius: 50%;
+  margin-right: var(--small-spacing);
+}
+
+.profile-card.networking-theme .network-activity {
+  position: absolute;
+  top: var(--element-spacing);
+  right: var(--element-spacing);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== LOADING STATES ========== */
+.profile-card.networking-theme .loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.profile-card.networking-theme .loading-text {
+  height: 16px;
+  width: 80%;
+  margin-bottom: 8px;
+}
+
+.profile-card.networking-theme .loading-title {
+  height: 24px;
+  width: 60%;
+  margin-bottom: 12px;
+}
+
+.profile-card.networking-theme .loading-image {
+  width: 100%;
+  height: 100px;
+  border-radius: 4px;
+  margin-bottom: 8px;
 }
