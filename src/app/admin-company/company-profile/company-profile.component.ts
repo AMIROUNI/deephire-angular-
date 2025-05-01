@@ -34,7 +34,7 @@ export class CompanyProfileComponent {
   });
 
   constructor(
-    private adminCompanyService: AdminCompanyService,private userService: UserService, 
+    private adminCompanyService: AdminCompanyService,private userService: UserService,
     private router: Router
   ) {}
 
@@ -65,7 +65,7 @@ export class CompanyProfileComponent {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-      
+
       // Validate file type
       if (!file.type.match('image.*')) {
         this.errorMessage = 'Only image files are allowed';
@@ -100,7 +100,7 @@ onSubmitCompany(): void {
   }
 
   const formData = new FormData();
-  
+
   // Create the company data object
   const companyData = {
     name: this.formCompany.get('name')?.value,
@@ -122,7 +122,9 @@ onSubmitCompany(): void {
   }
 
   this.adminCompanyService.completeProfileCompany(formData).subscribe({
-    next: () => {this.showSuccessPopup()},
+    next: () => {this.showSuccessPopup()
+      this.router.navigate(['/feed']);
+    },
     error: (err) => {
       console.error(err);
       if (err.status === 401) {

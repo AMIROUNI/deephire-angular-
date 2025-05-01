@@ -266,8 +266,7 @@ export class ProfileCompletionComponent implements OnInit {
       next: (response) => {
         this.isLoading = false;
         this.profileCompleted.emit(response);
-        //add skip method to update first login to false *******************************************************************
-        this.router.navigate(['/feed']);
+        window.location.reload();
       },
       error: (err) => {
         this.isLoading = false;

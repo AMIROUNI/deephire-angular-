@@ -85,10 +85,10 @@ redirectByRole(): void {
       this.router.navigate(['/feed']);
       break;
     case 'ROLE_RECRUITER':
-      this.router.navigate(['/recruiter']);
+      this.router.navigate(['/feed']);
       break;
     case 'ROLE_ADMINCOMPANY':
-      this.router.navigate(['/company']);
+      this.router.navigate(['/complete-profile-company']);
       break;
     default:
       this.router.navigate(['/unauthorized']);
