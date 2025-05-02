@@ -8,7 +8,9 @@
   <div class="card-body">
     <div class="d-flex mb-3">
       <div class="user-avatar me-3">
-        <img [src]="'data:image/jfif;base64,' + userImg" alt="User Avatar"
+        <img *ngIf="userImg" [src]="'data:image/jfif;base64,' + userImg " alt="User Avatar"
+             class="rounded-circle border" width="48" height="48">
+        <img *ngIf="!userImg" src="assets/images/default-profile.png" alt="User Avatar"
              class="rounded-circle border" width="48" height="48">
       </div>
       <textarea class="form-control border-0 shadow-none fs-5"
@@ -18,6 +20,7 @@
                 rows="3"
                 style="resize: none;"></textarea>
     </div>
+
 
     <!-- Preview selected files -->
     <div class="file-previews mb-3" *ngIf="selectedFiles.length > 0">
