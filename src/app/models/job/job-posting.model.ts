@@ -3,7 +3,7 @@ import { Company } from '../company/company.model';
 import { StatusOfCv } from './status-of-cv.model';
 
 export interface JobPosting {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   requirements?: string;

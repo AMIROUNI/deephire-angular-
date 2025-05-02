@@ -21,8 +21,10 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProfileUpdateComponent } from './profile-card/profile-update/profile-update.component';
 import { NewMessageComponent } from './chat/new-message/new-message.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
+import { AddJobPostingComponent } from './admin-company/job-posting/add-job-posting/add-job-posting.component';
+import { DisplayJobPostingsComponent } from './admin-company/job-posting/display-job-postings/display-job-postings.component';
 
-
+import { AdminJobPageComponent } from './admin-company/job-posting/job-posting.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -53,7 +55,10 @@ const routes: Routes = [
   {
     path: 'newMessage/:username',
     component: NewMessageComponent
-  },
+  }
+  ,{path:'add-job-posting',component:AddJobPostingComponent},
+  {path:'display-job-posting',component:DisplayJobPostingsComponent},
+  {path:'manage-jobs',component:AdminJobPageComponent},
   {
     path: 'search',
     component: UserSearchComponent

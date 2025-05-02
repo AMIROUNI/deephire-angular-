@@ -1,0 +1,56 @@
+<div class="job-postings-container">
+    <h2>My Job Postings</h2>
+  
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <div *ngIf="isLoading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading job postings...</p>
+    </div>
+  
+    <div *ngIf="!isLoading && jobPostings.length > 0; else noData">
+      <table class="job-postings-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Requirements</th>
+            <th>Location</th>
+            <th>Posted Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let job of jobPostings">
+            <td class="job-title">{{ job.title }}</td>
+            <td class="job-description">{{ job.description  }}</td>
+            <td class="job-requirements">{{ job.requirements  }}</td>
+            <td class="job-location">
+              <span class="location-icon">📍</span> {{ job.location }}
+            </td>
+            <td class="job-date">{{ job.datePosted | date:'mediumDate' }}</td>
+            <td class="job-actions">
+              <button class="edit-button">
+                <i class="edit-icon">✏️</i> Edit
+              </button>
+              <button  class="delete-button">
+                <i class="delete-icon">🗑️</i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <ng-template #noData>
+      <div *ngIf="!isLoading" class="no-data">
+        <div class="no-data-icon">📋</div>
+        <p>No job postings found.</p>
+        <button class="add-button" (click)="onAddNew()">
+          <i class="add-icon">+</i> Add New Job Posting
+        </button>
+      </div>
+    </ng-template>
+  </div>

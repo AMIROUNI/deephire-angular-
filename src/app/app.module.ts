@@ -51,6 +51,9 @@ import { ChatMailboxComponent } from './chat/chat-mailbox/chat-mailbox.component
 import { ChatWindowComponent } from './chat/chat-window/chat-window.component';
 import { NewMessageComponent } from './chat/new-message/new-message.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
+import { AddJobPostingComponent } from './admin-company/job-posting/add-job-posting/add-job-posting.component';
+import { AdminJobPageComponent } from './admin-company/job-posting/job-posting.component';
+import { DisplayJobPostingsComponent } from './admin-company/job-posting/display-job-postings/display-job-postings.component';
 
 
 
@@ -102,7 +105,10 @@ import { UserSearchComponent } from './components/user-search/user-search.compon
       ChatMailboxComponent,
       ChatWindowComponent,
       NewMessageComponent,
-      UserSearchComponent
+      UserSearchComponent,
+      AddJobPostingComponent,
+      AdminJobPageComponent,
+      DisplayJobPostingsComponent
 
 
 

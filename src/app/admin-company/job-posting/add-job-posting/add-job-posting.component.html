@@ -1,0 +1,88 @@
+<form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="job-form-container">
+    <div class="form-card">
+      <h2 class="form-title">Add New Job Posting</h2>
+      <p class="form-subtitle">Fill in the details below to create a new job posting</p>
+  
+      <div class="form-group" [class.invalid]="jobForm.get('title')?.invalid && jobForm.get('title')?.touched">
+        <label for="title">Job Title</label>
+        <input 
+          id="title" 
+          formControlName="title" 
+          type="text" 
+          class="form-control"
+          placeholder="Enter job title (e.g., Senior Frontend Developer)">
+        <div class="validation-messages" *ngIf="jobForm.get('title')?.touched">
+          <small class="error" *ngIf="jobForm.get('title')?.hasError('required')">Title is required</small>
+          <small class="error" *ngIf="jobForm.get('title')?.hasError('minlength')">Minimum 3 characters required</small>
+        </div>
+      </div>
+  
+      <div class="form-group" [class.invalid]="jobForm.get('description')?.invalid && jobForm.get('description')?.touched">
+        <label for="description">Job Description</label>
+        <textarea 
+          id="description" 
+          formControlName="description" 
+          class="form-control"
+          rows="4"
+          placeholder="Describe the job responsibilities and expectations"></textarea>
+        <div class="validation-messages" *ngIf="jobForm.get('description')?.touched">
+          <small class="error" *ngIf="jobForm.get('description')?.hasError('required')">Description is required</small>
+          <small class="error" *ngIf="jobForm.get('description')?.hasError('minlength')">Minimum 10 characters required</small>
+        </div>
+      </div>
+  
+      <div class="form-group" [class.invalid]="jobForm.get('location')?.invalid && jobForm.get('location')?.touched">
+        <label for="location">Location</label>
+        <input 
+          id="location" 
+          formControlName="location" 
+          type="text" 
+          class="form-control"
+          placeholder="Enter job location (e.g., New York, Remote)">
+        <div class="validation-messages" *ngIf="jobForm.get('location')?.touched">
+          <small class="error" *ngIf="jobForm.get('location')?.hasError('required')">Location is required</small>
+          <small class="error" *ngIf="jobForm.get('location')?.hasError('minlength')">Minimum 3 characters required</small>
+        </div>
+      </div>
+  
+      <div class="form-group" [class.invalid]="jobForm.get('requirements')?.invalid && jobForm.get('requirements')?.touched">
+        <label for="requirements">Requirements</label>
+        <textarea 
+          id="requirements" 
+          formControlName="requirements" 
+          class="form-control"
+          rows="4"
+          placeholder="List the required skills and qualifications"></textarea>
+        <div class="validation-messages" *ngIf="jobForm.get('requirements')?.touched">
+          <small class="error" *ngIf="jobForm.get('requirements')?.hasError('required')">Requirements are required</small>
+          <small class="error" *ngIf="jobForm.get('requirements')?.hasError('minlength')">Minimum 10 characters required</small>
+        </div>
+      </div>
+  
+      <div class="form-actions">
+        <button 
+          type="submit" 
+          class="submit-btn" 
+          [disabled]="jobForm.invalid"
+          [class.loading]="loading">
+          <span *ngIf="!loading">Add Job Posting</span>
+          <span *ngIf="loading" class="spinner"></span>
+        </button>
+      </div>
+  
+      <div class="form-messages">
+        <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </form>
+
+  
+<app-popup *ngIf="showPopup"
+[title]="popupTitle"
+[message]="popupMessage"
+[isSuccess]="popupIsSuccess"
+[redirectPath]="popupRedirectPath"
+[showCancelButton]="showCancelButton"
+(closed)="closePopup()">
+</app-popup>
