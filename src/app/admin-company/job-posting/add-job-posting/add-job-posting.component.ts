@@ -56,7 +56,7 @@ export class AddJobPostingComponent {
          this.showSuccessPopup('Job posting added successfully!');
         this.loading = false;
         this.jobForm.reset();
-        // Reset form validation state
+        window.location.reload(); 
         Object.keys(this.jobForm.controls).forEach(key => {
           this.jobForm.get(key)?.setErrors(null);
         });

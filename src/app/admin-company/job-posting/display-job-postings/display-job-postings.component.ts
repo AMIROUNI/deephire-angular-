@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobPostingService } from '../../../services/job-posting.service';
 import { JobPosting } from '../../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-display-job-postings',
@@ -13,7 +14,7 @@ export class DisplayJobPostingsComponent implements OnInit {
   errorMessage = '';
   isLoading = false;
 
-  constructor(private jobPostingService: JobPostingService) {}
+  constructor(private jobPostingService: JobPostingService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadJobPostings();
@@ -39,19 +40,27 @@ export class DisplayJobPostingsComponent implements OnInit {
     });
   }
 
-  onEdit(jobId: string): void {
-    // Implement edit functionality
-    console.log('Edit job with ID:', jobId);
-    // You would typically navigate to an edit page here
+  onEdit(job: JobPosting): void {
+    console.log('Edit job with ID:', job);
+    this.router.navigate(['/edit-jobs', job]);
   }
 
-  onDelete(jobId: string): void {
-    /*if (confirm('Are you sure you want to delete this job posting?')) {
+  onDelete(job : JobPosting): void {
+    if (confirm('Are you sure you want to delete this job posting?')) {
       this.isLoading = true;
-      this.jobPostingService.deleteJobPosting(jobId).subscribe({
+      this.jobPostingService.deleteByDto(job).subscribe({
         next: () => {
-          this.jobPostings = this.jobPostings.filter(job => job.id !== jobId);
-          this.isLoading = false;
+        console.log('Job posting deleted successfully!');
+        console.log( "job posting "+job);
+
+        this.isLoading = false;
+
+
+     // Reload the page to reflect changes
+           
+          alert('Job posting deleted successfully!');
+          window.location.reload(); 
+     
         },
         error: (err) => {
           this.errorMessage = 'Failed to delete job posting. Please try again.';
@@ -59,7 +68,7 @@ export class DisplayJobPostingsComponent implements OnInit {
           console.error('Error deleting job posting:', err);
         }
       });
-    }*/
+    }
   }
 
   onAddNew(): void {

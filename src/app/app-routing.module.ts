@@ -25,6 +25,7 @@ import { AddJobPostingComponent } from './admin-company/job-posting/add-job-post
 import { DisplayJobPostingsComponent } from './admin-company/job-posting/display-job-postings/display-job-postings.component';
 
 import { AdminJobPageComponent } from './admin-company/job-posting/job-posting.component';
+import { JobEditComponent } from './admin-company/job-posting/job-edit/job-edit.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -59,6 +60,7 @@ const routes: Routes = [
   ,{path:'add-job-posting',component:AddJobPostingComponent},
   {path:'display-job-posting',component:DisplayJobPostingsComponent},
   {path:'manage-jobs',component:AdminJobPageComponent},
+  {path:'edit-jobs',component:JobEditComponent},
   {
     path: 'search',
     component: UserSearchComponent

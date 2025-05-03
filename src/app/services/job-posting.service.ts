@@ -33,4 +33,18 @@ export class JobPostingService {
     
   }
 
+  deleteByDto(job: JobPosting): Observable<any> {
+    return this.http.post(`${this.apiUrl}/delete-by-dto`,  job,
+            {    headers: this.getHeaders()
+    });
+  }
+
+  jobPostings: JobPosting[] = []; // Fake in-memory list or get from backend
+
+
+
+  updateJob(job:{ original: JobPosting; updated: any; }): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update`, job,{headers:this.getHeaders()}); // Adjust endpoint as needed
+  }
+
 }

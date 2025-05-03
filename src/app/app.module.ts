@@ -54,6 +54,7 @@ import { UserSearchComponent } from './components/user-search/user-search.compon
 import { AddJobPostingComponent } from './admin-company/job-posting/add-job-posting/add-job-posting.component';
 import { AdminJobPageComponent } from './admin-company/job-posting/job-posting.component';
 import { DisplayJobPostingsComponent } from './admin-company/job-posting/display-job-postings/display-job-postings.component';
+import { JobEditComponent } from './admin-company/job-posting/job-edit/job-edit.component';
 
 
 
@@ -108,7 +109,8 @@ import { DisplayJobPostingsComponent } from './admin-company/job-posting/display
       UserSearchComponent,
       AddJobPostingComponent,
       AdminJobPageComponent,
-      DisplayJobPostingsComponent
+      DisplayJobPostingsComponent,
+      JobEditComponent
 
 
 

@@ -32,12 +32,13 @@
             </td>
             <td class="job-date">{{ job.datePosted | date:'mediumDate' }}</td>
             <td class="job-actions">
-              <button class="edit-button">
-                <i class="edit-icon">✏️</i> Edit
+              <button class="edit-button"(click)="onEdit(job)">
+                <i class="edit-icon"  >✏️</i> Edit
               </button>
-              <button  class="delete-button">
+              <button class="delete-button" (click)="onDelete(job)">
                 <i class="delete-icon">🗑️</i> Delete
               </button>
+
             </td>
           </tr>
         </tbody>

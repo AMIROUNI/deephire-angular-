@@ -1,0 +1,98 @@
+<div class="job-form-container">
+    <div class="job-form-card">
+      <div class="form-header">
+        <h2><i class="fas fa-pen-to-square me-2"></i>{{ editMode ? 'Edit Job Offer' : 'Create New Job Offer' }}</h2>
+        <p class="form-subtitle">Fill in the details below to {{ editMode ? 'update' : 'create' }} your job posting</p>
+      </div>
+  
+      <form [formGroup]="formJobEdit" (ngSubmit)="onSubmit()" class="job-form">
+        <!-- Title Field -->
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-heading me-2"></i>Job Title*
+          </label>
+          <div class="input-container">
+            <input formControlName="title" class="form-control" placeholder="e.g. Senior UX Designer">
+            <i class="fas fa-briefcase input-icon"></i>
+          </div>
+          <div class="validation-message" *ngIf="isInvalidAndTouchedOrDirty(formJobEdit.controls['title'])">
+            <i class="fas fa-exclamation-circle me-1"></i>Please enter a valid job title (minimum 3 characters)
+          </div>
+        </div>
+  
+        <!-- Description Field -->
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-align-left me-2"></i>Description*
+          </label>
+          <div class="rich-text-container">
+            <textarea formControlName="description" class="form-control" rows="6" 
+                      placeholder="Describe the position, responsibilities, and what makes your company great..."></textarea>
+          </div>
+          <div class="validation-message" *ngIf="isInvalidAndTouchedOrDirty(formJobEdit.controls['description'])">
+            <i class="fas fa-exclamation-circle me-1"></i>A detailed description is required
+          </div>
+        </div>
+  
+        <!-- Requirements Field -->
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-list-check me-2"></i>Requirements*
+          </label>
+          <div class="requirements-container">
+            <textarea formControlName="requirements" class="form-control" rows="6" 
+                      placeholder="List the required skills, experience, and qualifications (one per line)..."></textarea>
+          </div>
+          <div class="validation-message" *ngIf="isInvalidAndTouchedOrDirty(formJobEdit.controls['requirements'])">
+            <i class="fas fa-exclamation-circle me-1"></i>Please specify the requirements for this position
+          </div>
+        </div>
+  
+        <!-- Location & Date Fields -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="form-label">
+              <i class="fas fa-location-dot me-2"></i>Location*
+            </label>
+            <div class="input-container">
+              <input formControlName="location" class="form-control" placeholder="e.g. New York, Remote">
+              <i class="fas fa-map-marker-alt input-icon"></i>
+            </div>
+            <div class="validation-message" *ngIf="isInvalidAndTouchedOrDirty(formJobEdit.controls['location'])">
+              <i class="fas fa-exclamation-circle me-1"></i>Please specify the job location
+            </div>
+          </div>
+  
+          <div class="form-group col-md-6">
+            <label class="form-label">
+              <i class="fas fa-calendar-day me-2"></i>Posting Date
+            </label>
+            <div class="input-container">
+              <input type="date" formControlName="datePosted" class="form-control">
+              <i class="fas fa-calendar input-icon"></i>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary submit-btn">
+            <i class="fas fa-save me-2"></i>{{ editMode ? 'Update Job' : 'Post Job' }}
+          </button>
+          <button type="button" class="btn btn-secondary cancel-btn" (click)="cancelEdit()">
+            <i class="fas fa-times me-2"></i>Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Success/Error Popup -->
+    <app-popup *ngIf="showPopup"
+               [title]="popupTitle"
+               [message]="popupMessage"
+               [isSuccess]="popupIsSuccess"
+               [redirectPath]="popupRedirectPath"
+               [showCancelButton]="showCancelButton"
+               (closed)="closePopup()">
+    </app-popup>
+  </div>
