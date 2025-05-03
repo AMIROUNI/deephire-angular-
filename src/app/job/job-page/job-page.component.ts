@@ -1,7 +1,7 @@
 // job-page.component.ts
 import { Component, OnInit } from '@angular/core';
-import { JobPosting } from '../../models/job/job-posting.model';
-
+import { JobPostingService } from '../../services/job-posting.service';
+import { JobCompany } from '../../models/job/job-company.model';
 @Component({
   selector: 'app-job-page',
   standalone: false,
@@ -9,39 +9,31 @@ import { JobPosting } from '../../models/job/job-posting.model';
   styleUrls: ['./job-page.component.css']
 })
 export class JobPageComponent implements OnInit {
-  allJobs: JobPosting[] = []; // All jobs from API
-  filteredJobs: JobPosting[] = []; // Filtered jobs
-  selectedJob: JobPosting | null = null;
+  allJobs: JobCompany[] = [];
+  filteredJobs: JobCompany[] = [];
+  selectedJob: JobCompany | null = null;
   locations: string[] = [];
   hasMoreJobs = false;
   private visibleJobs = 5;
 
+  constructor(private jobService: JobPostingService) {}
+
   ngOnInit() {
-    this.loadMockData();
-    this.extractLocations();
-    this.filteredJobs = this.allJobs.slice(0, this.visibleJobs);
-    this.hasMoreJobs = this.allJobs.length > this.visibleJobs;
+    this.loadJobsFromAPI();
   }
 
-  loadMockData() {
-    // Replace with your actual data service
-    this.allJobs = [
-      {
-        id: 1,
-        title: 'Développeur Full Stack Senior',
-        description: `Nous recherchons un développeur full stack expérimenté pour rejoindre notre équipe technique.\n\nResponsabilités:\n- Développer des fonctionnalités frontend et backend\n- Collaborer avec l'équipe produit\n- Participer aux revues de code\n\nCompétences techniques requises:\n- Angular 12+\n- Node.js/NestJS\n- MongoDB/PostgreSQL`,
-        requirements: 'Angular, Node.js, MongoDB, 5+ ans expérience',
-        location: 'Tunis, Tunisie',
-        datePosted: '2025-04-10T10:00:00Z',
-        company: {
-          id: 1,
-          name: 'DeepHire',
-          logo: 'assets/images/deephire-logo.png'
-        },
-        statusOfCvs: []
+  loadJobsFromAPI() {
+    this.jobService.getAllJobPostings().subscribe({
+      next: (jobs) => {
+        this.allJobs = jobs;
+        this.extractLocations();
+        this.filteredJobs = this.allJobs.slice(0, this.visibleJobs);
+        this.hasMoreJobs = this.allJobs.length > this.visibleJobs;
       },
-      // Add more mock jobs...
-    ];
+      error: (err) => {
+        console.error('Failed to load job postings:', err);
+      }
+    });
   }
 
   extractLocations() {
@@ -49,7 +41,7 @@ export class JobPageComponent implements OnInit {
     this.locations = Array.from(uniqueLocations) as string[];
   }
 
-  onSelectJob(job: JobPosting) {
+  onSelectJob(job: JobCompany) {
     this.selectedJob = job;
     // Scroll to top of details panel
     document.querySelector('.job-content')?.scrollTo(0, 0);
@@ -84,7 +76,6 @@ export class JobPageComponent implements OnInit {
   }
 
   getResponsibilities(description: string): string[] {
-    // Extract responsibilities from description
     const matches = description.match(/- (.*?)(?=\n|$)/g);
     return matches ? matches.map(m => m.replace('- ', '')) : [];
   }

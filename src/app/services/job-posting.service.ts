@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JobPosting } from '../models';
 import { AuthService } from './auth/auth.service';
+import { JobCompany } from '../models/job/job-company.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +27,11 @@ export class JobPostingService {
     });
   }
 
-  
+
   getJobPostings(): Observable<JobPosting[]> {
-   
+
     return this.http.get<JobPosting[]>(`${this.apiUrl}/get-job-posting`, { headers: this.getHeaders() });
-    
+
   }
 
   deleteByDto(job: JobPosting): Observable<any> {
@@ -45,6 +46,10 @@ export class JobPostingService {
 
   updateJob(job:{ original: JobPosting; updated: any; }): Observable<any> {
     return this.http.put(`${this.apiUrl}/update`, job,{headers:this.getHeaders()}); // Adjust endpoint as needed
+  }
+
+  getAllJobPostings(): Observable<JobCompany[]> {
+    return this.http.get<JobCompany[]>(`${this.apiUrl}/all`, { headers: this.getHeaders() });
   }
 
 }

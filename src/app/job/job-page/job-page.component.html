@@ -38,15 +38,15 @@
                  (click)="onSelectJob(job)">
               <div class="d-flex">
                 <div class="flex-shrink-0 me-3">
-                  <img [src]="job.company?.logo || 'assets/images/default-company.png'"
+                  <img [src]="'data:image/png;base64,' + job.logo "
                        class="rounded-circle shadow-sm"
                        width="48" height="48"
-                       alt="{{ job.company?.name }}">
+                       alt="{{ job.company }}">
                 </div>
                 <div class="flex-grow-1">
                   <h6 class="mb-1 fw-semibold text-dark">{{ job.title }}</h6>
                   <div class="d-flex flex-wrap align-items-center text-muted small">
-                    <span class="me-2">{{ job.company?.name }}</span>
+                    <span class="me-2">{{ job.company }}</span>
                     <span class="d-flex align-items-center">
                       <i class="fas fa-map-marker-alt me-1"></i>{{ job.location || 'Remote' }}
                     </span>
@@ -78,14 +78,14 @@
         <div class="card-body p-4">
           <!-- Header -->
           <div class="d-flex align-items-start mb-4">
-            <img [src]="selectedJob.company?.logo || 'assets/images/default-company.png'"
+            <img [src]="'data:image/png;base64,' + selectedJob.logo "
                  class="rounded-circle shadow me-3"
                  width="64" height="64"
-                 alt="{{ selectedJob.company?.name }}">
+                 alt="{{ selectedJob.company}}">
             <div>
               <h3 class="fw-bold mb-1">{{ selectedJob.title }}</h3>
               <p class="text-muted mb-2">
-                {{ selectedJob.company?.name }} •
+                {{ selectedJob.company }} •
                 <span class="text-success">{{ selectedJob.location || 'Remote' }}</span> •
                 <span>{{ selectedJob.datePosted | date:'longDate' }}</span>
               </p>
