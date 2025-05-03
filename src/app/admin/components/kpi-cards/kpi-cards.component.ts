@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class KpiCardsComponent {
 
+  
+
   kpis = [
     { title: 'Total Users', value: 125 },
     { title: 'Active Users', value: 85 },

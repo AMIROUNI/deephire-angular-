@@ -55,6 +55,10 @@ import { AddJobPostingComponent } from './admin-company/job-posting/add-job-post
 import { AdminJobPageComponent } from './admin-company/job-posting/job-posting.component';
 import { DisplayJobPostingsComponent } from './admin-company/job-posting/display-job-postings/display-job-postings.component';
 import { JobEditComponent } from './admin-company/job-posting/job-edit/job-edit.component';
+import { DashboardAdminCompanyComponent } from './admin-company/dashboard-admin-company/dashboard-admin-company.component';
+import { KpiCardsAcComponent } from './admin-company/dashboard-admin-company/kpi-cards-ac/kpi-cards-ac.component';
+import { RecruiterGrowithChartComponent } from './admin-company/dashboard-admin-company/recruiter-growith-chart/recruiter-growith-chart.component';
+import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/job-posting-ac/job-posting-ac.component';
 
 
 
@@ -110,7 +114,11 @@ import { JobEditComponent } from './admin-company/job-posting/job-edit/job-edit.
       AddJobPostingComponent,
       AdminJobPageComponent,
       DisplayJobPostingsComponent,
-      JobEditComponent
+      JobEditComponent,
+      DashboardAdminCompanyComponent,
+      KpiCardsAcComponent,
+      RecruiterGrowithChartComponent,
+      JobPostingAcComponent
 
 
 
