@@ -54,6 +54,8 @@ import { AddJobPostingComponent } from './admin-company/job-posting/add-job-post
 import { AdminJobPageComponent } from './admin-company/job-posting/job-posting.component';
 import { DisplayJobPostingsComponent } from './admin-company/job-posting/display-job-postings/display-job-postings.component';
 import { JobEditComponent } from './admin-company/job-posting/job-edit/job-edit.component';
+import { PostUpdateComponent } from './posts-feed/post-update/post-update.component';
+
 
 
 
@@ -107,7 +109,8 @@ import { JobEditComponent } from './admin-company/job-posting/job-edit/job-edit.
       AddJobPostingComponent,
       AdminJobPageComponent,
       DisplayJobPostingsComponent,
-      JobEditComponent
+      JobEditComponent,
+      PostUpdateComponent
 
 
 

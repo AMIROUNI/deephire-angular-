@@ -20,6 +20,9 @@ export class PostDisplayComponent {
   currentMediaIndex: number = 0;
   currentUser: User | null = null;
 
+
+  isEditing: boolean = false;
+
   constructor(private userService: UserService) {
     // Fetch current user (for commenting and liking)
     this.userService.getCurrentUser().subscribe((user) => {
@@ -180,5 +183,20 @@ export class PostDisplayComponent {
     if (hours < 24) return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
     const days = Math.floor(hours / 24);
     return `${days} day${days !== 1 ? 's' : ''} ago`;
+  }
+
+
+  toggleEditPost(): void {
+    this.isEditing = !this.isEditing;
+  }
+
+  handlePostUpdated(success: boolean): void {
+    this.isEditing = false;
+    if (success) {
+      // Optionally refresh the post from backend if needed
+      console.log('Post updated successfully');
+    } else {
+      console.error('Failed to update post');
+    }
   }
 }
