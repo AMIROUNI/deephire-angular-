@@ -34,7 +34,7 @@
 
         <!-- Role: ROLE_ADMINCOMPANY or ROLE_RECRUITER -->
         <ng-container *ngIf="isAdminCompanyOrRecruiter()">
-          <li class="nav-item"><a routerLink="/dashboard" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a routerLink="/dashboard-admin-company" class="nav-link">Dashboard</a></li>
           <li class="nav-item"><a routerLink="/manage-jobs" class="nav-link">Job Postings</a></li>
           <li class="nav-item" *ngIf="isAdminCompany()">
             <a routerLink="/recruiter-management" class="nav-link">Manage Recruiters</a>
