@@ -79,15 +79,18 @@
 
 
         <!-- Role Selection -->
-<div class="mb-3">
-  <label for="role" class="form-label fw-semibold">Rôle</label>
-  <select formControlName="role" class="form-select shadow-sm" id="role">
-    <option value="">-- Sélectionnez un rôle --</option>
-    <option value="ADMIN_COMPANY">Admin Company</option>
-    <option value="USER">User</option>
-    <!-- add more roles as needed -->
-  </select>
-</div>
+        <div class="mb-3 form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="isAdminCompany"
+            (change)="onRoleCheckboxChange($event)"
+          />
+          <label class="form-check-label fw-semibold" for="isAdminCompany">
+            Je représente une entreprise
+          </label>
+        </div>
+        
 
 <!-- File Upload (only for Admin Company) -->
 <div class="mb-3" *ngIf="formRegister.value.role === 'ADMIN_COMPANY'">
