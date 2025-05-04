@@ -29,6 +29,9 @@ import { JobEditComponent } from './admin-company/job-posting/job-edit/job-edit.
 import { KpiCardsAcComponent } from './admin-company/dashboard-admin-company/kpi-cards-ac/kpi-cards-ac.component';
 import { RecruiterGrowithChartComponent } from './admin-company/dashboard-admin-company/recruiter-growith-chart/recruiter-growith-chart.component';
 import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/job-posting-ac/job-posting-ac.component';
+import { WelcomeCardComponent } from './admin/components/welcome-card/welcome-card.component';
+import { WelocmeCardAcComponent } from './admin-company/dashboard-admin-company/welocme-card-ac/welocme-card-ac.component';
+import { DashboardAdminCompanyComponent } from './admin-company/dashboard-admin-company/dashboard-admin-company.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -71,6 +74,8 @@ const routes: Routes = [
   {path:'kpi',component:KpiCardsAcComponent},
   {path:'recruiter-growth-chart',component:RecruiterGrowithChartComponent},
   {path:'job-posting-ac',component:JobPostingAcComponent}, // Assuming RecruiterGrowthChartComponent is defined elsewhere
+  {path:'welcome-card-ac',component:WelocmeCardAcComponent}, 
+  {path:'dashboard-admin-company',component:DashboardAdminCompanyComponent},
   {
     path: 'search',
     component: UserSearchComponent

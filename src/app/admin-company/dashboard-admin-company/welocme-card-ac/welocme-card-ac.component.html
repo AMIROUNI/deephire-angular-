@@ -1,0 +1,67 @@
+<div class="welcome-card-container">
+    <div class="card admin-welcome-card">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <!-- Company Logo Section -->
+          <div class="col-md-2 text-center">
+            <div class="admin-logo-container">
+              <img [src]="'data:image/png;base64,' + welcomeCardData.logo" alt="Company Logo" class="admin-company-logo">
+              <div class="admin-status-badge active"></div>
+            </div>
+          </div>
+          
+          <!-- Welcome Message Section -->
+          <div class="col-md-7 admin-welcome-message">
+            <h2 class="admin-welcome-title">Welcome back, <span class="admin-name">{{welcomeCardData.firstName}}</span></h2>
+            <p class="admin-welcome-subtitle">Administrator of <strong>{{welcomeCardData.CompanyName}}</strong></p>
+            
+            <div class="admin-company-details">
+              <div class="admin-detail-item">
+                <span class="admin-detail-icon"><i class="bi bi-building"></i></span>
+                <span class="admin-detail-text">{{welcomeCardData.industry}}</span>
+              </div>
+              <div class="admin-detail-item">
+                <span class="admin-detail-icon"><i class="bi bi-geo-alt"></i></span>
+                <span class="admin-detail-text">{{welcomeCardData.location}}</span>
+              </div>
+              <div class="admin-detail-item">
+                <span class="admin-detail-icon"><i class="bi bi-people-fill"></i></span>
+                <span class="admin-detail-text">24 employees | 3 departments</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Quick Actions Section -->
+          <div class="col-md-3 admin-quick-actions">
+            <h5 class="admin-actions-title">Admin Controls</h5>
+            <div class="d-grid gap-2">
+              <button class="btn btn-admin-action">
+                <i class="bi bi-building-gear"></i> Company Settings
+              </button>
+              <button class="btn btn-admin-action">
+                <i class="bi bi-people"></i> Manage Users
+              </button>
+              <button class="btn btn-admin-action">
+                <i class="bi bi-shield-lock"></i> Security
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Admin Status Bar -->
+      <div class="card-footer admin-status-bar">
+        <div class="row">
+          <div class="col-md-4 admin-status-item">
+            <i class="bi bi-calendar-check"></i> Last activity: {{today | date:'mediumDate'}}
+          </div>
+          <div class="col-md-4 admin-status-item">
+            <i class="bi bi-database"></i> Storage: 24% used
+          </div>
+          <div class="col-md-4 admin-status-item">
+            <i class="bi bi-patch-check"></i> System status: Operational
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -59,6 +59,7 @@ import { DashboardAdminCompanyComponent } from './admin-company/dashboard-admin-
 import { KpiCardsAcComponent } from './admin-company/dashboard-admin-company/kpi-cards-ac/kpi-cards-ac.component';
 import { RecruiterGrowithChartComponent } from './admin-company/dashboard-admin-company/recruiter-growith-chart/recruiter-growith-chart.component';
 import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/job-posting-ac/job-posting-ac.component';
+import { WelocmeCardAcComponent } from './admin-company/dashboard-admin-company/welocme-card-ac/welocme-card-ac.component';
 
 
 
@@ -118,7 +119,8 @@ import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/j
       DashboardAdminCompanyComponent,
       KpiCardsAcComponent,
       RecruiterGrowithChartComponent,
-      JobPostingAcComponent
+      JobPostingAcComponent,
+      WelocmeCardAcComponent
 
 
 

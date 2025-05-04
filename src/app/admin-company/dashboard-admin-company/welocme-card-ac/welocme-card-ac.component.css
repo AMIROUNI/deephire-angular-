@@ -1,0 +1,302 @@
+/* ADMIN WELCOME CARD STYLES */
+.welcome-card-container {
+    padding: 1.5rem;
+  }
+  
+  .admin-welcome-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+    position: relative;
+  }
+  
+  .admin-welcome-card:hover {
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* ADMIN LOGO SECTION */
+  .admin-logo-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .admin-company-logo {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+  }
+  
+  .admin-status-badge {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
+  
+  .admin-status-badge.active {
+    background: #28a745;
+  }
+  
+  /* ADMIN WELCOME MESSAGE */
+  .admin-welcome-message {
+    padding: 0 1.5rem;
+  }
+  
+  .admin-welcome-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+  }
+  
+  .admin-name {
+    color: #0077b6;
+    font-weight: 700;
+  }
+  
+  .admin-welcome-subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+  
+  /* ADMIN COMPANY DETAILS */
+  .admin-company-details {
+    margin-top: 1.2rem;
+  }
+  
+  .admin-detail-item {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .admin-detail-icon {
+    width: 32px;
+    height: 32px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: #0077b6;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+  }
+  
+  .admin-detail-text {
+    font-size: 0.9rem;
+    color: #495057;
+    font-weight: 500;
+  }
+  
+  .admin-detail-item:hover .admin-detail-icon {
+    background: #0077b6;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .admin-detail-item:hover .admin-detail-text {
+    color: #0077b6;
+  }
+  
+  /* ADMIN QUICK ACTIONS */
+  .admin-quick-actions {
+    background: #f8f9fa;
+    padding: 1.2rem;
+    border-radius: 10px;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+  }
+  
+  .admin-actions-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+    font-size: 1rem;
+  }
+  
+  .admin-actions-title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: #0077b6;
+  }
+  
+  .btn-admin-action {
+    background: white;
+    color: #2c3e50;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+    text-align: left;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  }
+  
+  .btn-admin-action i {
+    margin-right: 0.7rem;
+    font-size: 1rem;
+    color: #0077b6;
+  }
+  
+  .btn-admin-action:hover {
+    background: #f1f8fe;
+    border-color: rgba(0, 119, 182, 0.2);
+    color: #0077b6;
+    transform: translateX(3px);
+  }
+  
+  /* ADMIN STATUS BAR */
+  .admin-status-bar {
+    background: #f8f9fa;
+    padding: 0.8rem 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .admin-status-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .admin-status-item i {
+    margin-right: 0.6rem;
+    font-size: 0.9rem;
+    color: #0077b6;
+  }
+  
+  /* ANIMATIONS */
+  @keyframes adminFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .admin-welcome-card {
+    animation: adminFadeIn 0.4s ease-out forwards;
+  }
+  
+  /* RESPONSIVE ADJUSTMENTS */
+  @media (max-width: 992px) {
+    .admin-welcome-title {
+      font-size: 1.6rem;
+    }
+    
+    .admin-logo-container {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .admin-detail-icon {
+      width: 28px;
+      height: 28px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .admin-welcome-card {
+      text-align: center;
+    }
+    
+    .admin-welcome-message, .admin-quick-actions {
+      margin-top: 1.5rem;
+    }
+    
+    .admin-detail-item {
+      justify-content: center;
+    }
+    
+    .btn-admin-action {
+      justify-content: center;
+    }
+    
+    .admin-status-item {
+      justify-content: flex-start;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* LOADING STATES */
+  .admin-welcome-card.loading .admin-welcome-title,
+  .admin-welcome-card.loading .admin-welcome-subtitle,
+  .admin-welcome-card.loading .admin-detail-text {
+    background: #f1f3f5;
+    color: transparent;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .admin-welcome-card.loading .admin-welcome-title::after,
+  .admin-welcome-card.loading .admin-welcome-subtitle::after,
+  .admin-welcome-card.loading .admin-detail-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    animation: loading 1.5s infinite;
+  }
+  
+  /* NETWORK-INSPIRED ELEMENTS */
+  .admin-welcome-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(0, 119, 182, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .admin-connection-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #0077b6, transparent);
+    animation: connect 1s ease-out forwards;
+    transform-origin: left;
+  }
+  
+  @keyframes connect {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }

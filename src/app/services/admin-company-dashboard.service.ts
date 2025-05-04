@@ -32,4 +32,8 @@ export class AdminCompanyDashboardService {
     return this.http.get(`${this.apiUrl}/job-postings-per-month`, { headers: this.getHeaders() });
   }
 
+  getWelcomeCardData(): any {
+    return this.http.get(`${this.apiUrl}/information-welcome-card`, { headers: this.getHeaders() });
+  }
+
 }
