@@ -32,6 +32,7 @@ import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/j
 import { WelcomeCardComponent } from './admin/components/welcome-card/welcome-card.component';
 import { WelocmeCardAcComponent } from './admin-company/dashboard-admin-company/welocme-card-ac/welocme-card-ac.component';
 import { DashboardAdminCompanyComponent } from './admin-company/dashboard-admin-company/dashboard-admin-company.component';
+import { UpdateCompanyProfileComponent } from './admin-company/update-company-profile/update-company-profile.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -67,6 +68,7 @@ const routes: Routes = [
   {path:'display-job-posting',component:DisplayJobPostingsComponent},
   {path:'manage-jobs',component:AdminJobPageComponent},
   {path:'edit-jobs',component:JobEditComponent},
+  {path:'update-company-profile',component:UpdateCompanyProfileComponent},
 
 
   //******************************************************** */
