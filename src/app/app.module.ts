@@ -21,8 +21,7 @@ import { PostsFeedComponent } from './posts-feed/posts-feed.component';
 import { PostCreateComponent } from './posts-feed/post-create/post-create.component';
 import { PostDisplayComponent } from './posts-feed/post-display/post-display.component';
 import { JobPageComponent } from './job/job-page/job-page.component';
-import { JobListComponent } from './job/job-list/job-list.component';
-import { JobDetailsComponent } from './job/job-details/job-details.component';
+
 import { NotificationComponent } from './notification/notification.component';
 import { RegisterComponent } from './auth-content/register/register.component';
 import { NotificationCardComponent } from './notification/notification-card/notification-card.component';
@@ -61,6 +60,8 @@ import { RecruiterGrowithChartComponent } from './admin-company/dashboard-admin-
 import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/job-posting-ac/job-posting-ac.component';
 import { WelocmeCardAcComponent } from './admin-company/dashboard-admin-company/welocme-card-ac/welocme-card-ac.component';
 import { UpdateCompanyProfileComponent } from './admin-company/update-company-profile/update-company-profile.component';
+import { PostUpdateComponent } from './posts-feed/post-update/post-update.component';
+
 
 
 
@@ -84,8 +85,6 @@ import { UpdateCompanyProfileComponent } from './admin-company/update-company-pr
     PostCreateComponent,
     PostDisplayComponent,
     JobPageComponent,
-    JobListComponent,
-    JobDetailsComponent,
     NotificationComponent,
     RegisterComponent,
     NotificationCardComponent,
@@ -123,6 +122,9 @@ import { UpdateCompanyProfileComponent } from './admin-company/update-company-pr
       JobPostingAcComponent,
       WelocmeCardAcComponent,
       UpdateCompanyProfileComponent
+      WelocmeCardAcComponent
+      JobEditComponent,
+      PostUpdateComponent
 
 
 

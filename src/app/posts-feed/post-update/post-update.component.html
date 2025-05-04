@@ -1,0 +1,85 @@
+<div class="post-update-container card shadow-sm mb-4">
+  <div class="card-header bg-white border-0 pb-2">
+    <h5 class="card-title mb-0 fw-semibold text-dark">
+      <i class="fas fa-edit me-2 text-warning"></i>Update Post
+    </h5>
+  </div>
+
+  <div class="card-body">
+    <div class="d-flex mb-3">
+      <div class="user-avatar me-3">
+        <img *ngIf="userImg" [src]="'data:image/jfif;base64,' + userImg" alt="User Avatar"
+             class="rounded-circle border" width="48" height="48">
+        <img *ngIf="!userImg" src="assets/images/default-profile.png" alt="User Avatar"
+             class="rounded-circle border" width="48" height="48">
+      </div>
+      <textarea class="form-control border-0 shadow-none fs-5"
+                [(ngModel)]="updatedContent"
+                placeholder="Edit your post..."
+                rows="3"
+                style="resize: none;"></textarea>
+    </div>
+
+    <!-- Existing Media Preview -->
+    <div class="file-previews mb-3" *ngIf="existingMedia.length > 0">
+      <div class="row g-2">
+        <div class="col-md-4 col-6" *ngFor="let media of existingMedia; let i = index">
+          <div class="position-relative rounded overflow-hidden border" style="height: 120px;">
+            <img *ngIf="media.fileType?.startsWith('image')"
+                 [src]="'data:' + media.fileType + ';base64,' + media.files"
+                 alt="Existing Media"
+                 class="h-100 w-100 object-fit-cover" />
+            <video *ngIf="media.fileType?.startsWith('video')" class="h-100 w-100 object-fit-cover" controls>
+              <source [src]="'data:' + media.fileType + ';base64,' + media.files" [type]="media.fileType" />
+            </video>
+            <button class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 rounded-circle"
+                    (click)="removeExistingMedia(i)">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New File Previews -->
+    <div class="file-previews mb-3" *ngIf="selectedFiles.length > 0">
+      <div class="row g-2">
+        <div class="col-md-4 col-6" *ngFor="let file of selectedFiles; let i = index">
+          <div class="position-relative rounded overflow-hidden border" style="height: 120px;">
+            <img *ngIf="isImage(file)"
+                 [src]="getPreviewUrl(file)"
+                 alt="Preview"
+                 class="h-100 w-100 object-fit-cover" />
+            <video *ngIf="isVideo(file)" class="h-100 w-100 object-fit-cover" controls>
+              <source [src]="getPreviewUrl(file)" [type]="file.type" />
+            </video>
+            <button class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 rounded-circle"
+                    (click)="removeFile(i)">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center border-top pt-3">
+      <div>
+        <input type="file"
+               #fileInput
+               multiple
+               (change)="onFileSelected($event)"
+               accept="image/*,video/*"
+               class="d-none" />
+        <button class="btn btn-outline-secondary btn-sm me-2" (click)="fileInput.click()">
+          <i class="fas fa-image me-1"></i> Add Media
+        </button>
+      </div>
+
+      <button class="btn btn-warning px-4 rounded-pill fw-semibold"
+              (click)="updatePost()"
+              [disabled]="!updatedContent && selectedFiles.length === 0 && existingMedia.length === 0">
+        Update
+      </button>
+    </div>
+  </div>
+</div>
