@@ -119,7 +119,7 @@ import { PostUpdateComponent } from './posts-feed/post-update/post-update.compon
       KpiCardsAcComponent,
       RecruiterGrowithChartComponent,
       JobPostingAcComponent,
-      WelocmeCardAcComponent
+      WelocmeCardAcComponent,
       JobEditComponent,
       PostUpdateComponent
 
