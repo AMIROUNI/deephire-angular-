@@ -19,15 +19,20 @@
         </div>
       </div>
     </div>
-    <div class="post-actions">
+    <div class="post-actions" style="position: relative;">
       <button class="btn-follow" (click)="followUser()">Follow</button>
-      <button class="btn-more" (click)="showMoreOptions()">
+      
+      <button class="btn-more" (click)="showMoreOptions($event)">
         <i class="fas fa-ellipsis-h"></i>
       </button>
-      <button *ngIf="currentUser?.id === post.user.id" class="btn-edit" (click)="toggleEditPost()">
-        <i class="fas fa-edit"></i> Edit
-      </button>
+      
+      <ul [class.show]="showOptions" class="dropdown-menu">
+        <li *ngIf="currentUser?.id === post.user.id" (click)="toggleEditPost()">
+          <i class="fas fa-edit"></i> Edit Post
+        </li>
+      </ul>
     </div>
+    
   </div>
 
   <!-- Post Content -->
