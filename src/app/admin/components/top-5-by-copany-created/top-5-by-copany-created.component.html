@@ -1,0 +1,43 @@
+<div class="top-companies-container">
+    <div class="header-section">
+      <h3 class="section-title">
+        <i class="fas fa-crown me-2"></i>Last companies created
+      </h3>
+      <p class="section-subtitle">Last companies created c</p>
+    </div>
+    
+    <div class="companies-grid">
+      <div class="company-card" *ngFor="let company of companies; let i = index">
+        <div class="company-rank">
+          <span class="rank-badge" [ngClass]="{
+            'rank-gold': i === 0,
+            'rank-silver': i === 1,
+            'rank-bronze': i === 2
+          }">
+            #{{i + 1}}
+          </span>
+        </div>
+        <div class="company-logo-container">
+          <img [src]="'data:image/png;base64,' + company.logo" alt="{{ company.name }}" class="company-logo" onerror="this.src='assets/images/default-company.png'">
+        </div>
+        <div class="company-info">
+          <h4 class="company-name">{{ company.name }}</h4>
+          <div class="company-stats">
+            <span class="job-count">
+              <i class="fas fa-briefcase me-1"></i>
+              {{ company.description }} Jobs
+            </span>
+            <span class="view-more" >
+              <i class="fas fa-chevron-right"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="view-all-section">
+      <button class="btn btn-outline-primary view-all-btn">
+        <i class="fas fa-list me-2"></i>View All Companies
+      </button>
+    </div>
+  </div>

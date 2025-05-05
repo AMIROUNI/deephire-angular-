@@ -33,6 +33,10 @@ import { WelcomeCardComponent } from './admin/components/welcome-card/welcome-ca
 import { WelocmeCardAcComponent } from './admin-company/dashboard-admin-company/welocme-card-ac/welocme-card-ac.component';
 import { DashboardAdminCompanyComponent } from './admin-company/dashboard-admin-company/dashboard-admin-company.component';
 import { UpdateCompanyProfileComponent } from './admin-company/update-company-profile/update-company-profile.component';
+import { KpiCardsComponent } from './admin/components/kpi-cards/kpi-cards.component';
+import { UserGrowthChartComponent } from './admin/components/user-growth-chart/user-growth-chart.component';
+import { CompanyGrowthChartComponent } from './admin/components/company-growth-chart/company-growth-chart.component';
+import { TopCompaniesComponent } from './admin/components/top-companies/top-companies.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -73,10 +77,16 @@ const routes: Routes = [
 
   //******************************************************** */
 
-  {path:'kpi',component:KpiCardsAcComponent},
+  {path:'kpi',component:KpiCardsComponent},
   {path:'recruiter-growth-chart',component:RecruiterGrowithChartComponent},
   {path:'job-posting-ac',component:JobPostingAcComponent}, // Assuming RecruiterGrowthChartComponent is defined elsewhere
   {path:'welcome-card-ac',component:WelocmeCardAcComponent}, 
+  {path:'users-growth-chart',component:UserGrowthChartComponent}, // Assuming UserGrowthChartComponent is defined elsewhere
+  {path:'company-growth-chart',component:CompanyGrowthChartComponent}, // Assuming JobPostingChartComponent is defined elsewhere
+
+  {path:'top-companies',component:TopCompaniesComponent}, // Assuming TopCompaniesComponent is defined elsewhere
+
+  //************************************************************   */
   {path:'dashboard-admin-company',component:DashboardAdminCompanyComponent},
   {
     path: 'search',
