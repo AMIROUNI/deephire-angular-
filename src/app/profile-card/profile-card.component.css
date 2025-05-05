@@ -904,3 +904,17 @@
   border-radius: 4px;
   margin-bottom: 8px;
 }
+
+
+.floating-message-form {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+}

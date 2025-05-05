@@ -21,7 +21,10 @@
         <i class="fas fa-map-marker-alt"></i> {{ user?.location }}
       </p>
       <div *ngIf="!isCurrentUserProfile">
-        <button class="btn btn-primary message--btn" (click)="messageUser()">message</button>
+        <button class="btn btn-primary message--btn" (click)="toggleMessageForm()">Message</button>
+      </div>
+      <div *ngIf="showMessageForm" class="floating-message-form">
+        <app-new-message [username]="user?.username || ''" (closed)="showMessageForm = false"></app-new-message>
       </div>
 
       <!-- Edit profile button (only visible to profile owner) -->

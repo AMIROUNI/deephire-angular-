@@ -30,6 +30,9 @@ export class ProfileCardComponent {
 
   showSectionsMenu: boolean = false;
 
+
+  showMessageForm = false;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -198,4 +201,11 @@ export class ProfileCardComponent {
   closePopup() {
     this.showPopup = false;
   }
+
+
+
+
+toggleMessageForm() {
+  this.showMessageForm = !this.showMessageForm;
+}
 }
