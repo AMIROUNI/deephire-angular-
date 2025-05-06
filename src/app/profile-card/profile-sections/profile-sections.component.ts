@@ -22,6 +22,8 @@ export class ProfileSectionsComponent {
     this.selectedSection = key;
   }
 
+  
+
   clearForm() {
     this.selectedSection = null;
     this.close.emit(); // <-- Emit event to hide popup

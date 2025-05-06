@@ -1,13 +1,14 @@
 <!-- Section Menu -->
 <div class="section-menu text-center mb-4">
   <h3>Choose a section to add:</h3>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center flex-wrap">
     <button class="btn btn-outline-primary btn-sm mx-2" (click)="selectSection('education')">Education</button>
-    <button class="btn btn-outline-success btn-sm mx-2" (click)="selectSection('experience')">Experience</button>
-    <button class="btn btn-outline-info btn-sm mx-2" (click)="selectSection('skill')">Skills</button>
-    <button class="btn btn-outline-warning btn-sm mx-2" (click)="selectSection('certification')">Certification</button>
+    <button class="btn btn-outline-primary btn-sm mx-2" (click)="selectSection('experience')">Experience</button>
+    <button class="btn btn-outline-primary btn-sm mx-2" (click)="selectSection('skill')">Skills</button>
+    <button class="btn btn-outline-primary btn-sm mx-2" (click)="selectSection('certification')">Certification</button>
   </div>
-</div>
+
+  
 
 <!-- Dynamic form based on selected section -->
 <div class="form-container">
@@ -15,4 +16,9 @@
   <app-experience-form *ngIf="selectedSection === 'experience'" (cancel)="clearForm()"></app-experience-form>
   <app-skill-form *ngIf="selectedSection === 'skill'" (cancel)="clearForm()"></app-skill-form>
   <app-certification-form *ngIf="selectedSection === 'certification'" (cancel)="clearForm()"></app-certification-form>
+</div>
+
+<!-- Always-visible gray cancel button -->
+<div class="text-center mb-5">
+  <button class="btn cancel-btn-gray" (click)="clearForm()">Annulée</button>
 </div>

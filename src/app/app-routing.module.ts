@@ -46,7 +46,7 @@ const routes: Routes = [
   {path:'recruiter-management',component: RecruiterManagementComponent},
   {path:'add-recruiter-management',component: AddRecruiterComponent},
 // Assuming RecruiterManagementComponent is defined elsewhere
-  {path:'profile/completion',component:ProfileCompletionComponent },
+  {path:' ',component:ProfileCompletionComponent },
   {path:'recruiter-dispaly',component: DisplayRecruiterComponent},
   {path:'edit-rh-company/:id',component:EditRhCompanyComponent
   }, // Assuming RecruiterManagementComponent is defined elsewhere
