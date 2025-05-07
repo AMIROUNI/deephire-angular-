@@ -12,4 +12,5 @@ export interface Company {
   description?: string;
   logo?: string | File; // Can be URL string or File object
   backgroundImage?: string | File;
+  status?: string;
 }

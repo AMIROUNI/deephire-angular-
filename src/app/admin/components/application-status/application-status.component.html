@@ -1,12 +1,52 @@
-<!-- src/app/admin/components/application-status/application-status.component.html -->
-<div class="chart-container">
-  <apx-chart
-    [series]="chartOptions['series']"
-    [chart]="chartOptions['chart']"
-    [labels]="chartOptions['labels']"
-    [colors]="chartOptions['colors']"
-    [title]="chartOptions['title']"
-    [theme]="chartOptions['theme']"
-    [legend]="chartOptions['legend']"
-  ></apx-chart>
+<div class="application-status-container">
+  <div class="card-header">
+    <div class="header-content">
+      <i class="fas fa-chart-pie me-3"></i>
+      <div>
+        <h3>Application Status</h3>
+        <p class="subtitle">Overview of current application states</p>
+      </div>
+    </div>
+    <div class="time-filter">
+      <select class="form-select">
+        <option>Last 7 Days</option>
+        <option selected>Last 30 Days</option>
+        <option>Last 90 Days</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="chart-wrapper">
+    <div class="chart-container">
+      <apx-chart
+        [series]="chartOptions['series']"
+        [chart]="chartOptions['chart']"
+        [labels]="chartOptions['labels']"
+        [colors]="chartOptions['colors']"
+        [title]="chartOptions['title']"
+        [theme]="chartOptions['theme']"
+        [legend]="chartOptions['legend']"
+        [responsive]="chartOptions['responsive']"
+      ></apx-chart>
+    </div>
+    
+    <div class="stats-summary">
+      <div class="stat-item" *ngFor="let item of getLegendItems()">
+        <span class="stat-badge" [style.background]="item.color"></span>
+        <div class="stat-details">
+          <span class="stat-label">{{ item.label }}</span>
+          <span class="stat-value">{{ item.value }} <small>({{ item.percentage }}%)</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <button class="btn btn-outline-secondary">
+      <i class="fas fa-download me-2"></i>Export
+    </button>
+    <button class="btn btn-primary">
+      <i class="fas fa-sliders-h me-2"></i>Filter
+    </button>
+  </div>
 </div>

@@ -42,6 +42,7 @@ export class HeaderComponent {
       error: (err) => console.error("Logout error", err)
     });
     localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 
   // Helpers

@@ -102,7 +102,7 @@
 
           <!-- Action Buttons -->
           <div class="d-flex flex-wrap gap-3 mb-4 border-bottom pb-4">
-            <button class="btn btn-primary rounded-pill px-4 py-2">
+            <button class="btn btn-primary rounded-pill px-4 py-2"  *ngIf="selectedJob.id" (click)="applyToJob(selectedJob.id)">
               <i class="fas fa-paper-plane me-2"></i>Postuler maintenant
             </button>
             <button class="btn btn-outline-secondary rounded-pill px-4 py-2">

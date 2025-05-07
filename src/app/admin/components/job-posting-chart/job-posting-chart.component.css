@@ -1,330 +1,374 @@
-/* Networking-themed CSS for JobPostingChartComponent */
-
-/* Root variables for consistent theming */
-:root {
-  --primary-bg: #1e1e2f; /* Dark navy for networking theme */
-  --accent-connect: #00b7ff; /* Bright blue for connectivity */
-  --accent-bar: #3f37c9; /* Purple for bar chart */
-  --accent-success: #4afca4; /* Green for success highlights */
-  --accent-alert: #ff6b6b; /* Red for alerts */
-  --text-primary: #ffffff; /* White text for high contrast */
-  --text-secondary: #b0b8d6; /* Light gray for secondary text */
-  --shadow-glow: 0 0 15px rgba(0, 183, 255, 0.3); /* Glow effect */
-  --border-radius: 12px; /* Consistent rounded corners */
-  --transition: all 0.3s ease; /* Smooth transitions */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Modern font */
+/* ===== Base Styles ===== */
+:host {
+  display: block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #1f2937;
 }
 
-/* Chart container styling */
-.chart-container {
-  background: var(--primary-bg);
-  border-radius: var(--border-radius);
-  padding: 24px;
-  margin: 20px 0;
-  box-shadow: var(--shadow-glow), 0 4px 12px rgba(0, 0, 0, 0.2);
-  position: relative;
+/* ===== Card Container ===== */
+.analytics-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  transition: var(--transition);
-  min-height: 400px;
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.analytics-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ===== Card Header ===== */
+.card-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  font-family: var(--font-family);
+  padding: 20px 24px;
+  border-bottom: 1px solid #f3f4f6;
 }
 
-/* Network grid background effect */
-.chart-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 15% 25%, rgba(0, 183, 255, 0.15) 0%, transparent 20%),
-              radial-gradient(circle at 85% 75%, rgba(0, 183, 255, 0.15) 0%, transparent 20%);
-  opacity: 0.6;
-  z-index: 0;
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* Ensure chart content is above background */
-.chart-container > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Hover effect for interactivity */
-.chart-container:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 183, 255, 0.4);
-}
-
-/* ApexCharts canvas styling */
-.apexcharts-canvas {
-  border-radius: var(--border-radius);
-  background: transparent !important;
-}
-
-/* Chart title styling */
-.apexcharts-title-text {
-  font-size: 20px;
+.card-title {
+  margin: 0;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #111827;
+  letter-spacing: -0.025em;
+}
+
+.time-filter {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  color: #4b5563;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.filter-btn.active {
+  background-color: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  color: #4b5563;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background-color: #f9fafb;
+}
+
+.action-btn.export {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border-color: #dcfce7;
+}
+
+.action-btn.export:hover {
+  background-color: #dcfce7;
+}
+
+.action-btn.refresh {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border-color: #dbeafe;
+}
+
+.action-btn.refresh:hover {
+  background-color: #dbeafe;
+}
+
+/* ===== Card Body ===== */
+.card-body {
+  padding: 24px;
+}
+
+.stats-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #f3f4f6;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.stat-item.highlight {
+  background-color: #f5f3ff;
+  border-color: #ede9fe;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+  background: linear-gradient(90deg, #4f46e5 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-item.highlight .stat-value {
+  background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 16px;
-  text-shadow: 0 0 5px rgba(0, 183, 255, 0.5);
+  letter-spacing: 0.05em;
 }
 
-/* X-axis styling */
-.apexcharts-xaxis-text {
-  fill: var(--text-primary) !important;
-  font-size: 12px;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-/* Y-axis styling */
-.apexcharts-yaxis-text {
-  fill: var(--text-primary) !important;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* Bar styling */
-.apexcharts-bar-area {
-  transition: var(--transition);
-  filter: brightness(100%);
-}
-
-/* Hover effect for bars */
-.apexcharts-bar-area:hover {
-  filter: brightness(120%);
-  transform: scaleY(1.05);
-}
-
-/* Legend styling */
-.apexcharts-legend {
-  background: rgba(0, 0, 0, 0.3) !important;
-  border-radius: 8px;
-  padding: 12px !important;
-  box-shadow: var(--shadow-glow);
-}
-
-/* Legend text */
-.apexcharts-legend-text {
-  color: var(--text-primary) !important;
-  font-size: 14px !important;
-  font-weight: 500;
-  padding-left: 8px;
-  transition: var(--transition);
-}
-
-/* Legend marker */
-.apexcharts-legend-marker {
-  border-radius: 50% !important;
-  width: 12px !important;
-  height: 12px !important;
-  margin-right: 8px !important;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-}
-
-/* Hover effect for legend items */
-.apexcharts-legend-series:hover .apexcharts-legend-text {
-  color: var(--accent-connect) !important;
-  transform: scale(1.05);
-}
-
-/* Tooltip styling */
-.apexcharts-tooltip {
-  background: var(--primary-bg) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--accent-connect);
-  border-radius: 8px;
-  box-shadow: var(--shadow-glow);
-  padding: 12px;
-  font-size: 14px;
-  font-family: var(--font-family);
-}
-
-/* Tooltip title */
-.apexcharts-tooltip-title {
-  background: var(--accent-connect) !important;
-  color: var(--primary-bg) !important;
-  font-weight: 600;
-  padding: 8px;
-  border-radius: 4px 4px 0 0;
-}
-
-/* Tooltip text */
-.apexcharts-tooltip-text {
-  color: var(--text-secondary);
-}
-
-/* Grid lines for network effect */
-.apexcharts-gridline {
-  stroke: rgba(0, 183, 255, 0.2) !important;
-  stroke-dasharray: 4;
-}
-
-/* Animation for chart loading */
-@keyframes pulse {
-  0% { opacity: 0.7; transform: scale(0.98); }
-  50% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0.7; transform: scale(0.98); }
-}
-
+/* ===== Chart Container ===== */
 .chart-container {
-  animation: pulse 4s infinite ease-in-out;
+  margin-top: 24px;
+  position: relative;
 }
 
-/* Responsive design for tablets */
-@media (max-width: 768px) {
-  .chart-container {
-    padding: 16px;
-    margin: 10px 0;
-    min-height: 320px;
-  }
-
-  .apexcharts-title-text {
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-
-  .apexcharts-xaxis-text,
-  .apexcharts-yaxis-text {
-    font-size: 10px;
-  }
-
-  .apexcharts-legend {
-    padding: 8px !important;
-  }
-
-  .apexcharts-legend-text {
-    font-size: 12px !important;
-  }
-
-  .apexcharts-tooltip {
-    font-size: 12px;
-    padding: 8px;
-  }
+/* ===== Loading State ===== */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  gap: 16px;
 }
 
-/* Responsive design for mobile */
-@media (max-width: 480px) {
-  .chart-container {
-    padding: 12px;
-    min-height: 280px;
-  }
-
-  .apexcharts-title-text {
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-
-  .apexcharts-xaxis-text,
-  .apexcharts-yaxis-text {
-    font-size: 9px;
-  }
-
-  .apexcharts-legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .apexcharts-legend-series {
-    margin: 4px !important;
-  }
-
-  .apexcharts-tooltip {
-    font-size: 11px;
-    padding: 6px;
-  }
-}
-
-/* Accessibility enhancements */
-.chart-container:focus-within {
-  outline: 2px solid var(--accent-connect);
-  outline-offset: 4px;
-}
-
-.apexcharts-legend-series:focus .apexcharts-legend-text {
-  outline: 1px dashed var(--text-primary);
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .chart-container {
-    background: #000000;
-    border: 1px solid #ffffff;
-  }
-
-  .apexcharts-title-text,
-  .apexcharts-xaxis-text,
-  .apexcharts-yaxis-text,
-  .apexcharts-legend-text {
-    color: #ffffff !important;
-    text-shadow: none;
-  }
-
-  .apexcharts-tooltip {
-    background: #000000 !important;
-    border-color: #ffffff;
-  }
-
-  .apexcharts-gridline {
-    stroke: #ffffff !important;
-  }
-}
-
-/* Print styles */
-@media print {
-  .chart-container {
-    background: #ffffff;
-    box-shadow: none;
-    color: #000000;
-  }
-
-  .apexcharts-title-text,
-  .apexcharts-xaxis-text,
-  .apexcharts-yaxis-text,
-  .apexcharts-legend-text {
-    color: #000000 !important;
-  }
-
-  .apexcharts-canvas {
-    filter: grayscale(100%);
-  }
-
-  .chart-container::before,
-  .chart-container::after {
-    display: none;
-  }
-}
-
-/* Networking node effect (decorative) */
-.chart-container::after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: var(--accent-connect);
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #4f46e5;
   border-radius: 50%;
-  top: 20px;
-  right: 20px;
-  box-shadow: 0 0 10px var(--accent-connect);
-  animation: blink 2s infinite;
+  animation: spin 1s linear infinite;
 }
 
-@keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.3; }
-  100% { opacity: 1; }
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-/* Ensure chart scales properly */
-.apx-chart {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+.loading-state p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* ===== Error State ===== */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  gap: 16px;
+  text-align: center;
+}
+
+.icon-error {
+  width: 48px;
+  height: 48px;
+  background-color: #fee2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc2626;
+  font-size: 24px;
+}
+
+.error-state p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+  max-width: 300px;
+}
+
+.retry-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4f46e5;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  background-color: #4338ca;
+}
+
+/* ===== Card Footer ===== */
+.card-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafb;
+}
+
+.trend-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #16a34a;
+}
+
+.icon-trend-up {
+  width: 20px;
+  height: 20px;
+  background-color: #dcfce7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #16a34a;
+  font-size: 12px;
+}
+
+.view-all a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.875rem;
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-all a:hover {
+  text-decoration: underline;
+}
+
+.icon-arrow-right {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.view-all a:hover .icon-arrow-right {
+  transform: translateX(2px);
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .card-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .stats-summary {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-container {
+    margin-top: 16px;
+  }
+}
+
+/* ===== Animation Enhancements ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.analytics-card {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.stat-item {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.1s; }
+.stat-item:nth-child(2) { animation-delay: 0.2s; }
+.stat-item:nth-child(3) { animation-delay: 0.3s; }
+
+/* ===== Tooltip Customization ===== */
+.apexcharts-tooltip {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 8px !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.apexcharts-tooltip-title {
+  font-weight: 600 !important;
+  color: #111827 !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  padding-bottom: 6px !important;
+  margin-bottom: 6px !important;
+}
+
+.apexcharts-tooltip-text {
+  color: #4b5563 !important;
+  font-size: 0.875rem !important;
+}
+
+.apexcharts-tooltip-marker {
+  width: 10px !important;
+  height: 10px !important;
+  margin-right: 8px !important;
 }

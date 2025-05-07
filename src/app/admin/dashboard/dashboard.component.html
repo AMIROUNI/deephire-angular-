@@ -3,7 +3,7 @@
   <!-- Top section -->
   <div class="top-section">
     <app-welcome-card></app-welcome-card>
-    <app-settings-dropdown></app-settings-dropdown>
+  
   </div>
 
   <!-- KPI Cards -->
@@ -11,15 +11,20 @@
 
   <!-- Middle charts -->
   <div class="charts-grid">
+    <app-application-status></app-application-status>
+  
+    <app-company-growth-chart></app-company-growth-chart>
+   
+  </div>
+  <div class="charts-grid">
     <app-user-growth-chart></app-user-growth-chart>
     <app-job-posting-chart></app-job-posting-chart>
-    <app-application-status></app-application-status>
-  </div>
-
+ 
+</div>
   <!-- Bottom section -->
   <div class="bottom-grid">
     <app-top-companies></app-top-companies>
-    <app-recent-activity></app-recent-activity>
+    <app-top-5-by-copany-created></app-top-5-by-copany-created>
   </div>
 
 </div>

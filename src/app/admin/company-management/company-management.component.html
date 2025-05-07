@@ -1,0 +1,112 @@
+<div class="container mt-4">
+  <div class="row mb-4">
+      <div class="col-12">
+          <h2 class="text-center">Company Management</h2>
+      </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+      </div>
+  </div>
+
+  <!-- Companies Grid -->
+  <div *ngIf="!loading" class="row">
+      <!-- Pending Companies -->
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-header bg-warning text-white">
+                  <h5 class="mb-0">Pending Companies</h5>
+              </div>
+              <div class="card-body">
+                  <div *ngIf="companiesPENDING.length === 0" class="text-center">
+                      <p>No pending companies</p>
+                  </div>
+                  <div *ngFor="let company of companiesPENDING" class="company-card mb-3">
+                      <div class="d-flex align-items-center mb-2">
+                          <img *ngIf="company.logo" [src]="'data:image/jfif;base64,' + company.logo" alt="Company Logo" class="company-logo me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                          <h6 class="mb-0">{{company.name}}</h6>
+                      </div>
+                      <p class="mb-1" *ngIf="company.email"><i class="bi bi-envelope"></i> {{company.email}}</p>
+                      <p class="mb-1" *ngIf="company.industry"><i class="bi bi-building"></i> {{company.industry}}</p>
+                      <p class="mb-1" *ngIf="company.location"><i class="bi bi-geo-alt"></i> {{company.location}}</p>
+                      <p class="mb-2" *ngIf="company.firstName || company.lastName">
+                          <i class="bi bi-person"></i> {{company.firstName}} {{company.lastName}}
+                      </p>
+                      <div class="d-flex gap-2">
+                          <button class="btn btn-success btn-sm" (click)="approveCompany(company.idCompany!)">Approve</button>
+                          <button class="btn btn-danger btn-sm" (click)="rejectCompany(company.idCompany!)">Reject</button>
+                          <button class="btn btn-info btn-sm" (click)="downloadFile(company.file, company.name)">
+                              <i class="bi bi-download"></i> Download File
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Approved Companies -->
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-header bg-success text-white">
+                  <h5 class="mb-0">Approved Companies</h5>
+              </div>
+              <div class="card-body">
+                  <div *ngIf="companiesAPPROVED.length === 0" class="text-center">
+                      <p>No approved companies</p>
+                  </div>
+                  <div *ngFor="let company of companiesAPPROVED" class="company-card mb-3">
+                      <div class="d-flex align-items-center mb-2">
+                          <img *ngIf="company.logo" [src]="'data:image/jfif;base64,' + company.logo" alt="Company Logo" class="company-logo me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                          <h6 class="mb-0" *ngIf="company.name">{{company.name}}</h6>
+                      </div>
+                      <p class="mb-1" *ngIf="company.email"><i class="bi bi-envelope"></i> {{company.email}}</p>
+                      <p class="mb-1" *ngIf="company.industry"><i class="bi bi-building"></i> {{company.industry}}</p>
+                      <p class="mb-1" *ngIf="company.location"><i class="bi bi-geo-alt"></i> {{company.location}}</p>
+                      <p class="mb-2" *ngIf="company.firstName || company.lastName">
+                          <i class="bi bi-person"></i> {{company.firstName}} {{company.lastName}}
+                      </p>
+                      <div class="d-flex gap-2">
+                          <button *ngIf="company.file && company.name" class="btn btn-info btn-sm" (click)="downloadFile(company.file, company.name)">
+                              <i class="bi bi-download"></i> Download File
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Rejected Companies -->
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-header bg-danger text-white">
+                  <h5 class="mb-0">Rejected Companies</h5>
+              </div>
+              <div class="card-body">
+                  <div *ngIf="companiesREJECTED.length === 0" class="text-center">
+                      <p>No rejected companies</p>
+                  </div>
+                  <div *ngFor="let company of companiesREJECTED" class="company-card mb-3">
+                      <div class="d-flex align-items-center mb-2">
+                          <img *ngIf="company.logo" [src]="'data:image/jfif;base64,' + company.logo" alt="Company Logo" class="company-logo me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                          <h6 class="mb-0">{{company.name}}</h6>
+                      </div>
+                      <p class="mb-1" *ngIf="company.email"><i class="bi bi-envelope"></i> {{company.email}}</p>
+                      <p class="mb-1" *ngIf="company.industry"><i class="bi bi-building"></i> {{company.industry}}</p>
+                      <p class="mb-1" *ngIf="company.location"><i class="bi bi-geo-alt"></i> {{company.location}}</p>
+                      <p class="mb-2" *ngIf="company.firstName || company.lastName">
+                          <i class="bi bi-person"></i> {{company.firstName}} {{company.lastName}}
+                      </p>
+                      <div class="d-flex gap-2">
+                          <button *ngIf="company.file && company.name" class="btn btn-info btn-sm" (click)="downloadFile(company.file, company.name)">
+                              <i class="bi bi-download"></i> Download File
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

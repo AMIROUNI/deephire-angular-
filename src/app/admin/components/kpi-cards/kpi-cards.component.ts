@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AdminDashboardService } from '../../../services/admin-dashboard.service';
+import { Kpi } from '../../../models/dashboard/kpi';
 
 @Component({
   selector: 'app-kpi-cards',
@@ -8,12 +10,23 @@ import { Component } from '@angular/core';
 })
 export class KpiCardsComponent {
 
-  
+  kpis: Kpi[] = [];
+  errorMessage: string | null = null;
 
-  kpis = [
-    { title: 'Total Users', value: 125 },
-    { title: 'Active Users', value: 85 },
-    { title: 'Total Companies', value: 40 },
-    { title: 'Jobs Posted', value: 75 }
-  ];
+  constructor(private adminDashboardService:AdminDashboardService) { }
+ngOnInit(): void {
+    this.fetchKpiData();
+  }
+
+  private fetchKpiData(): void {
+    this.adminDashboardService.getKpiCardsData().subscribe({
+      next: (data: Kpi[]) => {
+        this.kpis = data;
+      },
+      error: (error : string) => {
+        console.error('Error fetching KPI data', error);
+        this.errorMessage = 'Unable to load KPI data.';
+      }
+    });
+  }
 }

@@ -83,4 +83,7 @@ export class JobPageComponent implements OnInit {
   getSkills(requirements?: string): string[] {
     return requirements?.split(',').map(s => s.trim()) || [];
   }
+  applyToJob(jobId: number) {
+    console.log('Applying to job:', jobId);
+  }
 }

@@ -47,11 +47,25 @@ export class AdminCompanyService {
       'Authorization': `Bearer ${token}`
       // Do NOT set 'Content-Type' manually here
     });
+
+
+
   
     return this.http.post(
       `${this.apiUrl}/complete-profile-company`, 
       formData, 
       { headers: headers }
+    );
+  }
+
+
+
+
+  updateCompanyProfile(formData: FormData): Observable<any> {
+    return this.http.post(
+      `${this.apiUrl}/update-company-profile`, 
+      formData, 
+      { headers: this.getHeaders() }
     );
   }
 }

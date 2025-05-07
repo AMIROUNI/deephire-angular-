@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
-import { AdminCompanyDashboardService } from '../../../services/admin-company-dashboard.service';
 import { AdminDashboardService } from '../../../services/admin-dashboard.service';
 import { Company } from '../../../models';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-top-companies',
+  selector: 'app-top-5-by-copany-created',
   standalone: false,
-  templateUrl: './top-companies.component.html',
-  styleUrls: ['./top-companies.component.css']
+  templateUrl: './top-5-by-copany-created.component.html',
+  styleUrl: './top-5-by-copany-created.component.css'
 })
-export class TopCompaniesComponent {
+export class Top5ByCopanyCreatedComponent {
   companies: Company[] = [];
 
   constructor(
@@ -19,7 +18,7 @@ export class TopCompaniesComponent {
   ) { }
 
   ngOnInit() {
-    this.adminDashboard.getTop5CompaniesByJobPostingsCount().subscribe(
+    this.adminDashboard.gettop5ByCopanyCreated().subscribe(
       (response: Company[]) => {
         this.companies = response;
         console.log(this.companies);
