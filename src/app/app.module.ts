@@ -60,6 +60,7 @@ import { RecruiterGrowithChartComponent } from './admin-company/dashboard-admin-
 import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/job-posting-ac/job-posting-ac.component';
 import { WelocmeCardAcComponent } from './admin-company/dashboard-admin-company/welocme-card-ac/welocme-card-ac.component';
 import { PostUpdateComponent } from './posts-feed/post-update/post-update.component';
+import { PostsComponent } from './profile-card/user-posts/posts/posts.component';
 
 
 
@@ -121,7 +122,8 @@ import { PostUpdateComponent } from './posts-feed/post-update/post-update.compon
       JobPostingAcComponent,
       WelocmeCardAcComponent,
       JobEditComponent,
-      PostUpdateComponent
+      PostUpdateComponent,
+      PostsComponent
 
 
 

@@ -32,6 +32,7 @@ import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/j
 import { WelcomeCardComponent } from './admin/components/welcome-card/welcome-card.component';
 import { WelocmeCardAcComponent } from './admin-company/dashboard-admin-company/welocme-card-ac/welocme-card-ac.component';
 import { DashboardAdminCompanyComponent } from './admin-company/dashboard-admin-company/dashboard-admin-company.component';
+import { PostsComponent } from './profile-card/user-posts/posts/posts.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path:'feed',component:PostsFeedComponent},
   {path:'jobs',component:JobPageComponent},
   {path:'notification',component:NotificationComponent},
+  {path:'posts/:username',component:PostsComponent},
 
 
   {path:'recruiter-management',component: RecruiterManagementComponent},

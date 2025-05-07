@@ -17,14 +17,15 @@ import { AuthService } from '../services/auth/auth.service';
   standalone:false
 })
 export class ProfileCardComponent {
+  details: boolean = true;
+
+
   connectedUser: User | undefined;
   bgimage: string | undefined;
   isCurrentUserProfile: boolean = false;
   user: User | undefined;
 
-  posts: Post[] = [];
-  sortBy: string = 'top';
-  userNameFromUrl:string='';
+  
 
   showPopup = false;
   popupTitle = '';
@@ -52,11 +53,7 @@ export class ProfileCardComponent {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.userNameFromUrl = params['username'];
-      console.log('username',this.userNameFromUrl);
-    });
-    this.fetchPosts();
+   
     this.route.params.subscribe(params => {
       const usernameFromUrl = params['username'];
       console.log('username',usernameFromUrl);
@@ -91,22 +88,7 @@ export class ProfileCardComponent {
   }
 
 
-  fetchPosts(): void {
-    
-    this.postService.getAllPosts().subscribe({
-      next: (posts) => {
-        // Filter posts by username
-        this.posts = posts.filter(post => post.user?.username==this.userNameFromUrl);
-        console.log('User posts:', this.posts);
-
-      },
-      error: (err) => {
-        console.error('Error fetching posts', err);
-      }
-    });
   
-  
-  }
   
   // Helper function to decode a JWT token
   decodeToken(token: string): any {
@@ -249,7 +231,11 @@ export class ProfileCardComponent {
     this.showPopup = false;
   }
 
+  goToPostsPage(): void {
+   this.details = !this.details;
 
+  }
+  
 
 
 toggleMessageForm() {
