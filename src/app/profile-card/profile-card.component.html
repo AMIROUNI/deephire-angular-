@@ -46,6 +46,27 @@
         </div>
       </div>
 
+      <div class="container mt-4">
+        <h2 class="mb-3">Your Posts</h2>
+      
+        <!-- Display posts if any -->
+        <div *ngIf="posts && posts.length > 0; else noPosts">
+          <div *ngFor="let post of posts" class="card mb-3 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">{{ post.content }}</p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Show message if no posts exist -->
+        <ng-template #noPosts>
+          <div class="alert alert-info">
+            You haven't posted anything yet.
+          </div>
+        </ng-template>
+      </div>
+      
+
       <!-- Add section button (only visible to profile owner) -->
       <div *ngIf="isCurrentUserProfile" class="section-add-box">
         <button class="btn btn-primary add-section-btn" (click)="toggleSectionsMenu()">

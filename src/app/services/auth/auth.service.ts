@@ -113,6 +113,20 @@ logout(): Observable<any> {
 }
 
 
+getCurrentUsername(): string | null {
+  const token = this.getToken();
+  if (!token) return null;
+
+  try {
+    const decoded: any = jwtDecode(token);
+    return decoded.username || null;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
+}
+
+
 isAuthenticated(): boolean {
   return !!this.getToken();
 }

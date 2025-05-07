@@ -6,6 +6,9 @@ import { SkillService } from '../services/skill.service';
 import { ExperienceService } from '../services/experience.service';
 import { EducationService } from '../services/education.service';
 import { CertificationService } from '../services/certification.service';
+import { PostService } from '../services/post.service';
+import { Post } from '../models/posts/post.model';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-profile-card',
@@ -19,6 +22,9 @@ export class ProfileCardComponent {
   isCurrentUserProfile: boolean = false;
   user: User | undefined;
 
+  posts: Post[] = [];
+  sortBy: string = 'top';
+  userNameFromUrl:string='';
 
   showPopup = false;
   popupTitle = '';
@@ -32,6 +38,7 @@ export class ProfileCardComponent {
 
 
   showMessageForm = false;
+  currentUsername: string | undefined;
 
   constructor(
     private router: Router,
@@ -40,13 +47,19 @@ export class ProfileCardComponent {
     private skillService: SkillService,
     private experienceService: ExperienceService,
     private educationService: EducationService,
-    private certificationService: CertificationService
+    private certificationService: CertificationService,
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
+      this.userNameFromUrl = params['username'];
+      console.log('username',this.userNameFromUrl);
+    });
+    this.fetchPosts();
+    this.route.params.subscribe(params => {
       const usernameFromUrl = params['username'];
-
+      console.log('username',usernameFromUrl);
       this.userService.getCurrentUser().subscribe({
         next: (res) => {
           this.connectedUser = res;
@@ -76,6 +89,40 @@ export class ProfileCardComponent {
       });
     });
   }
+
+
+  fetchPosts(): void {
+    
+    this.postService.getAllPosts().subscribe({
+      next: (posts) => {
+        // Filter posts by username
+        this.posts = posts.filter(post => post.user?.username==this.userNameFromUrl);
+        console.log('User posts:', this.posts);
+
+      },
+      error: (err) => {
+        console.error('Error fetching posts', err);
+      }
+    });
+  
+  
+  }
+  
+  // Helper function to decode a JWT token
+  decodeToken(token: string): any {
+    try {
+      return JSON.parse(atob(token.split('.')[1])); // Basic JWT decoding
+    } catch (e) {
+      console.error('Error decoding token:', e);
+      return null;
+    }
+  }
+  
+
+
+
+
+  
 
   toggleSectionsMenu() {
     this.showSectionsMenu = !this.showSectionsMenu;
