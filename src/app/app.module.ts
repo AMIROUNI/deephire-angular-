@@ -63,6 +63,8 @@ import { UpdateCompanyProfileComponent } from './admin-company/update-company-pr
 import { PostUpdateComponent } from './posts-feed/post-update/post-update.component';
 import { CompanyGrowthChartComponent } from './admin/components/company-growth-chart/company-growth-chart.component';
 import { Top5ByCopanyCreatedComponent } from './admin/components/top-5-by-copany-created/top-5-by-copany-created.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { CompanyManagementComponent } from './admin/company-management/company-management.component';
 
 
 
@@ -128,7 +130,9 @@ import { Top5ByCopanyCreatedComponent } from './admin/components/top-5-by-copany
       JobEditComponent,
       PostUpdateComponent,
       CompanyGrowthChartComponent,
-      Top5ByCopanyCreatedComponent
+      Top5ByCopanyCreatedComponent,
+      UserManagementComponent,
+      CompanyManagementComponent
 
 
 

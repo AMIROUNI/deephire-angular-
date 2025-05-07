@@ -37,6 +37,8 @@ import { KpiCardsComponent } from './admin/components/kpi-cards/kpi-cards.compon
 import { UserGrowthChartComponent } from './admin/components/user-growth-chart/user-growth-chart.component';
 import { CompanyGrowthChartComponent } from './admin/components/company-growth-chart/company-growth-chart.component';
 import { TopCompaniesComponent } from './admin/components/top-companies/top-companies.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { CompanyManagementComponent } from './admin/company-management/company-management.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -58,8 +60,10 @@ const routes: Routes = [
  {path:'complete-profile-company',component:CompanyProfileComponent},
   {path:'profile/completion',component:ProfileCompletionComponent },
   {path:"chat",component:ChatComponent},
-  {path:'dashboard',component:DashboardComponent},
+  {path:'admin-dashboard',component:DashboardComponent},
+  {path:'user-management',component:UserManagementComponent},
   {path:'profile/update',component:ProfileUpdateComponent},
+  {path:'company-management',component:CompanyManagementComponent},
   {
     path: 'profile/:username',
     component: ProfileCardComponent
@@ -80,7 +84,7 @@ const routes: Routes = [
   {path:'kpi',component:KpiCardsComponent},
   {path:'recruiter-growth-chart',component:RecruiterGrowithChartComponent},
   {path:'job-posting-ac',component:JobPostingAcComponent}, // Assuming RecruiterGrowthChartComponent is defined elsewhere
-  {path:'welcome-card-ac',component:WelocmeCardAcComponent}, 
+  {path:'welcome-card-ac',component:WelocmeCardAcComponent},
   {path:'users-growth-chart',component:UserGrowthChartComponent}, // Assuming UserGrowthChartComponent is defined elsewhere
   {path:'company-growth-chart',component:CompanyGrowthChartComponent}, // Assuming JobPostingChartComponent is defined elsewhere
 
@@ -92,6 +96,8 @@ const routes: Routes = [
     path: 'search',
     component: UserSearchComponent
   },
+
+
 
 
   {path:'**', component:NotFoundComponent}

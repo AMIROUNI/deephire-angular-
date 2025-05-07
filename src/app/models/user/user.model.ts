@@ -17,4 +17,5 @@ export interface User {
 
   sentMessages?: Message[];
   receivedMessages?: Message[];
+  isBanned?: boolean;
 }
