@@ -21,6 +21,10 @@ export class PostDisplayComponent {
   currentUser: User | null = null;
 
 
+  showOptions: boolean = false;
+
+
+
   isEditing: boolean = false;
 
   constructor(private userService: UserService) {
@@ -158,9 +162,10 @@ export class PostDisplayComponent {
     console.log('Follow user:', this.post.user);
   }
 
-  showMoreOptions(): void {
-    // Implement more options (e.g., report, delete post)
-    console.log('Show more options');
+  showMoreOptions(event: Event) {
+    event.stopPropagation(); // Prevent event bubbling
+    this.showOptions = !this.showOptions;
+    console.log('Dropdown state:', this.showOptions); // Verify in console
   }
 
   sharePost(): void {

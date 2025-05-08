@@ -6,6 +6,9 @@ import { SkillService } from '../services/skill.service';
 import { ExperienceService } from '../services/experience.service';
 import { EducationService } from '../services/education.service';
 import { CertificationService } from '../services/certification.service';
+import { PostService } from '../services/post.service';
+import { Post } from '../models/posts/post.model';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-profile-card',
@@ -14,11 +17,15 @@ import { CertificationService } from '../services/certification.service';
   standalone:false
 })
 export class ProfileCardComponent {
+  details: boolean = true;
+
+
   connectedUser: User | undefined;
   bgimage: string | undefined;
   isCurrentUserProfile: boolean = false;
   user: User | undefined;
 
+  
 
   showPopup = false;
   popupTitle = '';
@@ -30,6 +37,10 @@ export class ProfileCardComponent {
 
   showSectionsMenu: boolean = false;
 
+
+  showMessageForm = false;
+  currentUsername: string | undefined;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -37,13 +48,15 @@ export class ProfileCardComponent {
     private skillService: SkillService,
     private experienceService: ExperienceService,
     private educationService: EducationService,
-    private certificationService: CertificationService
+    private certificationService: CertificationService,
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
+   
     this.route.params.subscribe(params => {
       const usernameFromUrl = params['username'];
-
+      console.log('username',usernameFromUrl);
       this.userService.getCurrentUser().subscribe({
         next: (res) => {
           this.connectedUser = res;
@@ -73,6 +86,25 @@ export class ProfileCardComponent {
       });
     });
   }
+
+
+  
+  
+  // Helper function to decode a JWT token
+  decodeToken(token: string): any {
+    try {
+      return JSON.parse(atob(token.split('.')[1])); // Basic JWT decoding
+    } catch (e) {
+      console.error('Error decoding token:', e);
+      return null;
+    }
+  }
+  
+
+
+
+
+  
 
   toggleSectionsMenu() {
     this.showSectionsMenu = !this.showSectionsMenu;
@@ -198,4 +230,15 @@ export class ProfileCardComponent {
   closePopup() {
     this.showPopup = false;
   }
+
+  goToPostsPage(): void {
+   this.details = !this.details;
+
+  }
+  
+
+
+toggleMessageForm() {
+  this.showMessageForm = !this.showMessageForm;
+}
 }

@@ -1,0 +1,51 @@
+<div class="profile-posts-container mt-4">
+    <h2 class="section-title">{{userNameFromUrl}}'s Posts</h2>
+  
+    <div *ngIf="posts && posts.length > 0; else noPosts">
+      <div *ngFor="let post of posts" class="post-card">
+        <!-- Post Header -->
+        <div class="post-header">
+          <div class="user-info" routerLink="/profile/{{ post.user.username }}">
+            <img
+              [src]="'data:image/png;base64,' + post.user.profilePicture || 'assets/default-avatar.jpg'"
+              alt="User Avatar"
+              class="user-avatar"
+            />
+            <div class="user-meta">
+              <div class="user-name">{{ post.user.firstName }} {{ post.user.lastName }}</div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Post Content -->
+        <div class="post-body">
+          <p class="post-content">{{ post.content }}</p>
+        </div>
+  
+        <!-- Post Actions -->
+        <div class="post-footer">
+          <button class="action-btn">
+            <i class="far fa-thumbs-up"></i>
+            {{ post.likes }} Like{{ post.likes !== 1 ? 's' : '' }}
+          </button>
+          <button class="action-btn">
+            <i class="far fa-comment"></i>
+            Comment
+          </button>
+          <button class="action-btn">
+            <i class="fas fa-share"></i>
+            Share
+          </button>
+          <button class="action-btn">
+            <i class="far fa-paper-plane"></i>
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #noPosts>
+      <div class="no-posts-message">This user hasn't posted anything yet.</div>
+    </ng-template>
+  </div>
+  

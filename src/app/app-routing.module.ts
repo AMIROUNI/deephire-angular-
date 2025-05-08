@@ -32,6 +32,7 @@ import { JobPostingAcComponent } from './admin-company/dashboard-admin-company/j
 import { WelcomeCardComponent } from './admin/components/welcome-card/welcome-card.component';
 import { WelocmeCardAcComponent } from './admin-company/dashboard-admin-company/welocme-card-ac/welocme-card-ac.component';
 import { DashboardAdminCompanyComponent } from './admin-company/dashboard-admin-company/dashboard-admin-company.component';
+import { PostsComponent } from './profile-card/user-posts/posts/posts.component';
 import { UpdateCompanyProfileComponent } from './admin-company/update-company-profile/update-company-profile.component';
 import { KpiCardsComponent } from './admin/components/kpi-cards/kpi-cards.component';
 import { UserGrowthChartComponent } from './admin/components/user-growth-chart/user-growth-chart.component';
@@ -49,12 +50,13 @@ const routes: Routes = [
   {path:'feed',component:PostsFeedComponent},
   {path:'jobs',component:JobPageComponent},
   {path:'notification',component:NotificationComponent},
+  {path:'posts/:username',component:PostsComponent},
 
 
   {path:'recruiter-management',component: RecruiterManagementComponent},
   {path:'add-recruiter-management',component: AddRecruiterComponent},
 // Assuming RecruiterManagementComponent is defined elsewhere
-  {path:'profile/completion',component:ProfileCompletionComponent },
+  {path:' ',component:ProfileCompletionComponent },
   {path:'recruiter-dispaly',component: DisplayRecruiterComponent},
   {path:'edit-rh-company/:id',component:EditRhCompanyComponent
   }, // Assuming RecruiterManagementComponent is defined elsewhere

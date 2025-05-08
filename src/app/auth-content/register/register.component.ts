@@ -35,7 +35,7 @@ export class RegisterComponent {
       username: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(10)]],
-      role: ['', [Validators.required]],
+      role: ['USER', [Validators.required]],
       file: [null]  // Optional, validated based on selected role
     });
   }
@@ -65,6 +65,13 @@ export class RegisterComponent {
   closePopup() {
     this.showPopup = false;
   }
+
+  onRoleCheckboxChange(event: Event): void {
+    const checkbox = event.target as HTMLInputElement;
+    const selectedRole = checkbox.checked ? 'ADMIN_COMPANY' : 'USER';
+    this.formRegister.get('role')?.setValue(selectedRole);
+  }
+  
 
 
   onFileSelected(event: any) {

@@ -2,12 +2,15 @@
   <!-- Header with background image -->
   <div class="profile-header">
     <div class="background-image-container">
-      <img *ngIf="user?.backGroundImage" [src]="'data:image/png;base64,' + user?.backGroundImage " alt="Background" class="background-image">
-      <img *ngIf="!user?.backGroundImage" src="assets/images/default-background.png" alt="Background" class="background-image">
+      <img *ngIf="user?.backGroundImage" [src]="'data:image/png;base64,' + user?.backGroundImage " alt="Background"
+        class="background-image">
+      <img *ngIf="!user?.backGroundImage" src="assets/images/default-background.png" alt="Background"
+        class="background-image">
       <div class="background-overlay"></div>
     </div>
     <div class="profile-picture-container">
-      <img *ngIf="user?.profilePicture"   [src]="'data:image/png;base64,' + user?.profilePicture" alt="Profile" class="profile-picture">
+      <img *ngIf="user?.profilePicture" [src]="'data:image/png;base64,' + user?.profilePicture" alt="Profile"
+        class="profile-picture">
       <img *ngIf="!user?.profilePicture" src="assets/images/default-profile.png" alt="Profile" class="profile-picture">
     </div>
   </div>
@@ -21,7 +24,10 @@
         <i class="fas fa-map-marker-alt"></i> {{ user?.location }}
       </p>
       <div *ngIf="!isCurrentUserProfile">
-        <button class="btn btn-primary message--btn" (click)="messageUser()">message</button>
+        <button class="btn btn-primary message--btn" (click)="toggleMessageForm()">Message</button>
+      </div>
+      <div *ngIf="showMessageForm" class="floating-message-form">
+        <app-new-message [username]="user?.username || ''" (closed)="showMessageForm = false"></app-new-message>
       </div>
 
       <!-- Edit profile button (only visible to profile owner) -->
@@ -43,152 +49,169 @@
         </div>
       </div>
 
-      <!-- Add section button (only visible to profile owner) -->
-      <div *ngIf="isCurrentUserProfile" class="section-add-box">
-        <button class="btn btn-primary add-section-btn" (click)="toggleSectionsMenu()">
-          <i class="fas fa-plus"></i> Add Section
-        </button>
+      <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2>{{user?.firstName}} Posts</h2>
+          <button class="btn btn-outline-primary" (click)="goToPostsPage()">
+            View All Posts
+          </button>
+        </div>
       </div>
+
+
+      <!-- Show message if no posts exist -->
+      <ng-template #noPosts>
+        <div class="alert alert-info">
+          You haven't posted anything yet.
+        </div>
+      </ng-template>
     </div>
+    <div *ngIf="details">
+      <div>
+        <!-- Add section button (only visible to profile owner) -->
+        <div *ngIf="isCurrentUserProfile" class="section-add-box">
+          <button class="btn btn-primary add-section-btn" (click)="toggleSectionsMenu()">
+            <i class="fas fa-plus"></i> Add Section
+          </button>
+        </div>
+      </div>
 
-    <!-- Sections menu overlay -->
-    <div *ngIf="showSectionsMenu" class="section-menu-overlay">
-      <div class="section-menu-wrapper">
-        <app-profile-sections (close)="hideSectionsMenu()"></app-profile-sections>
+      <!-- Sections menu overlay -->
+      <div *ngIf="showSectionsMenu" class="section-menu-overlay">
+        <div class="section-menu-wrapper">
+          <app-profile-sections (close)="hideSectionsMenu()"></app-profile-sections>
+        </div>
       </div>
-    </div>
 
-    <!-- About section -->
-    <div class="profile-section about-section">
-      <div class="section-header">
-        <h2><i class="fas fa-user"></i> About</h2>
+      <!-- About section -->
+      <div class="profile-section about-section">
+        <div class="section-header">
+          <h2><i class="fas fa-user"></i> About</h2>
 
+        </div>
+        <div class="section-content">
+          <p>{{ user?.profile?.summary || "Add a summary to highlight your professional background" }}</p>
+        </div>
       </div>
-      <div class="section-content">
-        <p>{{ user?.profile?.summary || "Add a summary to highlight your professional background" }}</p>
-      </div>
-    </div>
 
-    <!-- Experience section -->
-    <div class="profile-section experience-section">
-      <div class="section-header">
-        <h2><i class="fas fa-briefcase"></i> Experience</h2>
+      <!-- Experience section -->
+      <div class="profile-section experience-section">
+        <div class="section-header">
+          <h2><i class="fas fa-briefcase"></i> Experience</h2>
 
+        </div>
+        <div class="section-content">
+          <ul class="experience-list">
+            <li *ngFor="let exp of user?.profile?.experiences" class="experience-item">
+              <div class="experience-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <div class="experience-details">
+                <h3>{{ exp.description }}</h3>
+                <p class="company">{{ exp.companyName }}</p>
+                <p class="duration">
+                  <i class="far fa-calendar-alt"></i>
+                  {{ exp.startDate }} - {{ exp.endDate }}
+                </p>
+              </div>
+              <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteExperience('experiences', exp)">
+                <i class="fas fa-times"></i>
+              </button>
+            </li>
+            <li *ngIf="!user?.profile?.experiences?.length" class="empty-section">
+              No experience added yet
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="section-content">
-        <ul class="experience-list">
-          <li *ngFor="let exp of user?.profile?.experiences" class="experience-item">
-            <div class="experience-icon">
-              <i class="fas fa-building"></i>
-            </div>
-            <div class="experience-details">
-              <h3>{{ exp.description }}</h3>
-              <p class="company">{{ exp.companyName }}</p>
-              <p class="duration">
-                <i class="far fa-calendar-alt"></i>
-                {{ exp.startDate }} - {{ exp.endDate }}
-              </p>
-            </div>
-            <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteExperience('experiences', exp)">
-              <i class="fas fa-times"></i>
-            </button>
-          </li>
-          <li *ngIf="!user?.profile?.experiences?.length" class="empty-section">
-            No experience added yet
-          </li>
-        </ul>
-      </div>
-    </div>
 
-    <!-- Education section -->
-    <div class="profile-section education-section">
-      <div class="section-header">
-        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+      <!-- Education section -->
+      <div class="profile-section education-section">
+        <div class="section-header">
+          <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+        </div>
+        <div class="section-content">
+          <ul class="education-list">
+            <li *ngFor="let edu of user?.profile?.education" class="education-item">
+              <div class="education-icon">
+                <i class="fas fa-university"></i>
+              </div>
+              <div class="education-details">
+                <h3>{{ edu.degree }}</h3>
+                <p class="university">{{ edu.schoolName }}</p>
+                <p class="field-of-study">{{ edu.fieldOfStudy }}</p>
+                <p class="year">
+                  <i class="far fa-calendar-alt"></i>
+                  {{ edu.startDate | date:'MMM yyyy' }} - {{ edu.endDate | date:'MMM yyyy' }}
+                </p>
+              </div>
+              <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteEducation('education', edu)">
+                <i class="fas fa-times"></i>
+              </button>
+            </li>
+            <li *ngIf="!user?.profile?.education?.length" class="empty-section">
+              No education added yet
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="section-content">
-        <ul class="education-list">
-          <li *ngFor="let edu of user?.profile?.education" class="education-item">
-            <div class="education-icon">
-              <i class="fas fa-university"></i>
-            </div>
-            <div class="education-details">
-              <h3>{{ edu.degree }}</h3>
-              <p class="university">{{ edu.schoolName }}</p>
-              <p class="field-of-study">{{ edu.fieldOfStudy }}</p>
-              <p class="year">
-                <i class="far fa-calendar-alt"></i>
-                {{ edu.startDate | date:'MMM yyyy' }} - {{ edu.endDate | date:'MMM yyyy' }}
-              </p>
-            </div>
-            <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteEducation('education', edu)">
-              <i class="fas fa-times"></i>
-            </button>
-          </li>
-          <li *ngIf="!user?.profile?.education?.length" class="empty-section">
-            No education added yet
-          </li>
-        </ul>
-      </div>
-    </div>
 
-    <!-- Skills section -->
-    <div class="profile-section skills-section">
-      <div class="section-header">
-        <h2><i class="fas fa-lightbulb"></i> Skills</h2>
+      <!-- Skills section -->
+      <div class="profile-section skills-section">
+        <div class="section-header">
+          <h2><i class="fas fa-lightbulb"></i> Skills</h2>
+        </div>
+        <div class="section-content">
+          <ul class="skills-list">
+            <li *ngFor="let skill of user?.profile?.skills" class="skill-item">
+              {{ skill.name }}
+              <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteSkills('skills', skill)">
+                <i class="fas fa-times"></i>
+              </button>
+            </li>
+            <li *ngIf="!user?.profile?.skills?.length" class="empty-section">
+              No skills added yet
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="section-content">
-        <ul class="skills-list">
-          <li *ngFor="let skill of user?.profile?.skills" class="skill-item">
-            {{ skill.name }}
-            <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteSkills('skills', skill)">
-              <i class="fas fa-times"></i>
-            </button>
-          </li>
-          <li *ngIf="!user?.profile?.skills?.length" class="empty-section">
-            No skills added yet
-          </li>
-        </ul>
-      </div>
-    </div>
 
-    <!-- Certifications section -->
-    <div class="profile-section certifications-section">
-      <div class="section-header">
-        <h2><i class="fas fa-certificate"></i> Certifications</h2>
+      <!-- Certifications section -->
+      <div class="profile-section certifications-section">
+        <div class="section-header">
+          <h2><i class="fas fa-certificate"></i> Certifications</h2>
 
-      </div>
-      <div class="section-content">
-        <ul class="certifications-list">
-          <li *ngFor="let cert of user?.profile?.certifications" class="certification-item">
-            <div class="certification-icon">
-              <i class="fas fa-certificate"></i>
-            </div>
-            <div class="certification-details">
-              <h3>{{ cert.name }}</h3>
-              <p class="issuer">{{ cert.issuer }}</p>
-              <p class="issue-date">
-                <i class="far fa-calendar-alt"></i>
-                {{ cert.issueDate | date:'MMM yyyy' }}
-              </p>
-            </div>
-            <button *ngIf="isCurrentUserProfile" class="delete-btn" (click)="onDeleteCertification('certifications', cert)">
-              <i class="fas fa-times"></i>
-            </button>
-          </li>
-          <li *ngIf="!user?.profile?.certifications?.length" class="empty-section">
-            No certifications added yet
-          </li>
-        </ul>
+        </div>
+        <div class="section-content">
+          <ul class="certifications-list">
+            <li *ngFor="let cert of user?.profile?.certifications" class="certification-item">
+              <div class="certification-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="certification-details">
+                <h3>{{ cert.name }}</h3>
+                <p class="issuer">{{ cert.issuer }}</p>
+                <p class="issue-date">
+                  <i class="far fa-calendar-alt"></i>
+                  {{ cert.issueDate | date:'MMM yyyy' }}
+                </p>
+              </div>
+              <button *ngIf="isCurrentUserProfile" class="delete-btn"
+                (click)="onDeleteCertification('certifications', cert)">
+                <i class="fas fa-times"></i>
+              </button>
+            </li>
+            <li *ngIf="!user?.profile?.certifications?.length" class="empty-section">
+              No certifications added yet
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<app-popup *ngIf="showPopup"
-[title]="popupTitle"
-[message]="popupMessage"
-[isSuccess]="popupIsSuccess"
-[redirectPath]="popupRedirectPath"
-[showCancelButton]="showCancelButton"
-(closed)="closePopup()">
+<app-posts *ngIf="!details"></app-posts>
+<app-popup *ngIf="showPopup" [title]="popupTitle" [message]="popupMessage" [isSuccess]="popupIsSuccess"
+  [redirectPath]="popupRedirectPath" [showCancelButton]="showCancelButton" (closed)="closePopup()">
 </app-popup>
