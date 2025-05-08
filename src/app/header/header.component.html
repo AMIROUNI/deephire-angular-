@@ -23,10 +23,12 @@
     <nav class="main-nav" *ngIf="isLoggedIn">
       <ul class="nav-list">
         <!-- Role: ROLE_USER -->
-        <ng-container *ngIf="isUser()">
+        <ng-container *ngIf="isUser()  ">
+          
           <li class="nav-item"><a routerLink="/feed" class="nav-link">Feed</a></li>
           <li class="nav-item"><a routerLink="/jobs" class="nav-link">Jobs</a></li>
-          <li class="nav-item"><a routerLink="/network" class="nav-link">Network</a></li>
+          <li class="nav-item"><a routerLink="/applied-jobs" class="nav-link">Applied Jobs</a></li>
+
           <li class="nav-item"><a routerLink="/chat" class="nav-link">Messages</a></li>
           <li class="nav-item"><a routerLink="/search" class="nav-link">
             <i class="fas fa-search"></i>Search</a></li>
@@ -34,8 +36,14 @@
 
         <!-- Role: ROLE_ADMINCOMPANY or ROLE_RECRUITER -->
         <ng-container *ngIf="isAdminCompanyOrRecruiter()">
+            <li class="nav-item"><a routerLink="/feed" class="nav-link">Feed</a></li>
+            <li class="nav-item"><a routerLink="/chat" class="nav-link">Messages</a></li>
+
           <li class="nav-item"><a routerLink="/dashboard-admin-company" class="nav-link">Dashboard</a></li>
           <li class="nav-item"><a routerLink="/manage-jobs" class="nav-link">Job Postings</a></li>
+          <li class="nav-item"><a routerLink="/search" class="nav-link">
+            <i class="fas fa-search"></i>Search</a></li>
+          
           <li class="nav-item" *ngIf="isAdminCompany()">
             <a routerLink="/recruiter-management" class="nav-link">Manage Recruiters</a>
           </li>
@@ -58,7 +66,7 @@
     </div>
 
     <div class="user-actions" *ngIf="isLoggedIn">
-      <div class="user-profile">
+      <div class="user-profile" routerLink="/profile/{{username}}">
         <img *ngIf="userImg" [src]="'data:image/png;base64,' + userImg" alt="User Avatar" class="avatar-img" style="height: 50px;width: 50px;" />
         <img *ngIf="!userImg" src='assets/images/default-profile.png' alt="User Avatar" class="avatar-img" style="height: 50px;width: 50px;" />
 

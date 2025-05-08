@@ -1,213 +1,604 @@
-/* ===== General Layout ===== */
-body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #212529;
+/* ===== Base Styles ===== */
+.company-management-container {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1e293b;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding: 2.5rem 1rem;
+  box-sizing: border-box;
+}
+
+/* ===== CSS Variables ===== */
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1e40af;
+  --primary-light: #60a5fa;
+  --success-color: #16a34a;
+  --success-light: #dcfce7;
+  --danger-color: #dc2626;
+  --danger-light: #fee2e2;
+  --warning-color: #d97706;
+  --warning-light: #fef3c7;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f1f5f9;
+  --border-color: #e5e7eb;
+  --border-dark: #d1d5db;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.06);
+  --blue-accent: #dbeafe;
+}
+
+/* ===== Page Title ===== */
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 2rem;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.page-title i {
+  color: var(--primary-color);
+  font-size: 1.75rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* ===== Status Cards ===== */
+.status-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1.25rem 1.5rem;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 10px 10px 0 0;
+}
+
+.status-pending .card-header {
+  background-color: var(--warning-light);
+  border-left: 5px solid var(--warning-color);
+}
+
+.status-approved .card-header {
+  background-color: var(--success-light);
+  border-left: 5px solid var(--success-color);
+}
+
+.status-rejected .card-header {
+  background-color: var(--danger-light);
+  border-left: 5px solid var(--danger-color);
+}
+
+.status-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+}
+
+.status-title i {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  color: var(--text-primary);
+}
+
+.card-body {
+  padding: 1.5rem;
+  background-color: var(--bg-primary);
+  flex-grow: 1;
+  border-radius: 0 0 10px 10px;
+}
+
+/* ===== Company Items ===== */
+.company-item {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.company-item:last-child {
+  margin-bottom: 0;
+}
+
+.company-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.company-logo-container {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+}
+
+.company-logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+}
+
+.company-logo-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  background-color: var(--blue-accent);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.company-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.company-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.company-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.meta-item i {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ===== Company Details ===== */
+.company-details {
+  margin: 1rem 0;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  gap: 0.5rem;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-item i {
+  width: 18px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ===== Company Actions ===== */
+.company-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.btn-action {
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.25rem;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  box-shadow: var(--shadow-sm);
+  line-height: 1.5;
+  min-width: 100px;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: #ffffff;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: #ffffff;
+}
+
+.btn-action i {
+  font-size: 0.9rem;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.empty-state i {
+  font-size: 2.5rem;
+  color: var(--border-dark);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.empty-state h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+  max-width: 280px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ===== Badge Styles ===== */
+.badge {
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+
+.bg-blue-light {
+  background-color: var(--blue-accent);
+  color: var(--primary-color);
+}
+
+.bg-success-light {
+  background-color: var(--success-light);
+  color: var(--success-color);
+}
+
+.bg-danger-light {
+  background-color: var(--danger-light);
+  color: var(--danger-color);
+}
+
+.bg-warning-light {
+  background-color: var(--warning-light);
+  color: var(--warning-color);
+}
+
+/* ===== Loading Spinner ===== */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3em;
+  margin-bottom: 0.75rem;
+}
+
+.text-primary + .spinner-border {
+  color: var(--primary-color);
+}
+
+/* ===== Scrollbar Styles ===== */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+}
+
+/* ===== Utility Classes ===== */
+.text-primary { color: var(--primary-color); }
+.text-success { color: var(--success-color); }
+.text-danger { color: var(--danger-color); }
+.text-warning { color: var(--warning-color); }
+.text-muted { color: var(--text-secondary); }
+.text-dark { color: var(--text-primary); }
+
+.bg-primary { background-color: var(--primary-color); }
+.bg-success { background-color: var(--success-color); }
+.bg-danger { background-color: var(--danger-color); }
+.bg-warning { background-color: var(--warning-color); }
+.bg-light { background-color: var(--bg-secondary); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 2rem; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 2rem; }
+
+.ms-1 { margin-left: 0.25rem; }
+.ms-2 { margin-left: 0.5rem; }
+.ms-3 { margin-left: 1rem; }
+.me-1 { margin-right: 0.25rem; }
+.me-2 { margin-right: 0.5rem; }
+.me-3 { margin-right: 1rem; }
+
+.pt-1 { padding-top: 0.25rem; }
+.pt-2 { padding-top: 0.5rem; }
+.pt-3 { padding-top: 1rem; }
+.pt-4 { padding-top: 1.5rem; }
+.pt-5 { padding-top: 2rem; }
+
+.pb-1 { padding-bottom: 0.25rem; }
+.pb-2 { padding-bottom: 0.5rem; }
+.pb-3 { padding-bottom: 1rem; }
+.pb-4 { padding-bottom: 1.5rem; }
+.pb-5 { padding-bottom: 2rem; }
+
+.ps-1 { padding-left: 0.25rem; }
+.ps-2 { padding-left: 0.5rem; }
+.ps-3 { padding-left: 1rem; }
+.pe-1 { padding-right: 0.25rem; }
+.pe-2 { padding-right: 0.5rem; }
+.pe-3 { padding-right: 1rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 2rem; }
+
+.border-0 { border: none; }
+.border-1 { border: 1px solid var(--border-color); }
+.border-dark { border-color: var(--border-dark); }
+.border-primary { border-color: var(--primary-color); }
+
+.rounded-0 { border-radius: 0; }
+.rounded-1 { border-radius: 4px; }
+.rounded-2 { border-radius: 6px; }
+.rounded-3 { border-radius: 8px; }
+
+.shadow-none { box-shadow: none; }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+
+/* ===== Typography Utilities ===== */
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-md { font-size: 1rem; }
+.text-lg { font-size: 1.25rem; }
+.text-xl { font-size: 1.5rem; }
+.text-2xl { font-size: 2rem; }
+
+.font-weight-light { font-weight: 300; }
+.font-weight-normal { font-weight: 400; }
+.font-weight-medium { font-weight: 500; }
+.font-weight-semibold { font-weight: 600; }
+.font-weight-bold { font-weight: 700; }
+
+.line-height-1 { line-height: 1; }
+.line-height-2 { line-height: 1.2; }
+.line-height-3 { line-height: 1.5; }
+.line-height-4 { line-height: 1.8; }
+
+/* ===== Spacing Utilities ===== */
+.mx-auto { margin-left: auto; margin-right: auto; }
+.my-1 { margin-top: 0.25rem; margin-bottom: 0.25rem; }
+.my-2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+.my-3 { margin-top: 1rem; margin-bottom: 1rem; }
+.mx-1 { margin-left: 0.25rem; margin-right: 0.25rem; }
+.mx-2 { margin-left: 0.5rem; margin-right: 0.5rem; }
+.mx-3 { margin-left: 1rem; margin-right: 1rem; }
+
+.px-1 { padding-left: 0.25rem; padding-right: 0.25rem; }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.px-3 { padding-left: 1rem; padding-right: 1rem; }
+.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-3 { padding-top: 1rem; padding-bottom: 1rem; }
+
+/* ===== Flex Utilities ===== */
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.align-items-start { align-items: flex-start; }
+.align-items-center { align-items: center; }
+.align-items-end { align-items: flex-end; }
+.justify-content-start { justify-content: flex-start; }
+.justify-content-center { justify-content: center; }
+.justify-content-end { justify-content: flex-end; }
+.justify-content-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-grow-1 { flex-grow: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+
+/* ===== Width and Height Utilities ===== */
+.w-100 { width: 100%; }
+.w-50 { width: 50%; }
+.w-25 { width: 25%; }
+.w-auto { width: auto; }
+
+.h-100 { height: 100%; }
+.h-auto { height: auto; }
+
+/* ===== Text Utilities ===== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-capitalize { text-transform: capitalize; }
+.text-uppercase { text-transform: uppercase; }
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Visibility Utilities ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ===== Status Badges ===== */
+.status-badge {
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.badge-pending {
+  background-color: var(--warning-light);
+  color: var(--warning-color);
+}
+
+.badge-approved {
+  background-color: var(--success-light);
+  color: var(--success-color);
+}
+
+.badge-rejected {
+  background-color: var(--danger-light);
+  color: var(--danger-color);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+  .company-header {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
   }
   
-  .container {
-    max-width: 1200px;
+  .company-logo-container {
+    width: 48px;
+    height: 48px;
   }
   
-  /* ===== Title Section ===== */
-  h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #333;
+  .company-actions {
+    gap: 0.5rem;
   }
   
-  /* ===== Spinner ===== */
-  .spinner-border {
-    width: 3rem;
-    height: 3rem;
-    margin-top: 50px;
+  .btn-action {
+    min-width: 90px;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .company-management-container {
+    padding: 1.5rem 0.75rem;
   }
   
-  /* ===== Cards ===== */
-  .card {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease-in-out;
+  .page-title {
+    font-size: 1.75rem;
   }
   
-  .card:hover {
-    transform: scale(1.01);
+  .status-title {
+    font-size: 1.1rem;
   }
   
-  /* ===== Card Headers ===== */
+  .company-item {
+    padding: 1rem;
+  }
+  
+  .company-name {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .company-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .company-logo-container {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .company-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .btn-action {
+    width: 100%;
+    min-width: 0;
+  }
+  
   .card-header {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    font-weight: 500;
-    font-size: 1.2rem;
+    padding: 1rem;
   }
   
-  /* ===== Company Card Content ===== */
-  .company-card {
-    border: 1px solid #e3e3e3;
-    padding: 15px;
-    border-radius: 12px;
-    background-color: #fff;
-    transition: box-shadow 0.2s;
-  }
-  
-  .company-card:hover {
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* ===== Company Logo ===== */
-  .company-logo {
-    border-radius: 50%;
-    border: 2px solid #dee2e6;
-    background-color: #fff;
-  }
-  
-  /* ===== Company Details ===== */
-  .company-card h6 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #343a40;
-  }
-  
-  .company-card p {
-    font-size: 0.875rem;
-    margin-bottom: 0.25rem;
-    color: #6c757d;
-  }
-  
-  .company-card i {
-    margin-right: 5px;
-    color: #495057;
-  }
-  
-  /* ===== Buttons ===== */
-  .btn-sm {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.6rem;
-    font-weight: 500;
-    border-radius: 8px;
-  }
-  
-  .btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-  }
-  
-  .btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-  }
-  
-  .btn-info {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
-  }
-  
-  .btn:hover {
-    opacity: 0.9;
-  }
-  
-  /* ===== Grid Gaps and Padding ===== */
   .card-body {
-    padding: 20px;
+    padding: 1rem;
   }
-  
-  .company-card + .company-card {
-    margin-top: 15px;
-  }
-  
-  /* ===== Media Queries ===== */
-  @media (max-width: 768px) {
-    .company-card {
-      padding: 12px;
-    }
-  
-    .company-logo {
-      width: 35px;
-      height: 35px;
-    }
-  
-    h2 {
-      font-size: 1.5rem;
-    }
-  
-    .btn-sm {
-      font-size: 0.7rem;
-    }
-  }
-  
-  /* ===== Utilities ===== */
-  .text-center p {
-    color: #868e96;
-  }
-  
-  .gap-2 {
-    gap: 0.5rem !important;
-  }
-  
-  /* ===== Download Icon Fixes ===== */
-  .bi-download {
-    margin-right: 4px;
-  }
-  
-  /* ===== Additional Polish ===== */
-  .company-card:hover h6 {
-    color: #007bff;
-  }
-  
-  .btn-info i,
-  .btn-success i,
-  .btn-danger i {
-    vertical-align: middle;
-  }
-  
-  button:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  
-  .card-header h5 {
-    font-size: 1rem;
-  }
-  
-  /* ===== Accessibility ===== */
-  button {
-    cursor: pointer;
-  }
-  
-  img[alt="Company Logo"] {
-    background-color: #f1f1f1;
-  }
-  
-  /* ===== Tooltip Support ===== */
-  [data-bs-toggle="tooltip"] {
-    cursor: help;
-  }
-  
-  /* ===== Status Colors (Optional for badges or indicators) ===== */
-  .status-pending {
-    color: #856404;
-    background-color: #fff3cd;
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-size: 0.75rem;
-  }
-  
-  .status-approved {
-    color: #155724;
-    background-color: #d4edda;
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-size: 0.75rem;
-  }
-  
-  .status-rejected {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-size: 0.75rem;
-  }
-  
+}

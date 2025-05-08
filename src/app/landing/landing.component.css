@@ -1,87 +1,564 @@
-/* Variables CSS */
-:root {
-    --primary-color: #4361ee;
-    --secondary-color: #3f37c9;
-    --text-color: #2b2d42;
-    --text-light: #8d99ae;
-    --background-light: #f8f9fa;
-}
-
-/* Général */
-body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-/* Header */
-.navbar {
-    padding: 1rem 0;
-}
-.navbar-brand span {
-    color: var(--primary-color);
-}
-.nav-link {
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-.nav-link:hover, .nav-link.active {
-    color: var(--primary-color);
-}
-
-/* Hero Section */
+/* Hero Section Styling */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    padding: 6rem 0;
-}
-.hero-section h1 {
+    background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: background 0.3s ease;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.2)"/><circle cx="90" cy="90" r="2" fill="rgba(255,255,255,0.2)"/><line x1="10" y1="10" x2="90" y2="90" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
+    opacity: 0.1;
+    z-index: -1;
+  }
+  
+  .hero-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .hero-section p.lead {
+    font-size: 1.5rem;
+    color: #e3f2fd;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    animation: fadeIn 1s ease-out 0.2s;
+    animation-fill-mode: both;
+  }
+  
+  .hero-section .btn-light {
+    background: #ffffff;
+    color: #1a237e;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero-section .btn-light:hover {
+    background: #bbdefb;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hero-section .btn-light:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+  
+  /* Services Section Styling */
+  .services-section {
+    background: #f5f7fa;
+    padding: 80px 0;
+    position: relative;
+  }
+  
+  .services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.2)"/><circle cx="90" cy="90" r="2" fill="rgba(255,255,255,0.2)"/><line x1="10" y1="10" x2="90" y2="90" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
+    opacity: 0.05;
+    z-index: -1;
+  }
+  
+  .services-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .services-section h2 {
+    font-size: 2.8rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-.hero-section .btn {
-    padding: 0.75rem 2rem;
-    font-weight: 500;
-}
-
-/* Services Section */
-.services-section {
-    padding: 5rem 0;
-}
-.services-section .card {
+    color: #1a237e;
+    margin-bottom: 40px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .services-section .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .services-section .card {
+    background: #ffffff;
+    border-radius: 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.services-section .card:hover {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .services-section .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-.services-section i {
-    color: var(--primary-color);
-}
-
-/* About Section */
-.about-section {
-    padding: 5rem 0;
-}
-.about-section img {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .services-section .card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #0288d1;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  
+  .services-section .card:hover::before {
+    width: 50%;
+    left: 25%;
+  }
+  
+  .services-section .card-body {
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .services-section .card i {
+    color: #0288d1;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .services-section .card:hover i {
+    transform: scale(1.2);
+  }
+  
+  .services-section .card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a237e;
+    margin-bottom: 15px;
+  }
+  
+  .services-section .card-text {
+    font-size: 1.1rem;
+    color: #455a64;
+    line-height: 1.7;
+  }
+  
+  .services-section .card:focus {
+    outline: 2px solid #0288d1;
+    outline-offset: 2px;
+  }
+  
+  /* About Section Styling */
+  .about-section {
+    background: #e3f2fd;
+    padding: 80px 0;
+    position: relative;
+  }
+  
+  .about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.2)"/><circle cx="90" cy="90" r="2" fill="rgba(255,255,255,0.2)"/><line x1="10" y1="10" x2="90" y2="90" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
+    opacity: 0.05;
+    z-index: -1;
+  }
+  
+  .about-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .about-section .row {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .about-section h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #1a237e;
+    margin-bottom: 30px;
+  }
+  
+  .about-section p {
+    font-size: 1.2rem;
+    color: #455a64;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  
+  .about-section .btn-primary {
+    background: #0288d1;
+    color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .about-section .btn-primary:hover {
+    background: #0277bd;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .about-section .btn-primary:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+  
+  .about-section img {
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
     max-width: 100%;
-}
-
-/* Contact Section */
-.contact-section {
-    padding: 5rem 0;
-}
-.contact-section .btn {
-    padding: 0.75rem 2rem;
-}
-
-/* Footer */
-.footer {
-    background-color: #2b2d42;
-}
-.footer h5 {
-    color: white;
-    margin-bottom: 1rem;
-}
-.footer a:hover {
-    color: var(--primary-color);
-}
+    height: auto;
+  }
+  
+  .about-section img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Video Player Section Styling */
+  section:has(app-video-player) {
+    background: #ffffff;
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+  }
+  
+  section:has(app-video-player)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.2)"/><circle cx="90" cy="90" r="2" fill="rgba(255,255,255,0.2)"/><line x1="10" y1="10" x2="90" y2="90" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
+    opacity: 0.05;
+    z-index: -1;
+  }
+  
+  app-video-player {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  app-video-player:hover {
+    transform: translateY(-5px);
+  }
+  
+  app-video-player video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+  
+  /* Contact Section Styling */
+  .contact-section {
+    background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
+    padding: 80px 0;
+    position: relative;
+    color: #ffffff;
+  }
+  
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.2)"/><circle cx="90" cy="90" r="2" fill="rgba(255,255,255,0.2)"/><line x1="10" y1="10" x2="90" y2="90" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
+    opacity: 0.1;
+    z-index: -1;
+  }
+  
+  .contact-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .contact-section h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .contact-section p {
+    font-size: 1.2rem;
+    color: #e3f2fd;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out 0.2s;
+    animation-fill-mode: both;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .hero-section h1 {
+      font-size: 3rem;
+    }
+  
+    .hero-section p.lead {
+      font-size: 1.3rem;
+    }
+  
+    .services-section h2,
+    .about-section h2,
+    .contact-section h2 {
+      font-size: 2.5rem;
+    }
+  
+    app-video-player {
+      max-width: 600px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .hero-section {
+      padding: 60px 0;
+    }
+  
+    .hero-section h1 {
+      font-size: 2.5rem;
+    }
+  
+    .hero-section p.lead {
+      font-size: 1.2rem;
+    }
+  
+    .services-section,
+    .about-section,
+    .contact-section {
+      padding: 60px 0;
+    }
+  
+    .services-section .card {
+      margin-bottom: 20px;
+    }
+  
+    .about-section .row {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .about-section img {
+      margin-top: 20px;
+      max-width: 80%;
+    }
+  
+    app-video-player {
+      max-width: 500px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 50px 0;
+    }
+  
+    .hero-section h1 {
+      font-size: 2.2rem;
+    }
+  
+    .hero-section p.lead {
+      font-size: 1.1rem;
+    }
+  
+    .hero-section .btn-light {
+      padding: 10px 25px;
+      font-size: 1.1rem;
+    }
+  
+    .services-section,
+    .about-section,
+    .contact-section {
+      padding: 50px 0;
+    }
+  
+    .services-section h2,
+    .about-section h2,
+    .contact-section h2 {
+      font-size: 2.2rem;
+    }
+  
+    .services-section .card-title {
+      font-size: 1.5rem;
+    }
+  
+    .services-section .card-text {
+      font-size: 1rem;
+    }
+  
+    .about-section p {
+      font-size: 1.1rem;
+    }
+  
+    app-video-player {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hero-section h1 {
+      font-size: 1.8rem;
+    }
+  
+    .hero-section p.lead {
+      font-size: 1rem;
+    }
+  
+    .hero-section .btn-light {
+      padding: 8px 20px;
+      font-size: 1rem;
+    }
+  
+    .services-section h2,
+    .about-section h2,
+    .contact-section h2 {
+      font-size: 1.8rem;
+    }
+  
+    .services-section .card-title {
+      font-size: 1.4rem;
+    }
+  
+    .services-section .card-text {
+      font-size: 0.9rem;
+    }
+  
+    .about-section p {
+      font-size: 1rem;
+    }
+  
+    .about-section .btn-primary {
+      padding: 10px 25px;
+      font-size: 1rem;
+    }
+  
+    .contact-section p {
+      font-size: 1rem;
+    }
+  
+    .about-section img {
+      max-width: 100%;
+    }
+  }
+  
+  /* Accessibility */
+  .services-section .card:focus,
+  app-video-player:focus {
+    outline: 2px solid #0288d1;
+    outline-offset: 2px;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .services-section .card {
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: calc(0.1s * var(--index));
+  }
+  
+  .about-section .row,
+  .contact-section .container {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  /* Networking Theme Enhancements */
+  .hero-section::after,
+  .services-section::after,
+  .about-section::after,
+  .contact-section::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    transform: translate(-50%, -50%);
+    opacity: 0.1;
+    z-index: -1;
+  }
+  
+  .services-section .card:hover .card-title {
+    color: #0277bd;
+  }
+  
+  .about-section .btn-primary::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  
+  .about-section .btn-primary:hover::before {
+    width: 50%;
+    left: 25%;
+  }
+  
+  .contact-section p::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: #bbdefb;
+    margin: 10px auto;
+    transition: width 0.3s ease;
+  }
+  
+  .contact-section p:hover::after {
+    width: 100px;
+  }

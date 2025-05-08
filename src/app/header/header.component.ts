@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { HttpHeaders } from '@angular/common/http';
 import { UserService } from '../services/user.service';
+import { User } from '../models';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,10 @@ export class HeaderComponent {
   userImg: string = '';
   isLoggedIn = false;
   userRole: string | null = null;
+  username: string ="";
+  currentUser: User | null = null;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService,private userService: UserService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isLoggedIn = this.authService.isAuthenticated();
@@ -26,12 +29,17 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.userRole = this.authService.getRole();
     this.isLoggedIn = this.authService.isAuthenticated();
-
     const token = this.authService.getToken();
     if (token) {
       const decoded: any = JSON.parse(atob(token.split('.')[1]));
       this.userImg = decoded.picture ;
     }
+    this.userService.getCurrentUser().subscribe((user) => {
+      this.currentUser = user;
+      this.username = this.currentUser?.username || '';
+    });
+
+    
   }
 
   logout() {

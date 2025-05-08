@@ -1,88 +1,145 @@
 <div class="applied-jobs-container">
-  <div class="network-connection" id="networkCanvas"></div>
-
-  <div class="header-section">
-    <h2>My Applied Jobs</h2>
-    <div class="header-actions">
-      <button class="btn btn-filter" (click)="openFilters()">
-        <i class="fas fa-sliders-h"></i> Filter
-      </button>
-      <button class="btn btn-sort" (click)="openSortOptions()">
-        <i class="fas fa-sort-amount-down"></i> Sort
-      </button>
-    </div>
+  <!-- Network Visualization Canvas -->
+  <div class="network-visualization">
+    <canvas id="networkCanvas"></canvas>
+    <div class="network-overlay"></div>
   </div>
 
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-value">{{ appliedJobs?.length || 0 }}</div>
-      <div class="stat-label">Total Applications</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value">{{ getStatusCount('interview') }}</div>
-      <div class="stat-label">Interviews</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value">{{ getStatusCount('offer') }}</div>
-      <div class="stat-label">Offers</div>
-    </div>
-  </div>
-
-  <div class="jobs-list">
-    <div *ngFor="let job of appliedJobs" class="job-card" (click)="openJobDetails(job)">
-      <div class="job-header">
-        <div class="job-title-wrapper">
-          <h3>{{ job.jobTitle }}</h3>
-
+  <div class="container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1 class="page-title">
+            <i class="fas fa-network-wired me-3"></i>My Job Network
+          </h1>
+          <p class="page-subtitle">Track your job applications and connections</p>
         </div>
-        <span class="status-badge" [ngClass]="job.status.toLowerCase()">
-          <i [class]="getStatusIcon(job.status)"></i>
-          {{ job.status }}
-        </span>
-      </div>
-
-      <div class="company-info">
-        <div class="company-details">
-          <div class="company-name">{{ job.companyName }}</div>
-          <div class="company-industry">{{ job.companyIndustry }}</div>
+        <div class="col-md-4 text-md-end">
+          <div class="header-actions">
+            <button class="btn btn-outline-primary me-2" (click)="openFilters()">
+              <i class="fas fa-sliders-h me-1"></i> Filter
+            </button>
+            <button class="btn btn-outline-secondary" (click)="openSortOptions()">
+              <i class="fas fa-sort-amount-down me-1"></i> Sort
+            </button>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="job-details">
-        <div class="detail-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>{{ job.jobLocation }}</span>
+    <!-- Stats Dashboard -->
+    <div class="stats-dashboard">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="stat-card stat-total">
+            <div class="stat-icon">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ appliedJobs?.length || 0 }}</div>
+              <div class="stat-label">Total Applications</div>
+            </div>
+          </div>
         </div>
-
-        <div class="detail-item">
-          <i class="fas fa-calendar-check"></i>
-          <span>Applied: {{ job.datePosted | date:'mediumDate' }}</span>
+        <div class="col-md-3">
+          <div class="stat-card stat-interview">
+            <div class="stat-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ getStatusCount('interview') }}</div>
+              <div class="stat-label">Interviews</div>
+            </div>
+          </div>
         </div>
-
+        <div class="col-md-3">
+          <div class="stat-card stat-offer">
+            <div class="stat-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="stat-content">
+              <div class="stat-value">{{ getStatusCount('offer') }}</div>
+              <div class="stat-label">Offers</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card stat-connections">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+           
+          </div>
+        </div>
       </div>
-
-
     </div>
-  </div>
 
-  <div *ngIf="!appliedJobs?.length" class="no-jobs">
-    <div class="no-jobs-illustration">
-      <i class="fas fa-file-search"></i>
+    <!-- Jobs List -->
+    <div class="jobs-network">
+      <div class="jobs-list-container">
+        <div class="table-responsive">
+          <table class="table table-hover jobs-table">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Job Title</th>
+                <th scope="col">Company</th>
+                <th scope="col">Location</th>
+                <th scope="col">Industry</th>
+                <th scope="col">Applied Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let job of appliedJobs" class="job-row" (click)="openJobDetails(job)">
+                <td class="job-title-cell">
+                  <div class="job-title">{{ job.jobTitle }}</div>
+                </td>
+                <td>
+                  <div class="company-name">{{ job.companyName }}</div>
+                </td>
+                <td>
+                  <i class="fas fa-map-marker-alt me-2"></i>{{ job.jobLocation }}
+                </td>
+                <td>{{ job.companyIndustry }}</td>
+                <td>{{ job.datePosted | date:'mediumDate' }}</td>
+                <td>
+                  <span class="status-badge" [ngClass]="job.status.toLowerCase()">
+                    <i [class]="getStatusIcon(job.status)"></i>
+                    {{ job.status }}
+                  </span>
+                </td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn btn-outline-primary btn-sm me-2" title="View Details">
+                      <i class="fas fa-eye"></i>
+                    </button  >
+                    <button class="btn btn-outline-success btn-sm me-2" title="Follow Up">
+                      <i class="fas fa-envelope"></i>
+                    </button>
+                    <button class="btn btn-outline-info btn-sm" title="Share">
+                      <i class="fas fa-share-alt"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="!appliedJobs?.length" class="no-jobs">
+          <div class="no-jobs-illustration">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h3>Your Network is Empty</h3>
+          <p>Start building your professional network by applying to jobs today!</p>
+          <button class="btn btn-primary" (click)="navigateToJobSearch()">
+            <i class="fas fa-search me-2"></i>Explore Opportunities
+          </button>
+        </div>
+      </div>
     </div>
-    <h3>No Applications Yet</h3>
-    <p>You haven't applied to any jobs yet. Start your job search today!</p>
-    <button class="btn btn-primary" (click)="navigateToJobSearch()">
-      <i class="fas fa-search me-2"></i>Browse Jobs
-    </button>
-  </div>
-
-  <div class="pagination-controls" *ngIf="appliedJobs?.length">
-    <button class="btn btn-pagination" [disabled]="currentPage === 1" (click)="prevPage()">
-      <i class="fas fa-chevron-left"></i> Previous
-    </button>
-    <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
-    <button class="btn btn-pagination" [disabled]="currentPage === totalPages" (click)="nextPage()">
-      Next <i class="fas fa-chevron-right"></i>
-    </button>
   </div>
 </div>
