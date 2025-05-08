@@ -40,6 +40,7 @@ import { CompanyGrowthChartComponent } from './admin/components/company-growth-c
 import { TopCompaniesComponent } from './admin/components/top-companies/top-companies.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { CompanyManagementComponent } from './admin/company-management/company-management.component';
+import { AppliedJobsComponent } from './job/applied-jobs/applied-jobs.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -79,6 +80,7 @@ const routes: Routes = [
   {path:'manage-jobs',component:AdminJobPageComponent},
   {path:'edit-jobs',component:JobEditComponent},
   {path:'update-company-profile',component:UpdateCompanyProfileComponent},
+  {path:'applied-jobs',component:AppliedJobsComponent},
 
 
   //******************************************************** */

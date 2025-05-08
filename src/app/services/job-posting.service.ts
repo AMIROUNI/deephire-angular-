@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { JobPosting } from '../models';
 import { AuthService } from './auth/auth.service';
 import { JobCompany } from '../models/job/job-company.model';
+import { JobPostingStatusDto } from '../models/job/JobPostingStatusDto';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,13 @@ export class JobPostingService {
 
   getAllJobPostings(): Observable<JobCompany[]> {
     return this.http.get<JobCompany[]>(`${this.apiUrl}/all`, { headers: this.getHeaders() });
+  }
+  applyToJob(jobId: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/applyToJob/${jobId}`, {}, { headers: this.getHeaders() });
+  }
+
+  getAppliedJobs(): Observable<JobPostingStatusDto[]> {
+    return this.http.get<JobPostingStatusDto[]>(`${this.apiUrl}/job-applied`, { headers: this.getHeaders() });
   }
 
 }

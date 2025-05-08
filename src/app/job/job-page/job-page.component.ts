@@ -9,6 +9,17 @@ import { JobCompany } from '../../models/job/job-company.model';
   styleUrls: ['./job-page.component.css']
 })
 export class JobPageComponent implements OnInit {
+    // popup variables ///////////////////////////////////////////////////////////////
+    showPopup = false;
+    popupTitle = '';
+    popupMessage = '';
+    popupIsSuccess = false;
+    popupRedirectPath: string | null = null;
+    showCancelButton = false;
+
+
+
+
   allJobs: JobCompany[] = [];
   filteredJobs: JobCompany[] = [];
   selectedJob: JobCompany | null = null;
@@ -26,6 +37,7 @@ export class JobPageComponent implements OnInit {
     this.jobService.getAllJobPostings().subscribe({
       next: (jobs) => {
         this.allJobs = jobs;
+        console.log(this.allJobs[0].id);
         this.extractLocations();
         this.filteredJobs = this.allJobs.slice(0, this.visibleJobs);
         this.hasMoreJobs = this.allJobs.length > this.visibleJobs;
@@ -85,5 +97,44 @@ export class JobPageComponent implements OnInit {
   }
   applyToJob(jobId: number) {
     console.log('Applying to job:', jobId);
+    this.jobService.applyToJob(jobId).subscribe({
+      next: () => {
+        console.log('Application submitted successfully');
+        this.showSuccessPopup('Application submitted successfully','Application Submitted');
+      },
+      error: (err) => {
+        console.error('Failed to submit application:', err);
+        if (err.status === 409) {
+          this.showErrorPopup('You have already applied to this job','Application Already Submitted');
+        }
+      }
+    });
   }
+
+
+
+  /// popup methods //////////////////////////////////////////
+
+  showSuccessPopup(successMessage: string,title:string) {
+    this.popupTitle = title;
+    this.popupMessage = successMessage;
+    this.popupIsSuccess = true;
+    this.popupRedirectPath = null;
+    this.showCancelButton = false;
+    this.showPopup = true;
+  }
+
+  showErrorPopup(errorMessage: string,title:string) {
+    this.popupTitle = title;
+    this.popupMessage = errorMessage;
+    this.popupIsSuccess = false;
+    this.popupRedirectPath = null;
+    this.showCancelButton = true;
+    this.showPopup = true;
+  }
+
+  closePopup() {
+    this.showPopup = false;
+  }
+////////////////////////////////////
 }

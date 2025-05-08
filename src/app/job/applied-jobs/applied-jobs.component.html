@@ -1,0 +1,88 @@
+<div class="applied-jobs-container">
+  <div class="network-connection" id="networkCanvas"></div>
+
+  <div class="header-section">
+    <h2>My Applied Jobs</h2>
+    <div class="header-actions">
+      <button class="btn btn-filter" (click)="openFilters()">
+        <i class="fas fa-sliders-h"></i> Filter
+      </button>
+      <button class="btn btn-sort" (click)="openSortOptions()">
+        <i class="fas fa-sort-amount-down"></i> Sort
+      </button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-value">{{ appliedJobs?.length || 0 }}</div>
+      <div class="stat-label">Total Applications</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">{{ getStatusCount('interview') }}</div>
+      <div class="stat-label">Interviews</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">{{ getStatusCount('offer') }}</div>
+      <div class="stat-label">Offers</div>
+    </div>
+  </div>
+
+  <div class="jobs-list">
+    <div *ngFor="let job of appliedJobs" class="job-card" (click)="openJobDetails(job)">
+      <div class="job-header">
+        <div class="job-title-wrapper">
+          <h3>{{ job.jobTitle }}</h3>
+
+        </div>
+        <span class="status-badge" [ngClass]="job.status.toLowerCase()">
+          <i [class]="getStatusIcon(job.status)"></i>
+          {{ job.status }}
+        </span>
+      </div>
+
+      <div class="company-info">
+        <div class="company-details">
+          <div class="company-name">{{ job.companyName }}</div>
+          <div class="company-industry">{{ job.companyIndustry }}</div>
+        </div>
+      </div>
+
+      <div class="job-details">
+        <div class="detail-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>{{ job.jobLocation }}</span>
+        </div>
+
+        <div class="detail-item">
+          <i class="fas fa-calendar-check"></i>
+          <span>Applied: {{ job.datePosted | date:'mediumDate' }}</span>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <div *ngIf="!appliedJobs?.length" class="no-jobs">
+    <div class="no-jobs-illustration">
+      <i class="fas fa-file-search"></i>
+    </div>
+    <h3>No Applications Yet</h3>
+    <p>You haven't applied to any jobs yet. Start your job search today!</p>
+    <button class="btn btn-primary" (click)="navigateToJobSearch()">
+      <i class="fas fa-search me-2"></i>Browse Jobs
+    </button>
+  </div>
+
+  <div class="pagination-controls" *ngIf="appliedJobs?.length">
+    <button class="btn btn-pagination" [disabled]="currentPage === 1" (click)="prevPage()">
+      <i class="fas fa-chevron-left"></i> Previous
+    </button>
+    <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-pagination" [disabled]="currentPage === totalPages" (click)="nextPage()">
+      Next <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>

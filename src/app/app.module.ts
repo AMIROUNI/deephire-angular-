@@ -67,6 +67,7 @@ import { Top5ByCopanyCreatedComponent } from './admin/components/top-5-by-copany
 
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { CompanyManagementComponent } from './admin/company-management/company-management.component';
+import { AppliedJobsComponent } from './job/applied-jobs/applied-jobs.component';
 
 import { ChatComponent } from './chat/chat.component';
 import { ChatMailboxComponent } from './chat/chat-mailbox/chat-mailbox.component';
@@ -110,34 +111,49 @@ import { AppRoutingModule } from './app-routing.module';
     EditRhCompanyComponent,
     RecruiterManagementComponent,
     CompanyProfileComponent,
-    UpdateCompanyProfileComponent,
-    DashboardAdminCompanyComponent,
-    KpiCardsAcComponent,
-    RecruiterGrowithChartComponent,
-    JobPostingAcComponent,
-    WelocmeCardAcComponent,
-    AddJobPostingComponent,
-    AdminJobPageComponent,
-    DisplayJobPostingsComponent,
-    JobEditComponent,
-    DashboardComponent,
-    WelcomeCardComponent,
-    KpiCardsComponent,
-    UserGrowthChartComponent,
-    JobPostingChartComponent,
-    TopCompaniesComponent,
-    ApplicationStatusComponent,
-    RecentActivityComponent,
-    SettingsDropdownComponent,
-    CompanyGrowthChartComponent,
-    Top5ByCopanyCreatedComponent,
-    UserManagementComponent,
-    CompanyManagementComponent,
+
     ChatComponent,
-    ChatMailboxComponent,
-    ChatWindowComponent,
-    NewMessageComponent,
-    NotFoundComponent
+      NotFoundComponent,
+      WelcomeCardComponent,
+      KpiCardsComponent,
+      UserGrowthChartComponent,
+      JobPostingChartComponent,
+      TopCompaniesComponent,
+      ApplicationStatusComponent,
+      RecentActivityComponent,
+      SettingsDropdownComponent,
+      DashboardComponent,
+      ProfileUpdateComponent,
+      ChatMailboxComponent,
+      ChatWindowComponent,
+      NewMessageComponent,
+      UserSearchComponent,
+      AddJobPostingComponent,
+      AdminJobPageComponent,
+      DisplayJobPostingsComponent,
+      JobEditComponent,
+      DashboardAdminCompanyComponent,
+      KpiCardsAcComponent,
+      RecruiterGrowithChartComponent,
+      JobPostingAcComponent,
+      WelocmeCardAcComponent,
+      UpdateCompanyProfileComponent,
+      WelocmeCardAcComponent,
+      JobEditComponent,
+      PostUpdateComponent,
+      CompanyGrowthChartComponent,
+      Top5ByCopanyCreatedComponent,
+      UserManagementComponent,
+      CompanyManagementComponent,
+      AppliedJobsComponent
+
+
+
+
+
+
+
+
   ],
   imports: [
     BrowserModule,
