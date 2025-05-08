@@ -1,0 +1,238 @@
+/* General container styling */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Headings */
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+    border-left: 6px solid #007bff;
+    padding-left: 12px;
+    font-weight: 600;
+  }
+  
+  /* Tables */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  
+  .table thead {
+    font-size: 1rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 1rem;
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+  }
+  
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: #f1f3f5;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-primary {
+    background-color: #e3f2fd;
+    color: #0d6efd;
+  }
+  
+  .table-danger {
+    background-color: #f8d7da;
+    color: #842029;
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: 6px 14px;
+    font-size: 0.875rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+    border: none;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  /* Transitions and Effects */
+  button {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Popup component */
+  app-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+  }
+  
+  /* Utility classes */
+  hr {
+    margin: 3rem 0;
+    border-top: 2px dashed #ccc;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    .table th, .table td {
+      padding: 0.75rem;
+    }
+  
+    .btn {
+      font-size: 0.75rem;
+      padding: 5px 8px;
+    }
+  
+    app-popup {
+      width: 95%;
+    }
+  }
+  
+  /* Row hover */
+  .table tbody tr:hover {
+    background-color: #eef1f7;
+  }
+  
+  /* Table action column alignment */
+  .table td:last-child {
+    text-align: center;
+  }
+  
+  /* Avatar placeholder (optional future feature) */
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Tooltip effect (optional enhancement) */
+  button[title] {
+    position: relative;
+  }
+  
+  button[title]::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+  }
+  
+  button[title]:hover::after {
+    opacity: 1;
+  }
+  
+  /* Scroll and container fix */
+  body {
+    background-color: #e9ecef;
+    overflow-x: hidden;
+  }
+  
+  /* Admin header / dashboard placeholder */
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* Responsive fix for long email/username */
+  .table td {
+    word-break: break-word;
+  }
+  
+  /* Placeholder shimmer effect for loading state */
+  .shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e6e6e6 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+    border-radius: 4px;
+    height: 1rem;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
