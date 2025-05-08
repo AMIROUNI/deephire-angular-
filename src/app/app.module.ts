@@ -65,6 +65,7 @@ import { CompanyGrowthChartComponent } from './admin/components/company-growth-c
 import { Top5ByCopanyCreatedComponent } from './admin/components/top-5-by-copany-created/top-5-by-copany-created.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { CompanyManagementComponent } from './admin/company-management/company-management.component';
+import { AppliedJobsComponent } from './job/applied-jobs/applied-jobs.component';
 
 
 
@@ -132,7 +133,8 @@ import { CompanyManagementComponent } from './admin/company-management/company-m
       CompanyGrowthChartComponent,
       Top5ByCopanyCreatedComponent,
       UserManagementComponent,
-      CompanyManagementComponent
+      CompanyManagementComponent,
+      AppliedJobsComponent
 
 
 
