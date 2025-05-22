@@ -15,7 +15,6 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th>Description</th>
             <th>Requirements</th>
             <th>Location</th>
             <th>Posted Date</th>
@@ -25,7 +24,6 @@
         <tbody>
           <tr *ngFor="let job of jobPostings">
             <td class="job-title">{{ job.title }}</td>
-            <td class="job-description">{{ job.description  }}</td>
             <td class="job-requirements">{{ job.requirements  }}</td>
             <td class="job-location">
               <span class="location-icon">📍</span> {{ job.location }}

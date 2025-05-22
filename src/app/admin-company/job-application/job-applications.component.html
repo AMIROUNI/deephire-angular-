@@ -1,0 +1,129 @@
+<div class="network-applications-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <div class="header-content">
+      <div class="title-group">
+        <h1 class="page-title">
+          <i class="fas fa-network-wired icon-title"></i>
+          Job Applications Network
+        </h1>
+        <p class="page-subtitle">Track and manage all your job applications in one place</p>
+      </div>
+
+      <div class="search-container">
+        <div class="search-input">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" [formControl]="searchControl" placeholder="Search applications..." class="search-field">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Dashboard -->
+  <div class="stats-dashboard">
+    <div class="stat-card" (click)="filterByStatus('ALL')" [class.active]="currentStatusFilter === 'ALL'">
+      <div class="stat-icon total">
+        <i class="fas fa-layer-group"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getTotalApplications() }}</div>
+        <div class="stat-label">Total Applications</div>
+      </div>
+    </div>
+
+    <div class="stat-card" (click)="filterByStatus('PENDING')" [class.active]="currentStatusFilter === 'PENDING'">
+      <div class="stat-icon pending">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getStatusCount('PENDING') }}</div>
+        <div class="stat-label">Pending</div>
+      </div>
+    </div>
+
+    <div class="stat-card" (click)="filterByStatus('APPROVED')" [class.active]="currentStatusFilter === 'APPROVED'">
+      <div class="stat-icon approved">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getStatusCount('APPROVED') }}</div>
+        <div class="stat-label">Approved</div>
+      </div>
+    </div>
+
+    <div class="stat-card" (click)="filterByStatus('REJECTED')" [class.active]="currentStatusFilter === 'REJECTED'">
+      <div class="stat-icon rejected">
+        <i class="fas fa-times-circle"></i>
+      </div>
+      <div class="stat-content">
+        <div class="stat-value">{{ getStatusCount('REJECTED') }}</div>
+        <div class="stat-label">Rejected</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Applications Table -->
+  <div class="applications-table-container">
+    <table class="applications-table">
+      <thead>
+        <tr>
+          <th>Job Title</th>
+          <th>Company</th>
+          <th>Location</th>
+          <th>Date Posted</th>
+          <th>Applicant</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let application of filteredApplications" class="application-row">
+          <td class="job-title-cell">
+            <div class="job-title">{{ application.title }}</div>
+          </td>
+          <td>{{ application.company }}</td>
+          <td>
+            <i class="fas fa-map-marker-alt location-icon"></i>
+            {{ application.location }}
+          </td>
+          <td>{{ application.datePosted | date:'mediumDate' }}</td>
+          <td class="user-cell">
+            <div class="user-info">
+              <div class="username">{{ application.user.username }}</div>
+              <div class="email">{{ application.user.email }}</div>
+            </div>
+          </td>
+          <td>
+            <span class="status-badge" [ngClass]="application.status.toLowerCase()">
+              <i [class]="getStatusIcon(application.status)"></i>
+              {{ application.status }}
+            </span>
+          </td>
+          <td class="actions-cell">
+            <button style="margin: 1em;" class="action-btn view" title="View Details" (click)="viewProfile(application.user.username)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button  style="margin: 1em;"class="action-btn approve" title="Approve" (click)="approve(application)">
+              <i class="fas fa-check"></i> Approve
+            </button>
+            <button style="margin: 1em;" class="action-btn reject" title="Reject" (click)="reject(application)">
+              <i class="fas fa-times"></i> Reject
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Empty State -->
+    <div *ngIf="filteredApplications.length === 0" class="empty-state">
+      <div class="empty-illustration">
+        <i class="fas fa-folder-open"></i>
+      </div>
+      <h3>No Applications Found</h3>
+      <p>There are no applications matching your current filters.</p>
+      <button class="reset-btn" (click)="filterByStatus('ALL'); searchControl.setValue('')">
+        Reset Filters
+      </button>
+    </div>
+  </div>
+</div>

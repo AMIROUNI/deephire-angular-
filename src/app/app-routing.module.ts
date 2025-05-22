@@ -41,6 +41,7 @@ import { TopCompaniesComponent } from './admin/components/top-companies/top-comp
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { CompanyManagementComponent } from './admin/company-management/company-management.component';
 import { AppliedJobsComponent } from './job/applied-jobs/applied-jobs.component';
+import { JobApplicationsComponent } from './admin-company/job-application/job-applications.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -96,6 +97,7 @@ const routes: Routes = [
 
   //************************************************************   */
   {path:'dashboard-admin-company',component:DashboardAdminCompanyComponent},
+  {path:'job-applications',component:JobApplicationsComponent},
   {
     path: 'search',
     component: UserSearchComponent

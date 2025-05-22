@@ -78,6 +78,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 import { ApexChartsModule } from '../apex-charts.module';
 import { AppRoutingModule } from './app-routing.module';
+import { JobApplicationsComponent } from './admin-company/job-application/job-applications.component';
+
 
 @NgModule({
   declarations: [
@@ -145,7 +147,8 @@ import { AppRoutingModule } from './app-routing.module';
       Top5ByCopanyCreatedComponent,
       UserManagementComponent,
       CompanyManagementComponent,
-      AppliedJobsComponent
+      AppliedJobsComponent,
+      JobApplicationsComponent
 
 
 

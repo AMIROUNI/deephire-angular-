@@ -43,11 +43,11 @@ export class CompanyProfileComponent {
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe({
       next: (user) => {
+        console.log('Current user:', user);
         if (user.firstLogin === false) {
-          // Déjà connecté, rediriger vers dashboard
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard-admin-company']);
         }
-        // Sinon, laisser afficher le formulaire
+      
       },
       error: (err) => {
         console.error('Error fetching user:', err);
