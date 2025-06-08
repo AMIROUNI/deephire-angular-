@@ -1,13 +1,16 @@
-/* Base Styles */
+/* Base Styles - Updated to Blue/White Theme */
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --accent-color: #e74c3c;
-  --text-color: #ecf0f1;
-  --background-dark: #1a1a2e;
-  --background-light: #16213e;
-  --node-color: #4cc9f0;
-  --connection-color: rgba(76, 201, 240, 0.3);
+  --primary-color: #296cf2;
+  --secondary-color: #0056b3;
+  --accent-color: #ff3d3d;
+  --text-color: #ffffff;
+  --background-dark: #4b6cd9;
+  --background-light: #465f91;
+  --node-color: #3a86ff;
+  --connection-color: rgba(58, 134, 255, 0.3);
+  --police-blue: #0047ab;
+  --police-red: #ff3d3d;
+  --police-white: #ffffff;
 }
 
 body {
@@ -28,7 +31,7 @@ body {
   align-items: center;
 }
 
-/* Network Theme Background */
+/* Police/Siren Animation Background */
 .network-theme-background {
   position: absolute;
   top: 0;
@@ -37,9 +40,26 @@ body {
   height: 100%;
   background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
   z-index: 0;
+  animation: sirenBackground 8s infinite alternate;
 }
 
-/* Network Nodes */
+/* Police/Siren Animation */
+@keyframes sirenBackground {
+  0%, 100% {
+    background-color: var(--police-blue);
+  }
+  25% {
+    background-color: var(--background-dark);
+  }
+  50% {
+    background-color: var(--police-red);
+  }
+  75% {
+    background-color: var(--background-dark);
+  }
+}
+
+/* Network Nodes - Updated for Police Theme */
 .node {
   position: absolute;
   width: 12px;
@@ -47,7 +67,18 @@ body {
   background-color: var(--node-color);
   border-radius: 50%;
   box-shadow: 0 0 15px 2px var(--node-color);
-  animation: pulse 2s infinite alternate;
+  animation: pulse 1.5s infinite alternate, sirenColor 4s infinite;
+}
+
+@keyframes sirenColor {
+  0%, 100% {
+    background-color: var(--police-blue);
+    box-shadow: 0 0 15px 2px var(--police-blue);
+  }
+  50% {
+    background-color: var(--police-red);
+    box-shadow: 0 0 15px 2px var(--police-red);
+  }
 }
 
 .node-1 {
@@ -82,11 +113,21 @@ body {
   animation-delay: 1s;
 }
 
-/* Network Connections */
+/* Network Connections - Updated for Police Theme */
 .connection {
   position: absolute;
   background-color: var(--connection-color);
   transform-origin: left center;
+  animation: connectionPulse 3s infinite;
+}
+
+@keyframes connectionPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .connection-1 {
@@ -121,42 +162,72 @@ body {
   transform: rotate(-25deg);
 }
 
-/* Content Styling */
+/* Content Styling - Police/Security Theme */
 .unauthorized-content {
   position: relative;
   z-index: 1;
   max-width: 600px;
   padding: 2.5rem;
-  background-color: rgba(26, 26, 46, 0.85);
+  background-color: rgba(10, 26, 58, 0.9);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
   text-align: center;
-  border: 1px solid rgba(76, 201, 240, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: borderFlash 3s infinite;
+}
+
+@keyframes borderFlash {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    border-color: var(--police-red);
+  }
 }
 
 .error-code {
   font-size: 6rem;
   font-weight: 800;
-  color: var(--accent-color);
+  color: var(--police-white);
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: codeFlash 2s infinite;
+}
+
+@keyframes codeFlash {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px var(--police-red);
+  }
 }
 
 .error-title {
   font-size: 2.2rem;
   margin: 0 0 1.5rem;
-  color: var(--text-color);
+  color: var(--police-white);
+  animation: titlePulse 3s infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
 }
 
 .error-message {
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 2.5rem;
-  color: rgba(236, 240, 241, 0.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 
-/* Action Buttons */
+/* Action Buttons - Police Theme */
 .action-buttons {
   display: flex;
   justify-content: center;
@@ -178,48 +249,86 @@ body {
 }
 
 .home-button {
-  background-color: var(--secondary-color);
+  background-color: var(--police-blue);
   color: white;
+  animation: buttonPulse 3s infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 86, 179, 0);
+  }
 }
 
 .home-button:hover {
-  background-color: #2980b9;
+  background-color: #003d82;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
 }
 
 .support-button {
   background-color: transparent;
-  color: var(--secondary-color);
-  border: 2px solid var(--secondary-color);
+  color: var(--police-white);
+  border: 2px solid var(--police-white);
+  animation: buttonBorderPulse 3s infinite;
+}
+
+@keyframes buttonBorderPulse {
+  0%, 100% {
+    border-color: var(--police-white);
+  }
+  50% {
+    border-color: var(--police-red);
+  }
 }
 
 .support-button:hover {
-  background-color: rgba(52, 152, 219, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
 }
 
-/* Network Tip */
+/* Security Badge */
 .network-tip {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   font-size: 0.9rem;
-  color: rgba(236, 240, 241, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   padding: 0.8rem;
-  background-color: rgba(76, 201, 240, 0.1);
+  background-color: rgba(0, 86, 179, 0.2);
   border-radius: 6px;
-  border-left: 3px solid var(--node-color);
+  border-left: 3px solid var(--police-red);
+  animation: badgePulse 4s infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    border-left-color: var(--police-red);
+  }
+  50% {
+    border-left-color: var(--police-blue);
+  }
 }
 
 .icon-shield {
   display: inline-block;
   width: 18px;
   height: 18px;
-  background-color: var(--node-color);
+  background-color: var(--police-white);
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,1L3,5v6c0,5.55,3.84,10.74,9,12c5.16-1.26,9-6.45,9-12V5L12,1z'/%3E%3C/svg%3E") no-repeat center;
+  animation: shieldPulse 2s infinite;
+}
+
+@keyframes shieldPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 /* Animations */
@@ -266,7 +375,7 @@ body {
 
 /* Additional Effects */
 .unauthorized-content {
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.8s ease-out, contentPulse 6s infinite;
 }
 
 @keyframes fadeIn {
@@ -280,9 +389,18 @@ body {
   }
 }
 
+@keyframes contentPulse {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 10px 30px rgba(255, 61, 61, 0.3);
+  }
+}
+
 /* Focus states for accessibility */
 button:focus {
-  outline: 2px solid var(--node-color);
+  outline: 2px solid var(--police-red);
   outline-offset: 2px;
 }
 
@@ -302,5 +420,33 @@ button:focus {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Police Siren Top Bar */
+.police-siren-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(90deg, 
+    var(--police-blue) 0%, 
+    var(--police-blue) 25%, 
+    var(--police-red) 25%, 
+    var(--police-red) 50%, 
+    var(--police-blue) 50%, 
+    var(--police-blue) 75%, 
+    var(--police-red) 75%, 
+    var(--police-red) 100%);
+  animation: sirenSlide 1s linear infinite;
+}
+
+@keyframes sirenSlide {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 0;
   }
 }

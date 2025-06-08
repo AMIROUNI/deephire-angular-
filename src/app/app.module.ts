@@ -152,7 +152,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
       AppliedJobsComponent,
       JobApplicationsComponent,
       UnauthorizedComponent,
-      TruncatePipe
+
 
 
 
