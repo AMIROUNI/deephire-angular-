@@ -1,0 +1,40 @@
+<div class="unauthorized-container">
+  <div class="network-theme-background">
+    <div class="nodes">
+      <div class="node node-1"></div>
+      <div class="node node-2"></div>
+      <div class="node node-3"></div>
+      <div class="node node-4"></div>
+      <div class="node node-5"></div>
+    </div>
+    <div class="connections">
+      <div class="connection connection-1"></div>
+      <div class="connection connection-2"></div>
+      <div class="connection connection-3"></div>
+      <div class="connection connection-4"></div>
+    </div>
+  </div>
+  
+  <div class="unauthorized-content">
+    <div class="error-code">403</div>
+    <h1 class="error-title">Access Denied</h1>
+    <p class="error-message">
+      You don't have permission to access this network resource. 
+      Please check your credentials or contact your network administrator.
+    </p>
+    
+    <div class="action-buttons">
+      <button class="home-button" (click)="navigateToHome()">
+        Return to Home
+      </button>
+      <button class="support-button" (click)="contactSupport()">
+        Contact Support
+      </button>
+    </div>
+    
+    <div class="network-tip">
+      <i class="icon-shield"></i>
+      <span>Network Security Tip: Always verify URLs before entering credentials.</span>
+    </div>
+  </div>
+</div>

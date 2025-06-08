@@ -37,14 +37,8 @@
 
   <!-- Post Content -->
   <div class="post-content">
-    <p [class.expanded]="showFullPost">{{ post.content }}</p>
-    <button
-      *ngIf="post.content.length > 200 && !showFullPost"
-      class="btn-see-more"
-      (click)="toggleFullPost()"
-    >
-      ...see more
-    </button>
+    <p [class.expanded]="showFullPost">{{ post.content | truncate:120 }}</p>
+   
   </div>
 
   <!-- Media Display (Carousel for multiple files) -->

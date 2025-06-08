@@ -42,6 +42,8 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { CompanyManagementComponent } from './admin/company-management/company-management.component';
 import { AppliedJobsComponent } from './job/applied-jobs/applied-jobs.component';
 import { JobApplicationsComponent } from './admin-company/job-application/job-applications.component';
+import { RoleGuard } from './guards/role.guard';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 const routes: Routes = [
   {path:'', component:LandingComponent},
@@ -54,7 +56,9 @@ const routes: Routes = [
   {path:'posts/:username',component:PostsComponent},
 
 
-  {path:'recruiter-management',component: RecruiterManagementComponent},
+  {path:'recruiter-management',component: RecruiterManagementComponent  , canActivate: [RoleGuard],
+    data: { roles: ['ROLE_ADMINCOMPANY']}}
+    ,
   {path:'add-recruiter-management',component: AddRecruiterComponent},
 // Assuming RecruiterManagementComponent is defined elsewhere
   {path:' ',component:ProfileCompletionComponent },
@@ -64,7 +68,12 @@ const routes: Routes = [
  {path:'complete-profile-company',component:CompanyProfileComponent},
   {path:'profile/completion',component:ProfileCompletionComponent },
   {path:"chat",component:ChatComponent},
-  {path:'admin-dashboard',component:DashboardComponent},
+    {
+    path: 'admin-dashboard',
+    component: DashboardComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['ROLE_ADMIN'] }
+  },
   {path:'user-management',component:UserManagementComponent},
   {path:'profile/update',component:ProfileUpdateComponent},
   {path:'company-management',component:CompanyManagementComponent},
@@ -104,7 +113,7 @@ const routes: Routes = [
   },
 
 
-
+  {path:"unauthorized",component:UnauthorizedComponent},
 
   {path:'**', component:NotFoundComponent}
 

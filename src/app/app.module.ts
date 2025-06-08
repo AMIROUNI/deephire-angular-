@@ -79,6 +79,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ApexChartsModule } from '../apex-charts.module';
 import { AppRoutingModule } from './app-routing.module';
 import { JobApplicationsComponent } from './admin-company/job-application/job-applications.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 @NgModule({
@@ -148,7 +150,9 @@ import { JobApplicationsComponent } from './admin-company/job-application/job-ap
       UserManagementComponent,
       CompanyManagementComponent,
       AppliedJobsComponent,
-      JobApplicationsComponent
+      JobApplicationsComponent,
+      UnauthorizedComponent,
+      TruncatePipe
 
 
 
@@ -164,8 +168,9 @@ import { JobApplicationsComponent } from './admin-company/job-application/job-ap
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ApexChartsModule
-  ],
+    ApexChartsModule,
+    TruncatePipe
+], 
   providers: [],
   bootstrap: [AppComponent]
 })
